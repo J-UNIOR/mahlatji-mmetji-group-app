@@ -883,17 +883,16 @@ ul.nav.modern-nav-menu li {
   .header-area .main-nav {
     padding: 0.75rem 0;
     min-height: 70px;
-    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
   
-  /* Mobile logo centering */
+  /* Mobile logo centering with flexbox */
   .header-area .main-nav .logo {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1;
+    flex: 1;
     text-align: center;
+    order: 1;
   }
   
   .header-area .main-nav .logo h1,
@@ -906,11 +905,8 @@ ul.nav.modern-nav-menu li {
     display: flex !important;
     align-items: center;
     justify-content: center;
-    position: absolute;
-    right: 1rem;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 2;
+    order: 2;
+    flex-shrink: 0;
   }
   
   .modern-menu-toggle {
@@ -1028,17 +1024,16 @@ ul.nav.modern-nav-menu li {
   .header-area .main-nav {
     padding: 0.5rem 0;
     min-height: 60px;
-    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
   
   /* Centered logo for tablet */
   .header-area .main-nav .logo {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1;
+    flex: 1;
     text-align: center;
+    order: 1;
   }
   
   .header-area .main-nav .logo h1,
@@ -1060,11 +1055,8 @@ ul.nav.modern-nav-menu li {
     width: 40px;
     height: 40px;
     font-size: 1rem;
-    position: absolute;
-    right: 0.75rem;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 2;
+    order: 2;
+    flex-shrink: 0;
   }
 }
 
@@ -1087,17 +1079,16 @@ ul.nav.modern-nav-menu li {
   .header-area .main-nav {
     padding: 0.5rem 0;
     min-height: 55px;
-    position: relative;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
   }
   
   /* Centered logo for small mobile */
   .header-area .main-nav .logo {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1;
+    flex: 1;
     text-align: center;
+    order: 1;
   }
   
   .header-area .main-nav .logo h1,
@@ -1123,11 +1114,8 @@ ul.nav.modern-nav-menu li {
     width: 36px;
     height: 36px;
     font-size: 0.9rem;
-    position: absolute;
-    right: 0.5rem;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 2;
+    order: 2;
+    flex-shrink: 0;
   }
   
   .header-area .main-nav .menu-trigger span {
