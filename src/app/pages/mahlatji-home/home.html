@@ -1,0 +1,477 @@
+
+<!-- Hero section starts here -->
+<section class="main-banner" aria-label="Mahlatji Mmetji Group Services">
+  <owl-carousel-o [options]="bannerOptions">
+    <ng-container *ngFor="let slide of bannerSlides">
+      <ng-template carouselSlide>
+        <div class="item" [ngClass]="slide.class">
+          <div class="header-text">
+            <div class="container">
+              <div class="row">
+                <div class="col-lg-8 col-md-10">
+                  <span class="category" role="text">
+                    <i class="fa fa-star"></i> South Africa's Trusted Business Partner
+                  </span>
+                  <h2 class="display-3">{{ slide.title }}<br><span class="highlight">{{ slide.subtitle }}</span></h2>
+                  <p class="lead enhanced-lead">{{ slide.description }}</p>
+                  <div class="banner-actions enhanced-actions">
+                    <a href="/contact" class="primary-cta-btn">Start Your Project</a>
+                    <a href="/services" class="secondary-cta-btn">Explore Services</a>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-template>
+    </ng-container>
+  </owl-carousel-o>
+</section>
+
+<!-- About Us Section -->
+<section class="about-simple section" style="background: #fff; padding: 0rem 0 3rem 0;">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-6 mb-4 mb-lg-0">
+        <div class="about-content-simple">
+          <div class="section-badge-simple">
+            <span>| About Our Company</span>
+          </div>
+          <h2 class="simple-title">
+            Transforming South Africa's<br>
+            Business Landscape
+          </h2>
+          <p class="simple-description">
+            For over 15 years, Mahlatji Mmetji Group has been at the forefront of delivering 
+            exceptional services across construction, security, and financial consulting. 
+            Our commitment to excellence has made us a trusted partner for businesses nationwide.
+          </p>
+          
+          <div class="stats-inline">
+            <div class="stat-inline">
+              <div class="stat-number">15+</div>
+              <div class="stat-label">Years of Excellence</div>
+            </div>
+            <div class="stat-inline">
+              <div class="stat-number">500+</div>
+              <div class="stat-label">Projects Delivered</div>
+            </div>
+            <div class="stat-inline">
+              <div class="stat-number">150+</div>
+              <div class="stat-label">Satisfied Clients</div>
+            </div>
+            <div class="stat-inline">
+              <div class="stat-number">3</div>
+              <div class="stat-label">Business Divisions</div>
+            </div>
+          </div>
+
+          <div class="about-actions-simple">
+            <a href="/about" class="btn-simple-primary">
+              <span>Our Story</span>
+            </a>
+            <a href="/contact" class="btn-simple-outline">
+              <span>Get in Touch</span>
+            </a>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-lg-6">
+        <div class="about-visual-simple">
+          <div class="cards-simple">
+            <div class="card-simple primary">
+              <div class="card-content">
+                <h5>Professional Excellence</h5>
+                <p>15+ Years of Industry Leadership</p>
+              </div>
+            </div>
+            <div class="card-simple secondary">
+              <div class="card-content">
+                <h5>Trusted Partnership</h5>
+                <p>150+ Satisfied Clients Nationwide</p>
+              </div>
+            </div>
+            <div class="card-simple tertiary">
+              <div class="card-content">
+                <h5>Award Winning</h5>
+                <p>Service Excellence</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Our Companies Section -->
+<section class="companies-simple section" style="background: #fff; padding: 4rem 0;">
+  <div class="container">
+    <div class="row justify-content-center mb-4">
+      <div class="col-lg-8 text-center">
+        <div class="section-badge-simple">
+          <span>| Our Business Divisions</span>
+        </div>
+        <h2 class="simple-title">
+          Three Companies, One Vision
+        </h2>
+        <p class="simple-description">
+          Each division operates as an independent specialist company, delivering focused 
+          expertise and comprehensive solutions in their respective fields.
+        </p>
+      </div>
+    </div>
+    
+    <div class="row g-4">
+      <!-- Construction & Electrical Company -->
+      <div class="col-lg-4 col-md-6">
+        <div class="company-card-simple">
+          <div class="company-content-simple">
+            <h3>Construction & Electrical</h3>
+            <p class="company-tagline">Building Tomorrow's Infrastructure</p>
+            <p class="company-description">
+              From residential projects to commercial developments, we deliver comprehensive 
+              construction and electrical solutions with precision and reliability.
+            </p>
+            
+            <div class="services-list">
+              <span>• Construction</span>
+              <span>• Electrical</span>
+              <span>• Maintenance</span>
+            </div>
+            
+            <a routerLink="/construction-electrical" class="company-btn-simple">
+              Explore Services
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Cleaning & Security Company -->
+      <div class="col-lg-4 col-md-6">
+        <div class="company-card-simple">
+          <div class="company-content-simple">
+            <h3>Cleaning & Security</h3>
+            <p class="company-tagline">Safeguarding Your Environment</p>
+            <p class="company-description">
+              Professional cleaning and comprehensive security solutions ensuring your spaces 
+              remain pristine, secure, and welcoming around the clock.
+            </p>
+            
+            <div class="services-list">
+              <span>• Cleaning</span>
+              <span>• Security</span>
+              <span>• 24/7 Support</span>
+            </div>
+            
+            <a routerLink="/cleaning-security" class="company-btn-simple">
+              Explore Services
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Accounting & Consulting Company -->
+      <div class="col-lg-4 col-md-6">
+        <div class="company-card-simple">
+          <div class="company-content-simple">
+            <h3>Accounting & Consulting</h3>
+            <p class="company-tagline">Empowering Financial Success</p>
+            <p class="company-description">
+              Comprehensive financial management and strategic consulting services to drive 
+              your business growth and ensure regulatory compliance.
+            </p>
+            
+            <div class="services-list">
+              <span>• Bookkeeping</span>
+              <span>• Tax Services</span>
+              <span>• Consulting</span>
+            </div>
+            
+            <a routerLink="/accounting" class="company-btn-simple">
+              Explore Services
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Testimonials Section -->
+<section class="testimonials-modern section" style="background: #f8f9fa; padding: 4rem 0; position: relative;">
+  <div class="container">
+    <div class="row justify-content-center mb-4">
+      <div class="col-lg-8 text-center">
+        <div class="section-badge-simple">
+          <span>| Client Testimonials</span>
+        </div>
+        <h2 class="simple-title">
+          What Our Clients Say
+        </h2>
+        <p class="simple-description">
+          Discover why businesses across South Africa trust us with their most important projects
+        </p>
+      </div>
+    </div>
+    
+    <div class="row g-4">
+      <div class="col-lg-4 col-md-6">
+        <div class="testimonial-card-simple">
+          <div class="testimonial-content">
+            <div class="quote-mark">"</div>
+            <p>Mahlatji Mmetji Group transformed our office space with their exceptional construction and electrical work. Professional, reliable, and delivered on time.</p>
+          </div>
+          
+          <div class="testimonial-author">
+            <div class="author-info">
+              <h6>Sarah Johnson</h6>
+              <span>CEO, Tech Solutions SA</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-lg-4 col-md-6">
+        <div class="testimonial-card-simple featured-simple">
+          <div class="featured-label">Featured Review</div>
+          <div class="testimonial-content">
+            <div class="quote-mark">"</div>
+            <p>Their cleaning and security services are outstanding. Our employees feel safe and work in a pristine environment. Highly recommended!</p>
+          </div>
+          
+          <div class="testimonial-author">
+            <div class="author-info">
+              <h6>Michael Dlamini</h6>
+              <span>Operations Manager, Retail Corp</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-lg-4 col-md-6">
+        <div class="testimonial-card-simple">
+          <div class="testimonial-content">
+            <div class="quote-mark">"</div>
+            <p>The accounting team helped streamline our finances and tax compliance. Their expertise saved us time and money. Excellent service!</p>
+          </div>
+          
+          <div class="testimonial-author">
+            <div class="author-info">
+              <h6>Thandiwe Mthembu</h6>
+              <span>Small Business Owner</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Why Choose Us Section -->
+<section class="why-choose-us section" style="background: #f8f9fa; padding: 4rem 0;">
+  <div class="container">
+    <div class="row justify-content-center mb-4">
+      <div class="col-lg-8 text-center">
+        <div class="section-badge-simple">
+          <span>| Why Choose Us</span>
+        </div>
+        <h2 class="simple-title">
+          What Sets Us Apart
+        </h2>
+        <p class="simple-description">
+          Discover the key advantages that make Mahlatji Mmetji Group your ideal business partner
+        </p>
+      </div>
+    </div>
+    
+    <div class="row g-4">
+      <div class="col-lg-3 col-md-6">
+        <div class="advantage-card">
+          <div class="advantage-icon">
+            <i class="fa fa-shield-alt"></i>
+          </div>
+          <div class="advantage-content">
+            <h4>Trusted Reliability</h4>
+            <p>Consistent delivery and dependable partnerships you can count on for every project.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-lg-3 col-md-6">
+        <div class="advantage-card">
+          <div class="advantage-icon">
+            <i class="fa fa-users-cog"></i>
+          </div>
+          <div class="advantage-content">
+            <h4>Expert Team</h4>
+            <p>Skilled professionals with deep industry knowledge and proven track records.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-lg-3 col-md-6">
+        <div class="advantage-card">
+          <div class="advantage-icon">
+            <i class="fa fa-clock"></i>
+          </div>
+          <div class="advantage-content">
+            <h4>Timely Delivery</h4>
+            <p>On-schedule project completion with transparent communication throughout.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-lg-3 col-md-6">
+        <div class="advantage-card">
+          <div class="advantage-icon">
+            <i class="fa fa-handshake"></i>
+          </div>
+          <div class="advantage-content">
+            <h4>Long-term Support</h4>
+            <p>Ongoing maintenance and support services that extend beyond project completion.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Call to Action Section -->
+<section class="cta-simple section" style="background: #003366; padding: 4rem 0;">
+  <div class="container">
+    <div class="row align-items-center">
+      <div class="col-lg-7">
+        <div class="cta-content-simple">
+          <div class="section-badge-simple light">
+            <span>| Get Started Today</span>
+          </div>
+          <h2 class="cta-title-simple">
+            Ready to Transform Your Business?
+          </h2>
+          <p class="cta-description-simple">
+            Partner with Mahlatji Mmetji Group for reliable, professional services that deliver exceptional results. Let's discuss your project needs and bring your vision to life.
+          </p>
+          
+          <div class="cta-features-simple">
+            <div class="cta-feature-simple">
+              <span>✓ Free Consultation</span>
+            </div>
+            <div class="cta-feature-simple">
+              <span>✓ Professional Team</span>
+            </div>
+            <div class="cta-feature-simple">
+              <span>✓ Guaranteed Quality</span>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <div class="col-lg-5">
+        <div class="cta-actions-simple">
+          <a href="/contact" class="cta-btn-primary-simple">
+            <span>Start Your Project</span>
+          </a>
+          
+          <div class="contact-info-simple">
+            <div class="contact-item-simple">
+              <span>📞 Call us: 012-001-0576</span>
+            </div>
+            <div class="contact-item-simple">
+              <span>✉️ info@mahlatjimmetji.co.za</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Clients & Partners Section -->
+<section class="clients-partners section" style="padding: 4rem 0; background: #f8f9fa;">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <div class="section-title text-center">
+          <div class="section-badge">
+            <span>| Our Network</span>
+          </div>
+          <h2>Trusted by Leading Organizations</h2>
+          <p>We're proud to work with some of South Africa's most respected companies and institutions</p>
+        </div>
+      </div>
+    </div>
+    
+    <div class="row">
+      <div class="col-12">
+        <div class="clients-grid">
+          <!-- Government & Public Sector -->
+          <div class="client-logo">
+            <img src="assets/images/clients/sars-logo.png" alt="SARS - South African Revenue Service" loading="lazy">
+          </div>
+          
+          <div class="client-logo">
+            <img src="assets/images/clients/city-of-johannesburg.png" alt="City of Johannesburg" loading="lazy">
+          </div>
+          
+          <div class="client-logo">
+            <img src="assets/images/clients/dti-logo.png" alt="Department of Trade and Industry" loading="lazy">
+          </div>
+          
+          <!-- Corporate Clients -->
+          <div class="client-logo">
+            <img src="assets/images/clients/absa-logo.png" alt="Absa Bank" loading="lazy">
+          </div>
+          
+          <div class="client-logo">
+            <img src="assets/images/clients/nedbank-logo.png" alt="Nedbank" loading="lazy">
+          </div>
+          
+          <div class="client-logo">
+            <img src="assets/images/clients/shoprite-logo.png" alt="Shoprite Holdings" loading="lazy">
+          </div>
+          
+          <!-- Healthcare & Education -->
+          <div class="client-logo">
+            <img src="assets/images/clients/wits-university.png" alt="University of the Witwatersrand" loading="lazy">
+          </div>
+          
+          <div class="client-logo">
+            <img src="assets/images/clients/life-healthcare.png" alt="Life Healthcare" loading="lazy">
+          </div>
+          
+          <!-- Mining & Industry -->
+          <div class="client-logo">
+            <img src="assets/images/clients/anglogold-ashanti.png" alt="AngloGold Ashanti" loading="lazy">
+          </div>
+          
+          <div class="client-logo">
+            <img src="assets/images/clients/sasol-logo.png" alt="Sasol" loading="lazy">
+          </div>
+          
+          <!-- Retail & Property -->
+          <div class="client-logo">
+            <img src="assets/images/clients/growthpoint-logo.png" alt="Growthpoint Properties" loading="lazy">
+          </div>
+          
+          <div class="client-logo">
+            <img src="assets/images/clients/redefine-properties.png" alt="Redefine Properties" loading="lazy">
+          </div>
+        </div>
+      </div>
+    </div>
+    
+    <div class="row mt-4">
+      <div class="col-12 text-center">
+        <p class="clients-note">
+          <em>Ready to join our growing network of satisfied clients? 
+          <a href="/mahlatji-contact" style="color: var(--primary-color); text-decoration: none;">
+            Contact us today
+          </a> to discuss your project requirements.</em>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+

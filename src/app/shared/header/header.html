@@ -1,0 +1,104 @@
+<div class="sub-header" aria-label="Contact and Social Information">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-center flex-wrap py-2">
+      <address class="info mb-0 d-flex align-items-center" aria-label="Contact Information">
+        <div class="contact-cards d-flex gap-3">
+          <div class="contact-card">
+            <i class="fa fa-envelope" aria-hidden="true"></i>
+            <a href="mailto:{{ email }}">{{ email }}</a>
+          </div>
+          <div class="contact-card">
+            <i class="fa fa-phone" aria-hidden="true"></i>
+            <span>012-001-0576</span>
+          </div>
+          <div class="contact-card d-none d-md-block">
+            <i class="fa fa-map-marker-alt" aria-hidden="true"></i>
+            <span>8 John Street, Eldorette, Akasia, Pretoria, 0182, South Africa</span>
+          </div>
+        </div>
+      </address>
+      <nav class="social-links" aria-label="Social Media Links">
+        <div class="social-card">
+          <span class="social-label">Follow Us:</span>
+          <div class="social-icons">
+            <a *ngFor="let social of socialLinks" [href]="social.url" [attr.target]="social.target" [attr.rel]="social.rel" [attr.aria-label]="social.ariaLabel" class="social-icon">
+              <i [ngClass]="social.icon" aria-hidden="true"></i>
+            </a>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+</div>
+
+
+<header class="header-area header-sticky" aria-label="Site Header">
+  <div class="container">
+    <div class="row">
+      <div class="col-12">
+        <nav class="main-nav modern-nav" aria-label="Main Navigation" role="navigation">
+          <a routerLink="/home" class="logo modern-logo" aria-label="Mahlatji Mmetji Group">
+            <img src="logo.png" alt="Mahlatji Mmetji Group Logo" class="logo-image">
+          </a>
+          <ul class="nav modern-nav-menu" [class.open]="menuOpen" role="menubar" id="main-menu">
+            <li role="none" class="nav-item">
+              <a routerLink="/home" routerLinkActive="active" role="menuitem" class="nav-link">
+                <i class="fa fa-home nav-icon"></i>Home
+              </a>
+            </li>
+            <li role="none" class="nav-item">
+              <a routerLink="/about" routerLinkActive="active" role="menuitem" class="nav-link">
+                <i class="fa fa-users nav-icon"></i>About Us
+              </a>
+            </li>
+            <li role="none" class="nav-item dropdown" 
+                (mouseenter)="openDropdown()" 
+                [class.show]="dropdownOpen">
+              <a href="#" class="nav-link dropdown-toggle" 
+                 role="menuitem" 
+                 tabindex="0"
+                 (click)="toggleDropdown(); $event.preventDefault(); $event.stopPropagation()"
+                 (keydown.enter)="toggleDropdown(); $event.preventDefault()"
+                 (keydown.space)="toggleDropdown(); $event.preventDefault()"
+                 (keydown.escape)="closeDropdown()"
+                 [attr.aria-expanded]="dropdownOpen">
+                <i class="fa fa-building nav-icon"></i>Our Companies <i class="fa fa-chevron-down"></i>
+              </a>
+              <ul class="dropdown-menu modern-dropdown" [class.show]="dropdownOpen" role="menu" [attr.aria-hidden]="!dropdownOpen"
+                  (click)="$event.stopPropagation()"
+                  (mouseenter)="openDropdown()"
+                  (mouseleave)="closeDropdownWithDelay()">
+                <li><a routerLink="/cleaning-security" role="menuitem" tabindex="0" (click)="closeDropdown()"><i class="fa fa-shield-alt"></i>Cleaning & Security</a></li>
+                <li><a routerLink="/construction-electrical" role="menuitem" tabindex="0" (click)="closeDropdown()"><i class="fa fa-hard-hat"></i>Construction & Electrical</a></li>
+                <li><a routerLink="/accounting" role="menuitem" tabindex="0" (click)="closeDropdown()"><i class="fa fa-calculator"></i>Accounting & Corporate</a></li>
+                <li><a routerLink="/services" role="menuitem" tabindex="0" (click)="closeDropdown()"><i class="fa fa-list view-all-icon"></i>View All Companies</a></li>
+              </ul>
+            </li>
+            <li role="none" class="nav-item">
+              <a routerLink="/projects" routerLinkActive="active" role="menuitem" class="nav-link">
+                <i class="fa fa-briefcase nav-icon"></i>Portfolio
+              </a>
+            </li>
+            <li role="none" class="nav-item">
+              <a routerLink="/contact" routerLinkActive="active" role="menuitem" class="nav-link">
+                <i class="fa fa-envelope nav-icon"></i>Contact Us
+              </a>
+            </li>
+            <li role="none" class="nav-item cta-nav">
+              <a routerLink="/contact" role="menuitem" class="nav-link cta-button">
+                <i class="fa fa-calendar nav-icon"></i> Get Quote
+              </a>
+            </li>
+          </ul>
+          <button class="menu-trigger modern-menu-toggle" (click)="menuOpen = !menuOpen" aria-label="Toggle Menu" [attr.aria-expanded]="menuOpen" [attr.aria-controls]="'main-menu'">
+            <div class="hamburger">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </button>
+        </nav>
+      </div>
+    </div>
+  </div>
+</header>

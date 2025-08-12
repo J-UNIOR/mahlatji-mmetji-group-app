@@ -1,0 +1,284 @@
+<!-- Page Header -->
+<section class="page-header">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-12">
+        <div class="section-badge">| Contact Us</div>
+        <h1>Get In Touch</h1>
+        <p class="lead">Ready to discuss your needs? Our professional team is here to help you achieve your goals.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Information -->
+<section class="contact-info-section">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-4 col-md-6">
+        <div class="info-card">
+          <div class="info-icon">
+            <i class="fas fa-map-marker-alt"></i>
+          </div>
+          <h4>Our Location</h4>
+          <p>{{ companyInfo.address }}</p>
+          <button (click)="onGetDirections()" class="btn-link">Get Directions</button>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6">
+        <div class="info-card">
+          <div class="info-icon">
+            <i class="fas fa-phone"></i>
+          </div>
+          <h4>Call Us</h4>
+          <p>{{ companyInfo.phone }}</p>
+          <button (click)="onCallUs()" class="btn-link">Call Now</button>
+        </div>
+      </div>
+      <div class="col-lg-4 col-md-6">
+        <div class="info-card">
+          <div class="info-icon">
+            <i class="fas fa-envelope"></i>
+          </div>
+          <h4>Email Us</h4>
+          <p>{{ companyInfo.email }}</p>
+          <button (click)="onEmailUs()" class="btn-link">Send Email</button>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Contact Form & Map Section -->
+<section class="contact-form-section">
+  <div class="container">
+    <div class="row">
+      <!-- Contact Form -->
+      <div class="col-lg-6">
+        <div class="contact-form-wrapper">
+          <h3>Send us a Message</h3>
+          <p class="form-description">Fill out the form below and we'll get back to you within 24 hours.</p>
+          
+          <form #contactFormRef="ngForm" (ngSubmit)="onSubmit(contactFormRef)" novalidate>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="fullName">Full Name *</label>
+                  <input 
+                    type="text" 
+                    id="fullName" 
+                    name="fullName" 
+                    class="form-control"
+                    [(ngModel)]="contactForm.fullName"
+                    #fullName="ngModel"
+                    required
+                    placeholder="Enter your full name">
+                  <div class="invalid-feedback" *ngIf="fullName.invalid && fullName.touched">
+                    Full name is required.
+                  </div>
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="email">Email Address *</label>
+                  <input 
+                    type="email" 
+                    id="email" 
+                    name="email" 
+                    class="form-control"
+                    [(ngModel)]="contactForm.email"
+                    #email="ngModel"
+                    required
+                    email
+                    placeholder="Enter your email address">
+                  <div class="invalid-feedback" *ngIf="email.invalid && email.touched">
+                    <span *ngIf="email.errors?.['required']">Email is required.</span>
+                    <span *ngIf="email.errors?.['email']">Please enter a valid email address.</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="phone">Phone Number</label>
+                  <input 
+                    type="tel" 
+                    id="phone" 
+                    name="phone" 
+                    class="form-control"
+                    [(ngModel)]="contactForm.phone"
+                    placeholder="Enter your phone number">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="company">Company Name</label>
+                  <input 
+                    type="text" 
+                    id="company" 
+                    name="company" 
+                    class="form-control"
+                    [(ngModel)]="contactForm.company"
+                    placeholder="Enter your company name">
+                </div>
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="serviceInterest">Service Interest</label>
+              <select 
+                id="serviceInterest" 
+                name="serviceInterest" 
+                class="form-control"
+                [(ngModel)]="contactForm.serviceInterest">
+                <option value="">Select a service</option>
+                <option value="construction-electrical">Construction & Electrical</option>
+                <option value="cleaning-security">Cleaning & Security</option>
+                <option value="accounting-services">Accounting Services</option>
+                <option value="multiple-services">Multiple Services</option>
+                <option value="consultation">General Consultation</option>
+              </select>
+            </div>
+
+            <div class="form-group">
+              <label for="subject">Subject *</label>
+              <input 
+                type="text" 
+                id="subject" 
+                name="subject" 
+                class="form-control"
+                [(ngModel)]="contactForm.subject"
+                #subject="ngModel"
+                required
+                placeholder="Enter the subject of your inquiry">
+              <div class="invalid-feedback" *ngIf="subject.invalid && subject.touched">
+                Subject is required.
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label for="message">Message *</label>
+              <textarea 
+                id="message" 
+                name="message" 
+                class="form-control"
+                rows="6"
+                [(ngModel)]="contactForm.message"
+                #message="ngModel"
+                required
+                placeholder="Tell us about your project or inquiry..."></textarea>
+              <div class="invalid-feedback" *ngIf="message.invalid && message.touched">
+                Message is required.
+              </div>
+            </div>
+
+            <div class="form-group">
+              <label>Preferred Contact Method</label>
+              <div class="radio-group">
+                <label class="radio-option">
+                  <input 
+                    type="radio" 
+                    name="preferredContact" 
+                    value="email"
+                    [(ngModel)]="contactForm.preferredContact">
+                  <span class="radio-custom"></span>
+                  Email
+                </label>
+                <label class="radio-option">
+                  <input 
+                    type="radio" 
+                    name="preferredContact" 
+                    value="phone"
+                    [(ngModel)]="contactForm.preferredContact">
+                  <span class="radio-custom"></span>
+                  Phone
+                </label>
+              </div>
+            </div>
+
+            <!-- Submit Button -->
+            <div class="form-actions">
+              <button 
+                type="submit" 
+                class="btn btn-primary btn-lg"
+                [disabled]="isSubmitting() || contactFormRef.invalid">
+                <span *ngIf="isSubmitting()">
+                  <i class="fas fa-spinner fa-spin"></i> Sending...
+                </span>
+                <span *ngIf="!isSubmitting()">
+                  <i class="fas fa-paper-plane"></i> Send Message
+                </span>
+              </button>
+            </div>
+
+            <!-- Success Message -->
+            <div class="alert alert-success" *ngIf="submitSuccess()">
+              <i class="fas fa-check-circle"></i>
+              <strong>Thank you!</strong> Your message has been sent successfully. We'll get back to you within 24 hours.
+            </div>
+
+            <!-- Error Message -->
+            <div class="alert alert-danger" *ngIf="submitError()">
+              <i class="fas fa-exclamation-triangle"></i>
+              <strong>Error:</strong> {{ submitError() }}
+              <button 
+                type="button" 
+                class="btn btn-sm btn-outline-danger mt-2"
+                (click)="onRetrySubmit(contactFormRef)">
+                <i class="fas fa-redo"></i> Retry
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+
+      <!-- Map & Business Hours -->
+      <div class="col-lg-6">
+        <div class="map-wrapper">
+          <h3>Find Our Office</h3>
+          <div class="map-container">
+            <iframe 
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3588.9!2d28.130212!3d-25.6599318!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1ebfda1e03e5d703%3A0x52de6ee1b87c61c5!2s8%20John%20St%2C%20Eldorette%2C%20Akasia%2C%200182!5e0!3m2!1sen!2sza!4v1600000000000!5m2!1sen!2sza"
+              width="100%" 
+              height="300" 
+              style="border:0;" 
+              allowfullscreen="" 
+              loading="lazy" 
+              referrerpolicy="no-referrer-when-downgrade">
+            </iframe>
+          </div>
+        </div>
+
+        <div class="business-hours">
+          <h4>Business Hours</h4>
+          <div class="hours-list">
+            <div class="hour-item">
+              <span class="day">Monday - Friday</span>
+              <span class="time">{{ companyInfo.hours.weekdays }}</span>
+            </div>
+            <div class="hour-item">
+              <span class="day">Saturday</span>
+              <span class="time">{{ companyInfo.hours.saturday }}</span>
+            </div>
+            <div class="hour-item">
+              <span class="day">Sunday</span>
+              <span class="time">{{ companyInfo.hours.sunday }}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="emergency-contact">
+          <h4>Emergency Services</h4>
+          <p>For urgent construction, electrical, or security emergencies:</p>
+          <a href="tel:+27119876543" class="emergency-phone">
+            <i class="fas fa-phone"></i> +27 87 822 1762
+          </a>
+          <small class="emergency-note">Available 24/7 for existing clients</small>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+

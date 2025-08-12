@@ -1,0 +1,27 @@
+/* Mobile-specific styles for header component */
+@media (max-width: 900px) {
+  .main-nav {
+    position: relative;
+  }
+  .main-nav .nav {
+    display: none;
+    flex-direction: column;
+    background: #fff;
+    position: absolute;
+    top: 100%;
+    left: 0;
+    width: 100%;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+    z-index: 100;
+    padding: 1rem 0;
+  }
+  .main-nav .nav.open {
+    display: flex;
+  }
+  .main-nav .menu-trigger {
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+  }
+}

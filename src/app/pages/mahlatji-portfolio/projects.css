@@ -1,0 +1,495 @@
+/* Global Text Color Fixes */
+.portfolio-content,
+.portfolio-stats,
+.project-card,
+.filter-tabs {
+  color: var(--text-dark) !important;
+}
+
+/* Ensure all text elements have proper contrast */
+.portfolio-content h1,
+.portfolio-content h2,
+.portfolio-content h3,
+.portfolio-content h4,
+.portfolio-content h5,
+.portfolio-content h6,
+.portfolio-content p,
+.portfolio-content span,
+.portfolio-content div:not(.project-status):not(.project-value) {
+  color: inherit !important;
+}
+
+.portfolio-stats h1,
+.portfolio-stats h2,
+.portfolio-stats h3,
+.portfolio-stats h4,
+.portfolio-stats h5,
+.portfolio-stats h6,
+.portfolio-stats p,
+.portfolio-stats span,
+.portfolio-stats div:not(.stat-number) {
+  color: inherit !important;
+}
+
+/* Page Header */
+.page-header {
+  background: var(--primary-color);
+  color: white;
+  padding: 120px 0 80px;
+  text-align: center;
+}
+
+.section-badge {
+  display: inline-block;
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 1rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  letter-spacing: 1px;
+}
+
+.page-header h1 {
+  font-family: 'Cairo Play', sans-serif;
+  font-size: 3.5rem;
+  font-weight: 700;
+  margin-bottom: 1rem;
+  color: white;
+}
+
+.page-header .lead {
+  font-size: 1.25rem;
+  color: rgba(255, 255, 255, 0.9);
+  max-width: 600px;
+  margin: 0 auto 30px auto;
+}
+
+.portfolio-stats-header {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  margin-top: 30px;
+  flex-wrap: wrap;
+}
+
+.stat-item {
+  text-align: center;
+}
+
+.stat-item .stat-number {
+  font-family: 'Cairo Play', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 700;
+  color: white;
+  margin-bottom: 5px;
+  display: block;
+}
+
+.stat-item .stat-label {
+  color: rgba(255, 255, 255, 0.8);
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* Portfolio Content */
+.portfolio-content {
+  padding: 80px 0;
+  background: #ffffff;
+  color: var(--text-dark);
+}
+
+.portfolio-content * {
+  color: inherit;
+}
+
+/* Filter Tabs */
+.filter-tabs {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 50px;
+}
+
+.filter-btn {
+  background: transparent;
+  border: 2px solid var(--primary-color);
+  color: var(--primary-color) !important;
+  padding: 12px 24px;
+  border-radius: 30px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.filter-btn:hover,
+.filter-btn.active {
+  background: var(--primary-color);
+  color: white !important;
+}
+
+/* Project Cards */
+.project-card {
+  background: white;
+  border-radius: 15px;
+  overflow: hidden;
+  box-shadow: 0 5px 20px rgba(0, 51, 102, 0.1);
+  margin-bottom: 30px;
+  transition: transform 0.3s ease;
+}
+
+.project-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(0, 51, 102, 0.15);
+}
+
+.project-image {
+  position: relative;
+  overflow: hidden;
+}
+
+.project-image img {
+  width: 100%;
+  height: 250px;
+  object-fit: cover;
+  transition: transform 0.3s ease;
+}
+
+.project-card:hover .project-image img {
+  transform: scale(1.05);
+}
+
+.project-overlay {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.project-status {
+  background: rgba(0, 51, 102, 0.9);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.project-status.completed {
+  background: #28a745;
+}
+
+.project-value {
+  background: rgba(243, 85, 37, 0.9);
+  color: white;
+  padding: 6px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+.project-info {
+  padding: 25px;
+  background: white;
+  color: var(--text-dark);
+}
+
+.project-info * {
+  color: inherit;
+}
+
+.project-category {
+  color: var(--primary-color) !important;
+  font-size: 0.9rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  margin-bottom: 10px;
+}
+
+.project-info h4 {
+  font-family: 'Cairo Play', sans-serif;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--primary-color) !important;
+  margin-bottom: 15px;
+  line-height: 1.3;
+}
+
+.project-info p {
+  color: #666 !important;
+  font-size: 0.95rem;
+  line-height: 1.6;
+  margin-bottom: 20px;
+}
+
+.project-features {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-bottom: 20px;
+}
+
+.feature-tag {
+  background: var(--background-light);
+  color: var(--primary-color) !important;
+  padding: 4px 12px;
+  border-radius: 15px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  border: 1px solid rgba(0, 51, 102, 0.1);
+}
+
+.project-meta {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.project-year,
+.project-duration {
+  color: #888 !important;
+  font-size: 0.9rem;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.project-year i,
+.project-duration i {
+  color: var(--primary-color) !important;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 60px 20px;
+  color: var(--text-dark);
+}
+
+.empty-state * {
+  color: inherit;
+}
+
+.empty-state i {
+  font-size: 4rem;
+  color: #ddd !important;
+  margin-bottom: 20px;
+}
+
+.empty-state h3 {
+  font-family: 'Cairo Play', sans-serif;
+  color: var(--primary-color) !important;
+  margin-bottom: 10px;
+}
+
+.empty-state p {
+  color: #666 !important;
+}
+
+/* Portfolio Stats */
+.portfolio-stats {
+  background: #f8f9fa;
+  padding: 60px 0;
+  color: var(--text-dark);
+}
+
+.portfolio-stats * {
+  color: inherit;
+}
+
+.stat-card {
+  text-align: center;
+  padding: 30px 20px;
+}
+
+.stat-number {
+  font-family: 'Cairo Play', sans-serif;
+  font-size: 3rem;
+  font-weight: 700;
+  color: var(--primary-color) !important;
+  margin-bottom: 10px;
+}
+
+.stat-label {
+  color: #666 !important;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-size: 0.9rem;
+}
+
+/* CTA Section */
+.cta-section {
+  background: var(--primary-color);
+  color: white;
+  padding: 80px 0;
+  text-align: center;
+}
+
+.cta-content h2 {
+  font-family: 'Cairo Play', sans-serif;
+  font-size: 2.5rem;
+  font-weight: 600;
+  margin-bottom: 20px;
+}
+
+.cta-content p {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.9);
+  margin-bottom: 40px;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.cta-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+
+/* Buttons */
+.btn {
+  padding: 15px 30px;
+  border-radius: 30px;
+  font-weight: 500;
+  text-decoration: none;
+  display: inline-block;
+  transition: all 0.3s ease;
+  border: 2px solid transparent;
+}
+
+.btn-primary {
+  background: white;
+  color: var(--primary-color);
+  border-color: white;
+}
+
+.btn-primary:hover {
+  background: transparent;
+  color: white;
+  border-color: white;
+  text-decoration: none;
+}
+
+.btn-outline-primary {
+  background: transparent;
+  color: white;
+  border-color: white;
+}
+
+.btn-outline-primary:hover {
+  background: white;
+  color: var(--primary-color);
+  text-decoration: none;
+}
+
+.btn-lg {
+  padding: 18px 40px;
+  font-size: 1.1rem;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .page-header h1 {
+    font-size: 2.5rem;
+  }
+
+  .portfolio-stats-header {
+    gap: 30px;
+  }
+
+  .stat-item .stat-number {
+    font-size: 2rem;
+  }
+
+  .filter-tabs {
+    justify-content: center;
+  }
+
+  .filter-btn {
+    padding: 10px 20px;
+    font-size: 0.9rem;
+  }
+
+  .project-info {
+    padding: 20px;
+  }
+
+  .project-info h4 {
+    font-size: 1.2rem;
+  }
+
+  .project-features {
+    margin-bottom: 15px;
+  }
+
+  .feature-tag {
+    font-size: 0.75rem;
+    padding: 3px 10px;
+  }
+
+  .project-meta {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .cta-buttons {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .btn {
+    width: 100%;
+    max-width: 250px;
+    text-align: center;
+  }
+
+  .stat-number {
+    font-size: 2.5rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .portfolio-content {
+    padding: 60px 0;
+  }
+
+  .portfolio-stats {
+    padding: 40px 0;
+  }
+
+  .cta-section {
+    padding: 60px 0;
+  }
+
+  .cta-content h2 {
+    font-size: 2rem;
+  }
+
+  .portfolio-stats-header {
+    flex-direction: column;
+    gap: 20px;
+  }
+
+  .project-overlay {
+    top: 10px;
+    right: 10px;
+    left: 10px;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+
+  .project-value,
+  .project-status {
+    font-size: 0.75rem;
+    padding: 4px 8px;
+  }
+}
