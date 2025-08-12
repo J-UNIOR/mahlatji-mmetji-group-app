@@ -190,6 +190,66 @@
   left: 0;
 }
 
+/* Parent Company Mobile Responsive Improvements */
+@media (max-width: 768px) {
+  .parent-company h1 {
+    font-size: 2.2rem !important;
+  }
+  
+  .parent-company .card {
+    margin-bottom: 2rem;
+    min-height: 320px;
+  }
+}
+
+@media (max-width: 480px) {
+  .parent-company.section {
+    padding: 3rem 0 4rem 0 !important;
+  }
+  
+  .parent-company h1 {
+    font-size: 1.8rem !important;
+    margin-bottom: 1rem !important;
+    line-height: 1.3 !important;
+  }
+  
+  .parent-company .lead {
+    font-size: 1rem !important;
+    margin-bottom: 2rem !important;
+    line-height: 1.5 !important;
+  }
+  
+  .parent-company .card {
+    padding: 1.5rem 1rem !important;
+    min-height: 280px !important;
+    margin-bottom: 1.5rem !important;
+  }
+  
+  .parent-company .card .fa-3x {
+    padding: 12px !important;
+    margin-bottom: 1rem !important;
+    font-size: 1.5em !important;
+  }
+  
+  .parent-company .card h4 {
+    font-size: 1.1rem !important;
+    margin-bottom: 0.5rem !important;
+  }
+  
+  .parent-company .card p {
+    font-size: 0.9rem !important;
+    line-height: 1.5 !important;
+    margin-bottom: 1rem !important;
+  }
+  
+  .parent-company .btn {
+    padding: 0.7rem 1.5rem !important;
+    font-size: 0.9rem !important;
+    width: 100% !important;
+    max-width: 200px !important;
+  }
+}
+
 /* Enhanced About and Services Sections */
 .about-landing {
   position: relative;
@@ -2591,6 +2651,88 @@
   }
   .main-banner h2.display-4 {
     font-size: 1.5rem;
+  }
+}
+
+/* Enhanced Mobile Hero Section Fixes */
+@media (max-width: 480px) {
+  .main-banner {
+    min-height: 50vh !important;
+    padding: 20px 0 !important;
+  }
+  
+  .main-banner .item {
+    padding: 20px 0 !important;
+    min-height: 50vh !important;
+    display: flex !important;
+    align-items: center !important;
+    background-size: cover !important;
+    background-position: center center !important;
+    background-attachment: scroll !important;
+  }
+  
+  .main-banner .container {
+    padding: 0 1rem !important;
+  }
+  
+  .main-banner .header-text {
+    background: rgba(0, 51, 102, 0.85) !important;
+    padding: 1.5rem !important;
+    border-radius: 12px !important;
+    backdrop-filter: blur(10px) !important;
+    margin: 0 auto !important;
+    max-width: 90% !important;
+    text-align: center !important;
+  }
+  
+  .main-banner h2.display-4 {
+    font-size: 1.3rem !important;
+    line-height: 1.4 !important;
+    margin-bottom: 0.8rem !important;
+    color: white !important;
+  }
+  
+  .main-banner .header-text p {
+    font-size: 0.9rem !important;
+    line-height: 1.5 !important;
+    margin-bottom: 1rem !important;
+    color: rgba(255, 255, 255, 0.9) !important;
+  }
+  
+  .banner-actions {
+    flex-direction: column !important;
+    gap: 0.75rem !important;
+    align-items: center !important;
+  }
+  
+  .banner-actions .btn {
+    width: 100% !important;
+    max-width: 200px !important;
+    padding: 0.75rem 1.5rem !important;
+    font-size: 0.9rem !important;
+  }
+}
+
+@media (max-width: 360px) {
+  .main-banner {
+    min-height: 45vh !important;
+  }
+  
+  .main-banner .item {
+    min-height: 45vh !important;
+  }
+  
+  .main-banner .header-text {
+    padding: 1.25rem !important;
+    max-width: 95% !important;
+  }
+  
+  .main-banner h2.display-4 {
+    font-size: 1.1rem !important;
+  }
+  
+  .main-banner .header-text p {
+    font-size: 0.85rem !important;
   }
 }
 

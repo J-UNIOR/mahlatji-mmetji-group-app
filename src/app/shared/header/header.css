@@ -1066,6 +1066,18 @@ ul.nav.modern-nav-menu li {
     font-size: 0.8rem;
   }
   
+  .sub-header .contact-cards {
+    flex-direction: column;
+    gap: 0.5rem;
+    align-items: center;
+  }
+  
+  .sub-header .contact-card {
+    width: 100%;
+    max-width: 280px;
+    justify-content: center;
+  }
+  
   .sub-header .social-links a {
     width: 32px;
     height: 32px;
@@ -1077,45 +1089,67 @@ ul.nav.modern-nav-menu li {
   }
   
   .header-area .main-nav {
-    padding: 0.5rem 0;
-    min-height: 55px;
+    padding: 0.75rem 0;
+    min-height: 60px;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+    position: relative;
   }
   
-  /* Centered logo for small mobile */
+  /* Perfect logo centering for small mobile */
   .header-area .main-nav .logo {
-    flex: 1;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1;
     text-align: center;
-    order: 1;
   }
   
   .header-area .main-nav .logo h1,
   .header-area .main-nav .logo .logo-text {
-    font-size: 1rem;
+    font-size: 0.95rem;
     letter-spacing: 0.25px;
+    margin: 0;
   }
   
   .logo-image {
-    height: 48px;
+    height: 42px;
+    max-width: 140px;
   }
   
+  /* Mobile menu improvements - better stacking */
   .header-area .main-nav ul.nav {
-    padding: 1.5rem 1rem;
+    padding: 1rem 1rem !important;
+    justify-content: flex-start !important;
+    align-items: center !important;
+    gap: 0.25rem !important;
+  }
+  
+  .header-area .main-nav .nav li {
+    width: 100% !important;
+    margin: 0.25rem 0 !important;
+    max-width: 100% !important;
   }
   
   .header-area .main-nav .nav li a {
-    padding: 0.75rem 1rem;
-    font-size: 0.95rem;
+    padding: 0.875rem 1rem !important;
+    font-size: 0.9rem !important;
+    width: 100% !important;
+    text-align: left !important;
+    border-radius: 8px !important;
   }
   
   .header-area .main-nav .menu-trigger {
-    width: 36px;
-    height: 36px;
+    width: 40px;
+    height: 40px;
     font-size: 0.9rem;
-    order: 2;
-    flex-shrink: 0;
+    position: absolute;
+    right: 0.5rem;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 2;
   }
   
   .header-area .main-nav .menu-trigger span {
