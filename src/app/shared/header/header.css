@@ -486,6 +486,22 @@ ul.nav.modern-nav-menu li {
   letter-spacing: 2px;
 }
 
+/* Logo Image Styles */
+.logo-image {
+  height: 60px;
+  width: auto;
+  max-width: 200px;
+  display: block;
+  object-fit: contain;
+  visibility: visible !important;
+  opacity: 1 !important;
+  transition: all 0.3s ease;
+}
+
+.header-area .main-nav .logo:hover .logo-image {
+  transform: scale(1.05);
+}
+
 .header-area .main-nav ul.nav {
   display: flex;
   margin: 0;
@@ -1092,19 +1108,16 @@ ul.nav.modern-nav-menu li {
     padding: 0.75rem 0;
     min-height: 60px;
     display: flex;
-    justify-content: center;
+    justify-content: space-between;
     align-items: center;
-    position: relative;
   }
   
-  /* Perfect logo centering for small mobile */
+  /* Simpler logo centering approach */
   .header-area .main-nav .logo {
-    position: absolute;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 1;
-    text-align: center;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
   
   .header-area .main-nav .logo h1,
@@ -1115,8 +1128,11 @@ ul.nav.modern-nav-menu li {
   }
   
   .logo-image {
-    height: 42px;
-    max-width: 140px;
+    height: 45px !important;
+    max-width: 150px !important;
+    width: auto !important;
+    display: block !important;
+    visibility: visible !important;
   }
   
   /* Mobile menu improvements - better stacking */
@@ -1145,11 +1161,8 @@ ul.nav.modern-nav-menu li {
     width: 40px;
     height: 40px;
     font-size: 0.9rem;
-    position: absolute;
-    right: 0.5rem;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 2;
+    flex-shrink: 0;
+    order: 2;
   }
   
   .header-area .main-nav .menu-trigger span {
