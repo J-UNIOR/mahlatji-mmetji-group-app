@@ -6,7 +6,9 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "deploy": "ng build --base-href /mahlatji-mmetji-group-app/ && npx angular-cli-ghpages --dir=dist/mahlatji-mmetji-group/browser",
+    "quick-deploy": "powershell -ExecutionPolicy Bypass -File deploy.ps1"
   },
   "prettier": {
     "overrides": [
