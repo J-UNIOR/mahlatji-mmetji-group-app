@@ -36,62 +36,90 @@
   <div class="container">
     <div class="row">
       <div class="col-12">
-        <nav class="main-nav modern-nav" aria-label="Main Navigation" role="navigation">
+        <nav class="main-nav modern-nav" 
+             aria-label="Main Navigation" 
+             role="navigation">
           <a routerLink="/home" class="logo modern-logo" aria-label="Mahlatji Mmetji Group">
             <img src="logo.png" alt="Mahlatji Mmetji Group Logo" class="logo-image">
           </a>
-          <ul class="nav modern-nav-menu" [class.open]="menuOpen" role="menubar" id="main-menu">
+          
+          <ul class="nav modern-nav-menu" 
+              [class.open]="menuOpen" 
+              role="menubar" 
+              id="main-menu">
+              
             <li role="none" class="nav-item">
-              <a routerLink="/home" routerLinkActive="active" role="menuitem" class="nav-link">
+              <a routerLink="/home" routerLinkActive="active" role="menuitem" class="nav-link" (click)="closeMenu()">
                 <i class="fa fa-home nav-icon"></i>Home
               </a>
             </li>
+            
             <li role="none" class="nav-item">
-              <a routerLink="/about" routerLinkActive="active" role="menuitem" class="nav-link">
+              <a routerLink="/about" routerLinkActive="active" role="menuitem" class="nav-link" (click)="closeMenu()">
                 <i class="fa fa-users nav-icon"></i>About Us
               </a>
             </li>
             <li role="none" class="nav-item dropdown" 
-                (mouseenter)="openDropdown()" 
                 [class.show]="dropdownOpen">
               <a href="#" class="nav-link dropdown-toggle" 
                  role="menuitem" 
                  tabindex="0"
                  (click)="toggleDropdown(); $event.preventDefault(); $event.stopPropagation()"
-                 (keydown.enter)="toggleDropdown(); $event.preventDefault()"
-                 (keydown.space)="toggleDropdown(); $event.preventDefault()"
-                 (keydown.escape)="closeDropdown()"
                  [attr.aria-expanded]="dropdownOpen">
                 <i class="fa fa-building nav-icon"></i>Our Companies <i class="fa fa-chevron-down"></i>
               </a>
-              <ul class="dropdown-menu modern-dropdown" [class.show]="dropdownOpen" role="menu" [attr.aria-hidden]="!dropdownOpen"
-                  (click)="$event.stopPropagation()"
-                  (mouseenter)="openDropdown()"
-                  (mouseleave)="closeDropdownWithDelay()">
-                <li><a routerLink="/cleaning-security" role="menuitem" tabindex="0" (click)="closeDropdown()"><i class="fa fa-shield-alt"></i>Cleaning & Security</a></li>
-                <li><a routerLink="/construction-electrical" role="menuitem" tabindex="0" (click)="closeDropdown()"><i class="fa fa-hard-hat"></i>Construction & Electrical</a></li>
-                <li><a routerLink="/accounting" role="menuitem" tabindex="0" (click)="closeDropdown()"><i class="fa fa-calculator"></i>Accounting & Corporate</a></li>
-                <li><a routerLink="/services" role="menuitem" tabindex="0" (click)="closeDropdown()"><i class="fa fa-list view-all-icon"></i>View All Companies</a></li>
+              <ul class="dropdown-menu modern-dropdown" 
+                  [class.show]="dropdownOpen" 
+                  role="menu" 
+                  [attr.aria-hidden]="!dropdownOpen"
+                  (click)="$event.stopPropagation()">
+                <li>
+                  <a routerLink="/cleaning-security" role="menuitem" tabindex="0" (click)="closeMenu()">
+                    <i class="fa fa-shield-alt"></i>Cleaning & Security
+                  </a>
+                </li>
+                <li>
+                  <a routerLink="/construction-electrical" role="menuitem" tabindex="0" (click)="closeMenu()">
+                    <i class="fa fa-hard-hat"></i>Construction & Electrical
+                  </a>
+                </li>
+                <li>
+                  <a routerLink="/accounting" role="menuitem" tabindex="0" (click)="closeMenu()">
+                    <i class="fa fa-calculator"></i>Accounting & Corporate
+                  </a>
+                </li>
+                <li>
+                  <a routerLink="/services" role="menuitem" tabindex="0" (click)="closeMenu()">
+                    <i class="fa fa-list view-all-icon"></i>View All Companies
+                  </a>
+                </li>
               </ul>
             </li>
             <li role="none" class="nav-item">
-              <a routerLink="/projects" routerLinkActive="active" role="menuitem" class="nav-link">
+              <a routerLink="/projects" routerLinkActive="active" role="menuitem" class="nav-link" (click)="closeMenu()">
                 <i class="fa fa-briefcase nav-icon"></i>Portfolio
               </a>
             </li>
+            
             <li role="none" class="nav-item">
-              <a routerLink="/contact" routerLinkActive="active" role="menuitem" class="nav-link">
+              <a routerLink="/contact" routerLinkActive="active" role="menuitem" class="nav-link" (click)="closeMenu()">
                 <i class="fa fa-envelope nav-icon"></i>Contact Us
               </a>
             </li>
+            
             <li role="none" class="nav-item cta-nav">
-              <a routerLink="/contact" role="menuitem" class="nav-link cta-button">
+              <a routerLink="/contact" role="menuitem" class="nav-link cta-button" (click)="closeMenu()">
                 <i class="fa fa-calendar nav-icon"></i> Get Quote
               </a>
             </li>
           </ul>
-          <button class="menu-trigger modern-menu-toggle" (click)="menuOpen = !menuOpen" aria-label="Toggle Menu" [attr.aria-expanded]="menuOpen" [attr.aria-controls]="'main-menu'">
-            <div class="hamburger">
+          
+          <button class="menu-trigger modern-menu-toggle" 
+                  (click)="toggleMenu()" 
+                  aria-label="Toggle Menu" 
+                  [attr.aria-expanded]="menuOpen" 
+                  [attr.aria-controls]="'main-menu'">
+            <div class="hamburger" [class.active]="menuOpen">
               <span></span>
               <span></span>
               <span></span>

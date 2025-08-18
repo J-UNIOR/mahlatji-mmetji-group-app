@@ -50,6 +50,19 @@ export class HeaderComponent {
     }
   }
 
+  toggleMenu() {
+    this.menuOpen = !this.menuOpen;
+    // Close dropdown when toggling main menu
+    if (!this.menuOpen) {
+      this.dropdownOpen = false;
+    }
+  }
+
+  closeMenu() {
+    this.menuOpen = false;
+    this.dropdownOpen = false;
+  }
+
   openDropdown() {
     if (this.dropdownTimeout) {
       clearTimeout(this.dropdownTimeout);

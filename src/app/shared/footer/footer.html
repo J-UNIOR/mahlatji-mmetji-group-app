@@ -1,4 +1,38 @@
 <footer class="modern-footer">
+  <!-- Mobile-only contact and social information -->
+  <div class="mobile-contact-section d-block d-md-none" aria-label="Contact and Social Information">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-12">
+          <div class="d-flex justify-content-center align-items-center flex-column py-2">
+            <address class="info mb-0 d-flex align-items-center w-100" aria-label="Contact Information">
+              <div class="contact-cards d-flex flex-column gap-3 w-100 align-items-center">
+                <div class="contact-card">
+                  <i class="fa fa-envelope" aria-hidden="true"></i>
+                  <a href="mailto:{{ email }}">{{ email }}</a>
+                </div>
+                <div class="contact-card">
+                  <i class="fa fa-phone" aria-hidden="true"></i>
+                  <span>012-001-0576</span>
+                </div>
+              </div>
+            </address>
+            <nav class="social-links w-100" aria-label="Social Media Links">
+              <div class="social-card">
+                <span class="social-label">Follow Us</span>
+                <div class="social-icons">
+                  <a *ngFor="let social of socialLinks" [href]="social.url" [attr.target]="social.target" [attr.rel]="social.rel" [attr.aria-label]="social.ariaLabel" class="social-icon">
+                    <i [ngClass]="social.icon" aria-hidden="true"></i>
+                  </a>
+                </div>
+              </div>
+            </nav>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
   <div class="footer-bottom">
     <div class="container">
       <div class="row align-items-center">

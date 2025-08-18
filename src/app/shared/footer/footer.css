@@ -434,3 +434,196 @@ footer a:hover {
     transition: none;
   }
 }
+
+/* Mobile Contact Section Styling - Clean & Minimal */
+.mobile-contact-section {
+  background: #2c2c2c;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  color: #fff;
+  padding: 1.25rem 0;
+  position: relative;
+}
+
+@media (max-width: 768px) {
+  .mobile-contact-section {
+    display: block !important;
+  }
+  
+  .mobile-contact-section .container {
+    position: relative;
+  }
+  
+  .mobile-contact-section .d-flex {
+    flex-direction: column;
+    gap: 1.25rem;
+    text-align: center;
+  }
+  
+  .mobile-contact-section .info {
+    margin-bottom: 0 !important;
+  }
+  
+  .mobile-contact-section .contact-cards {
+    flex-direction: column;
+    gap: 0.75rem;
+    align-items: center;
+    width: 100%;
+  }
+  
+  .mobile-contact-section .contact-card {
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 0.75rem;
+    background: rgba(255, 255, 255, 0.05);
+    padding: 0.875rem 1.125rem;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    transition: all 0.3s ease;
+    min-width: 240px;
+    max-width: 280px;
+    width: 100%;
+    min-height: 50px;
+  }
+  
+  .mobile-contact-section .contact-card:hover {
+    background: rgba(255, 255, 255, 0.08);
+    border-color: rgba(255, 255, 255, 0.2);
+    transform: translateY(-1px);
+  }
+  
+  .mobile-contact-section .contact-card i {
+    color: #999;
+    font-size: 1.1rem;
+    flex-shrink: 0;
+    width: 20px;
+    text-align: center;
+  }
+  
+  .mobile-contact-section .contact-card a {
+    color: #ffffff;
+    text-decoration: none;
+    font-size: 0.9rem;
+    font-weight: 400;
+    transition: color 0.3s ease;
+    flex: 1;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  .mobile-contact-section .contact-card a:hover {
+    color: #ddd;
+  }
+  
+  .mobile-contact-section .contact-card span {
+    color: #ffffff;
+    font-size: 0.9rem;
+    font-weight: 400;
+    flex: 1;
+    text-align: left;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  
+  /* Social Links Section */
+  .mobile-contact-section .social-links {
+    margin-top: 0.5rem;
+  }
+  
+  .mobile-contact-section .social-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    background: rgba(255, 255, 255, 0.03);
+    padding: 1.125rem;
+    border-radius: 8px;
+    border: 1px solid rgba(255, 255, 255, 0.1);
+    max-width: 280px;
+    margin: 0 auto;
+  }
+  
+  .mobile-contact-section .social-label {
+    font-weight: 500;
+    color: #ccc;
+    font-size: 0.875rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    margin: 0;
+  }
+  
+  .mobile-contact-section .social-icons {
+    display: flex;
+    gap: 0.75rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  
+  .mobile-contact-section .social-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    background: rgba(255, 255, 255, 0.05);
+    border: 1px solid rgba(255, 255, 255, 0.15);
+    border-radius: 50%;
+    color: #ccc;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+  }
+  
+  .mobile-contact-section .social-icon:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: rgba(255, 255, 255, 0.25);
+    color: #fff;
+    transform: translateY(-1px);
+  }
+}
+
+/* Extra small devices */
+@media (max-width: 480px) {
+  .mobile-contact-section {
+    padding: 1rem 0;
+  }
+  
+  .mobile-contact-section .d-flex {
+    gap: 1rem;
+  }
+  
+  .mobile-contact-section .contact-card {
+    min-width: 220px;
+    max-width: 260px;
+    padding: 0.75rem 1rem;
+    min-height: 45px;
+  }
+  
+  .mobile-contact-section .contact-card i {
+    font-size: 1rem;
+    width: 18px;
+  }
+  
+  .mobile-contact-section .contact-card a,
+  .mobile-contact-section .contact-card span {
+    font-size: 0.85rem;
+  }
+  
+  .mobile-contact-section .social-card {
+    padding: 1rem;
+    max-width: 260px;
+  }
+  
+  .mobile-contact-section .social-icon {
+    width: 35px;
+    height: 35px;
+    font-size: 0.9rem;
+  }
+  
+  .mobile-contact-section .social-label {
+    font-size: 0.8rem;
+  }
+}
