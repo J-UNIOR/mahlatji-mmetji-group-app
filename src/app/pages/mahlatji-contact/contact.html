@@ -59,7 +59,11 @@
           <h3>Send us a Message</h3>
           <p class="form-description">Fill out the form below and we'll get back to you within 24 hours.</p>
           
-          <form #contactFormRef="ngForm" (ngSubmit)="onSubmit(contactFormRef)" novalidate>
+          <form #contactFormRef="ngForm" 
+                (ngSubmit)="onSubmit(contactFormRef)" 
+                novalidate
+                role="form"
+                aria-label="Contact inquiry form">
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
@@ -72,8 +76,14 @@
                     [(ngModel)]="contactForm.fullName"
                     #fullName="ngModel"
                     required
-                    placeholder="Enter your full name">
-                  <div class="invalid-feedback" *ngIf="fullName.invalid && fullName.touched">
+                    placeholder="Enter your full name"
+                    autocomplete="name"
+                    aria-describedby="fullName-error"
+                    [attr.aria-invalid]="fullName.invalid && fullName.touched">
+                  <div id="fullName-error" 
+                       class="invalid-feedback" 
+                       *ngIf="fullName.invalid && fullName.touched"
+                       role="alert">
                     Full name is required.
                   </div>
                 </div>
@@ -90,8 +100,14 @@
                     #email="ngModel"
                     required
                     email
-                    placeholder="Enter your email address">
-                  <div class="invalid-feedback" *ngIf="email.invalid && email.touched">
+                    placeholder="Enter your email address"
+                    autocomplete="email"
+                    aria-describedby="email-error"
+                    [attr.aria-invalid]="email.invalid && email.touched">
+                  <div id="email-error" 
+                       class="invalid-feedback" 
+                       *ngIf="email.invalid && email.touched"
+                       role="alert">
                     <span *ngIf="email.errors?.['required']">Email is required.</span>
                     <span *ngIf="email.errors?.['email']">Please enter a valid email address.</span>
                   </div>

@@ -343,6 +343,8 @@
 /* Simplified About Section */
 .about-simple {
   border-bottom: 1px solid #e9ecef;
+  margin-top: 60px;
+  padding-top: 60px;
 }
 
 .about-content-simple {
@@ -432,27 +434,32 @@
 .cards-simple {
   display: flex;
   flex-direction: column;
-  gap: 1rem;
+  gap: 1.5rem;
   height: 100%;
+  max-width: 400px;
+  margin: 0 auto;
 }
 
 .card-simple {
   background: white;
   border: 2px solid #e9ecef;
   border-radius: 12px;
-  padding: 1.5rem;
+  padding: 2.5rem 3rem;
   transition: all 0.3s ease;
   flex: 1;
   display: flex;
   flex-direction: column;
   justify-content: center;
-  min-height: 140px;
+  min-height: 200px;
+  min-width: 280px;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
 }
 
 .card-simple:hover {
   border-color: #003366;
-  transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(0, 51, 102, 0.1);
+  transform: translateY(-5px);
+  box-shadow: 0 12px 35px rgba(0, 51, 102, 0.15);
+  background: #fafafa;
 }
 
 .card-simple.secondary {
@@ -469,18 +476,20 @@
 
 .card-content h5 {
   font-family: 'Cairo Play', sans-serif;
-  font-size: 1.1rem;
-  font-weight: 600;
+  font-size: 1.4rem;
+  font-weight: 700;
   color: #003366;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.8rem;
   line-height: 1.3;
+  letter-spacing: -0.01em;
 }
 
 .card-content p {
-  font-size: 0.9rem;
-  color: #666;
+  font-size: 1.1rem;
+  color: #555;
   margin: 0;
-  line-height: 1.4;
+  line-height: 1.5;
+  font-weight: 500;
 }
 
 /* Responsive adjustments */
@@ -492,6 +501,20 @@
   
   .about-visual-simple {
     padding-left: 0;
+  }
+  
+  .card-simple {
+    padding: 2rem 2.5rem;
+    min-height: 180px;
+    min-width: 250px;
+  }
+  
+  .card-content h5 {
+    font-size: 1.3rem;
+  }
+  
+  .card-content p {
+    font-size: 1rem;
   }
 }
 
@@ -509,6 +532,41 @@
   .btn-simple-primary,
   .btn-simple-outline {
     text-align: center;
+  }
+  
+  .card-simple {
+    padding: 1.8rem 2rem;
+    min-height: 160px;
+    min-width: 220px;
+    margin-bottom: 1rem;
+  }
+  
+  .cards-simple {
+    max-width: 100%;
+  }
+  
+  .card-content h5 {
+    font-size: 1.2rem;
+    margin-bottom: 0.6rem;
+  }
+  
+  .card-content p {
+    font-size: 0.95rem;
+  }
+}
+
+/* Responsive About Section Spacing */
+@media (max-width: 900px) {
+  .about-simple {
+    margin-top: -15px !important;
+    padding-top: 45px !important;
+  }
+}
+
+@media (max-width: 480px) {
+  .about-simple {
+    margin-top: -10px !important;
+    padding-top: 40px !important;
   }
 }
 
@@ -1054,12 +1112,21 @@
 
 .stat-card-simple {
   text-align: center;
-  padding: 2rem 1rem;
+  padding: 3rem 1.5rem;
   transition: all 0.3s ease;
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  background: rgba(255, 255, 255, 0.95);
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
 }
 
 .stat-card-simple:hover {
-  transform: translateY(-5px);
+  transform: translateY(-8px);
+  box-shadow: 0 8px 25px rgba(0, 51, 102, 0.15);
+  background: rgba(255, 255, 255, 1);
 }
 
 .stat-number-large {
@@ -1102,6 +1169,22 @@
 @media (min-width: 992px) {
   .stat-card-simple:not(:last-child) {
     border-right: 1px solid #e9ecef;
+  }
+}
+
+/* Responsive adjustments for stat cards */
+@media (max-width: 768px) {
+  .stat-card-simple {
+    padding: 2.5rem 1rem;
+    min-height: 180px;
+    margin-bottom: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .stat-card-simple {
+    padding: 2rem 1rem;
+    min-height: 160px;
   }
 }
 
@@ -2625,45 +2708,105 @@
 
 /* --- Main Banner Section: Reduce Height --- */
 .main-banner {
-  min-height: 45vh;
-  padding-top: 60px;
+  min-height: 80vh;
+  max-height: 900px;
+  padding-top: 80px;
   padding-bottom: 60px;
+  overflow: hidden;
+  margin-bottom: 0;
 }
 .main-banner .item {
-  padding: 60px 0;
+  padding: 80px 0 20px 0;
 }
 .main-banner .header-text {
   padding-top: 0;
   padding-bottom: 0;
+  z-index: 2;
+  position: relative;
+  padding-left: 110px;
+  padding-right: 80px;
 }
 .main-banner h2.display-4 {
   font-size: 2.2rem;
   margin-bottom: 1.2rem;
 }
+
+/* Tablet responsive adjustments */
 @media (max-width: 900px) {
   .main-banner {
-    min-height: 30vh;
-    padding-top: 30px;
+    min-height: 70vh;
+    max-height: 700px;
+    padding-top: 40px;
     padding-bottom: 30px;
   }
   .main-banner .item {
-    padding: 30px 0;
+    padding: 40px 0 30px 0;
+    height: 70vh !important;
+    min-height: 600px !important;
+    max-height: 700px !important;
+  }
+  .main-banner .item-1,
+  .main-banner .item-2, 
+  .main-banner .item-3,
+  .main-banner .item-4 {
+    height: 70vh !important;
+    min-height: 600px !important;
+    max-height: 700px !important;
   }
   .main-banner h2.display-4 {
     font-size: 1.5rem;
   }
+  .main-banner .header-text {
+    padding-left: 60px;
+    padding-right: 60px;
+  }
+}
+
+/* Medium screen adjustments for better arrow spacing */
+@media (max-width: 1200px) {
+  .main-banner .header-text {
+    padding-left: 100px;
+    padding-right: 100px;
+  }
+}
+
+/* Hero Banner Consistent Height Fix */
+.main-banner .item {
+  height: 80vh !important;
+  min-height: 700px !important;
+  max-height: 900px !important;
+  background-position: center center !important;
+  background-repeat: no-repeat !important;
+  background-size: cover !important;
+  background-attachment: fixed !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: flex-start !important;
+}
+
+/* Ensure all banner items have the same height regardless of image dimensions */
+.main-banner .item-1,
+.main-banner .item-2, 
+.main-banner .item-3,
+.main-banner .item-4 {
+  height: 80vh !important;
+  min-height: 700px !important;
+  max-height: 900px !important;
 }
 
 /* Enhanced Mobile Hero Section Fixes */
 @media (max-width: 480px) {
   .main-banner {
-    min-height: 50vh !important;
-    padding: 20px 0 !important;
+    min-height: 60vh !important;
+    padding: 30px 0 10px 0 !important;
+    margin-bottom: 0 !important;
   }
   
   .main-banner .item {
-    padding: 20px 0 !important;
-    min-height: 50vh !important;
+    padding: 30px 0 10px 0 !important;
+    height: 60vh !important;
+    min-height: 500px !important;
+    max-height: 600px !important;
     display: flex !important;
     align-items: center !important;
     background-size: cover !important;
@@ -2671,13 +2814,22 @@
     background-attachment: scroll !important;
   }
   
+  .main-banner .item-1,
+  .main-banner .item-2, 
+  .main-banner .item-3,
+  .main-banner .item-4 {
+    height: 60vh !important;
+    min-height: 500px !important;
+    max-height: 600px !important;
+  }
+  
   .main-banner .container {
     padding: 0 1rem !important;
   }
   
   .main-banner .header-text {
-    background: rgba(0, 51, 102, 0.85) !important;
-    padding: 1.5rem !important;
+    background: rgba(0, 51, 102, 0.25) !important;
+    padding: 2rem !important;
     border-radius: 12px !important;
     backdrop-filter: blur(10px) !important;
     margin: 0 auto !important;
@@ -2686,18 +2838,22 @@
   }
   
   .main-banner h2.display-4 {
-    font-size: 1.3rem !important;
+    font-size: 1.4rem !important;
     line-height: 1.4 !important;
-    margin-bottom: 0.8rem !important;
+    margin-bottom: 1rem !important;
     color: white !important;
   }
   
   .main-banner .header-text p {
-    font-size: 0.9rem !important;
+    font-size: 1rem !important;
     line-height: 1.5 !important;
-    margin-bottom: 1rem !important;
+    margin-bottom: 1.2rem !important;
     color: rgba(255, 255, 255, 0.9) !important;
   }
+
+    .main-banner h2.display-4 .highlight {
+      font-size: 1.1em !important;
+    }
   
   .banner-actions {
     flex-direction: column !important;
@@ -3749,13 +3905,19 @@
   .image-card.primary,
   .image-card.secondary,
   .image-card.tertiary {
-    height: 100px;
-  }
-  
-  .image-placeholder {
-    padding: 0.75rem;
-  }
-  
+      .main-banner h2.display-4 {
+        font-size: 1.05rem !important;
+        line-height: 1.2 !important;
+        margin-bottom: 0.7rem !important;
+      }
+      .main-banner h2.display-4 .highlight {
+        font-size: 1em !important;
+      }
+      .main-banner .header-text p {
+        font-size: 0.8rem !important;
+        line-height: 1.4 !important;
+        margin-bottom: 1rem !important;
+      }
   .image-placeholder h5 {
     font-size: 0.9rem;
   }

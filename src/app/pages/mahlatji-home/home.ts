@@ -1,34 +1,84 @@
-import { Component, OnInit, AfterViewInit, signal } from '@angular/core';
+import { Component, OnInit, AfterViewInit, OnDestroy, signal } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { MahlatjiServicesService } from '../../shared/services/mahlatji-services.service';
+import { PerformanceService } from '../../shared/services/performance.service';
+import { UXEnhancementService } from '../../shared/services/ux-enhancement.service';
 import { BusinessService, BannerSlide, ServiceCategory } from '../../shared/models/mahlatji-business.interface';
 import { RouterModule } from '@angular/router';
+import { SkeletonLoaderComponent } from '../../shared/components/skeleton-loader/skeleton-loader.component';
+import { TooltipComponent } from '../../shared/components/tooltip/tooltip.component';
 
 @Component({
   selector: 'app-home',
   standalone: true,
-  imports: [CommonModule, CarouselModule, RouterModule],
+  imports: [
+    CommonModule, 
+    CarouselModule, 
+    RouterModule, 
+    SkeletonLoaderComponent,
+    TooltipComponent
+  ],
   templateUrl: './home.html',
   styleUrl: './home.css'
 })
-export class HomeComponent implements OnInit, AfterViewInit {
+export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   menuOpen = false;
   featuredServices = signal<BusinessService[]>([]);
   isLoading = signal(true);
   error = signal<string | null>(null);
 
-  constructor(private businessServicesService: MahlatjiServicesService) {}
+  constructor(
+    private businessServicesService: MahlatjiServicesService,
+    private performanceService: PerformanceService,
+    private uxService: UXEnhancementService
+  ) {}
 
   ngOnInit(): void {
+    this.performanceService.measurePerformance('home-component-init');
+    this.preloadCriticalImages();
     this.loadFeaturedServices();
+    
+    // Simulate loading delay to show UX components
+    setTimeout(() => {
+      this.isLoading.set(false);
+    }, 2000);
   }
 
   ngAfterViewInit(): void {
     // Delay to ensure DOM is fully rendered
     setTimeout(() => {
       this.setupCountingAnimations();
+      this.performanceService.measurePerformance('home-component-ready');
     }, 100);
+  }
+
+  ngOnDestroy(): void {
+    this.performanceService.measurePerformance('home-component-destroy');
+  }
+
+  private async preloadCriticalImages(): Promise<void> {
+    const criticalImages = [
+      // Preload WebP versions with fallbacks
+      'assets/images/banner-01.webp',
+      'assets/images/banner-02.webp', 
+      'assets/images/banner-03.webp',
+      'assets/images/banner-04.webp',
+      'assets/images/featured.webp',
+      // Fallback images
+      'assets/images/banner-01.jpg',
+      'assets/images/banner-02.jpg',
+      'assets/images/banner-03.jpg',
+      'assets/images/banner-04.jpg',
+      'assets/images/featured.jpg'
+    ];
+
+    try {
+      await this.performanceService.preloadImages(criticalImages);
+      console.log('Critical images preloaded successfully');
+    } catch (error) {
+      console.warn('Some critical images failed to preload:', error);
+    }
   }
 
   private setupCountingAnimations(): void {
@@ -113,7 +163,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
       title: 'Mahlatji Mmetji Group',
       subtitle: 'Professional Business Solutions',
       description: 'Comprehensive cleaning, security, construction, electrical, and accounting services across South Africa',
-      backgroundImage: 'assets/images/banner-01.png',
+      backgroundImage: 'assets/images/banner-01.webp',
       ctaText: 'Our Services',
       ctaLink: '/services',
       serviceCategory: ServiceCategory.CLEANING_SECURITY,
@@ -129,7 +179,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
       title: 'Cleaning & Security',
       subtitle: 'Safety & Cleanliness First',
       description: 'Professional cleaning services and comprehensive security solutions for residential and commercial properties',
-      backgroundImage: 'assets/images/banner-02.png',
+      backgroundImage: 'assets/images/banner-02.webp',
       ctaText: 'Learn More',
       ctaLink: '/services',
       serviceCategory: ServiceCategory.CLEANING_SECURITY,
@@ -145,7 +195,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
       title: 'Construction & Electrical',
       subtitle: 'Building Excellence',
       description: 'Quality construction projects and professional electrical installations with certified expertise',
-      backgroundImage: 'assets/images/banner-03.png',
+      backgroundImage: 'assets/images/banner-03.webp',
       ctaText: 'View Projects',
       ctaLink: '/services',
       serviceCategory: ServiceCategory.CONSTRUCTION_ELECTRICAL,
@@ -161,7 +211,7 @@ export class HomeComponent implements OnInit, AfterViewInit {
       title: 'Accounting Services',
       subtitle: 'Financial Excellence',
       description: 'Complete accounting solutions including bookkeeping, tax preparation, and financial consulting',
-      backgroundImage: 'assets/images/banner-04.png',
+      backgroundImage: 'assets/images/banner-04.webp',
       ctaText: 'Get Quote',
       ctaLink: '/services',
       serviceCategory: ServiceCategory.ACCOUNTING,

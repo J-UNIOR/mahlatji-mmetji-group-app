@@ -1,3 +1,17 @@
+<!-- Skip Navigation Links -->
+<a class="skip-link" href="#main-content" tabindex="1">Skip to main content</a>
+<a class="skip-link" href="#main-nav" tabindex="2">Skip to navigation</a>
+
+<!-- PWA Install and Status -->
+<app-pwa-install></app-pwa-install>
+
 <app-header></app-header>
-<router-outlet></router-outlet>
+
+<main id="main-content" role="main" tabindex="-1">
+  <router-outlet></router-outlet>
+</main>
+
 <app-footer></app-footer>
+
+<!-- Shared UX Components -->
+<app-ux-layout></app-ux-layout>

@@ -5,6 +5,13 @@
   padding: 0.75rem 0;
   font-size: 0.875rem;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+  min-height: 60px;
+  overflow: hidden;
+}
+
+.sub-header .container {
+  width: 100%;
+  max-width: 1200px;
 }
 
 .contact-cards {
@@ -87,6 +94,99 @@
 .social-icon:hover {
   transform: translateY(-2px) scale(1.1);
   box-shadow: 0 4px 8px rgba(0, 51, 102, 0.3);
+}
+
+.social-links {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: nowrap;
+  flex-shrink: 0;
+  min-width: fit-content;
+}
+
+/* Responsive adjustments for sub-header */
+.sub-header .d-flex {
+  flex-wrap: nowrap;
+  min-height: 45px;
+  align-items: center;
+}
+
+.sub-header .contact-cards {
+  flex-wrap: nowrap;
+  gap: 0.75rem;
+  flex-shrink: 1;
+  overflow: hidden;
+}
+
+.sub-header .contact-card {
+  padding: 0.4rem 0.6rem;
+  font-size: 0.8rem;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.sub-header .social-card {
+  padding: 0.4rem 0.6rem;
+  flex-shrink: 0;
+}
+
+.sub-header .social-label {
+  font-size: 0.75rem;
+  margin-right: 0.4rem;
+}
+
+.sub-header .social-icons {
+  gap: 0.4rem;
+}
+
+.sub-header .social-icon {
+  width: 24px;
+  height: 24px;
+  font-size: 0.75rem;
+}
+
+/* Extra responsive adjustments */
+@media (max-width: 992px) {
+  .sub-header .contact-card:not(:first-child):not(:nth-child(2)) {
+    display: none;
+  }
+  
+  .sub-header .social-label {
+    display: none;
+  }
+}
+
+@media (max-width: 768px) {
+  .sub-header .d-flex {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+  
+  .sub-header .contact-cards {
+    justify-content: center;
+  }
+  
+  .sub-header .social-links {
+    justify-content: center;
+  }
+}
+
+@media (max-width: 576px) {
+  .sub-header .contact-card {
+    font-size: 0.75rem;
+    padding: 0.3rem 0.5rem;
+  }
+  
+  .sub-header .social-icons {
+    gap: 0.3rem;
+  }
+  
+  .sub-header .social-icon {
+    width: 20px;
+    height: 20px;
+    font-size: 0.7rem;
+  }
 }
 
 /* Modern Header Styles */
@@ -405,6 +505,51 @@ ul.nav.modern-nav-menu li {
 
 .modern-dropdown li:last-child a:hover i {
   color: white !important;
+}
+
+/* Mobile Dropdown Improvements */
+@media (max-width: 768px) {
+  .modern-dropdown {
+    position: static !important;
+    min-width: 100% !important;
+    width: 100% !important;
+    border-radius: 8px !important;
+    margin-top: 0.5rem !important;
+    margin-bottom: 0.5rem !important;
+    background: #f8f9fa !important;
+    border: 1px solid #e9ecef !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+  }
+  
+  .modern-dropdown li a {
+    padding: 1rem 1.25rem !important;
+    font-size: 1rem !important;
+    border-radius: 6px !important;
+    margin: 0.25rem !important;
+    background: white !important;
+    border: 1px solid transparent !important;
+  }
+  
+  .modern-dropdown li a:hover,
+  .modern-dropdown li a:focus {
+    background: #003366 !important;
+    color: white !important;
+    transform: none !important;
+  }
+  
+  .modern-dropdown li a:hover i,
+  .modern-dropdown li a:focus i {
+    color: white !important;
+  }
+  
+  .modern-dropdown li:last-child a {
+    background: #e8f4fd !important;
+    border-color: #003366 !important;
+  }
+  
+  .modern-dropdown li:last-child a:hover {
+    background: #003366 !important;
+  }
 }
 
 /* Modern Mobile Menu Toggle */
@@ -885,6 +1030,146 @@ ul.nav.modern-nav-menu li {
   .header-area .main-nav .logo h1,
   .header-area .main-nav .logo .logo-text {
     font-size: 1.4rem !important;
+  }
+}
+
+/* ===== DESKTOP DROPDOWN OVERRIDES ===== */
+/* Ensure blue theme is applied on desktop, overriding global CSS - Updated */
+@media (min-width: 992px) {
+  /* Desktop dropdown container */
+  .header-area .main-nav .nav li.dropdown .modern-dropdown,
+  .background-header .main-nav .nav li.dropdown .modern-dropdown,
+  .header-area .main-nav .nav li.dropdown .dropdown-menu,
+  .background-header .main-nav .nav li.dropdown .dropdown-menu {
+    background: rgba(255, 255, 255, 0.98) !important;
+    backdrop-filter: blur(15px) !important;
+    border: 1px solid rgba(0, 51, 102, 0.1) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15) !important;
+    padding: 0.5rem !important;
+    min-width: 250px !important;
+  }
+
+  /* Desktop dropdown items */
+  .header-area .main-nav .nav li.dropdown .modern-dropdown li,
+  .background-header .main-nav .nav li.dropdown .modern-dropdown li,
+  .header-area .main-nav .nav li.dropdown .dropdown-menu li,
+  .background-header .main-nav .nav li.dropdown .dropdown-menu li {
+    margin: 0 !important;
+    padding: 0 0.5rem !important;
+    width: 100% !important;
+    display: block !important;
+    float: none !important;
+    height: auto !important;
+    line-height: normal !important;
+    border: none !important;
+    background: transparent !important;
+  }
+
+  /* Desktop dropdown links */
+  .header-area .main-nav .nav li.dropdown .modern-dropdown li a,
+  .background-header .main-nav .nav li.dropdown .modern-dropdown li a,
+  .header-area .main-nav .nav li.dropdown .dropdown-menu li a,
+  .background-header .main-nav .nav li.dropdown .dropdown-menu li a {
+    display: flex !important;
+    align-items: center !important;
+    padding: 0.875rem 1rem !important;
+    border-radius: 8px !important;
+    transition: all 0.3s ease !important;
+    color: #1e1e1e !important;
+    text-decoration: none !important;
+    font-size: 0.9rem !important;
+    font-weight: 500 !important;
+    gap: 0.75rem !important;
+    border-left: 3px solid transparent !important;
+    background: transparent !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    height: auto !important;
+    line-height: normal !important;
+    float: none !important;
+    text-align: left !important;
+  }
+
+  /* Desktop dropdown icons */
+  .header-area .main-nav .nav li.dropdown .modern-dropdown li a i,
+  .background-header .main-nav .nav li.dropdown .modern-dropdown li a i,
+  .header-area .main-nav .nav li.dropdown .dropdown-menu li a i,
+  .background-header .main-nav .nav li.dropdown .dropdown-menu li a i {
+    color: #003366 !important;
+    font-size: 1rem !important;
+    width: 18px !important;
+    text-align: center !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* Desktop dropdown hover states */
+  .header-area .main-nav .nav li.dropdown .modern-dropdown li a:hover,
+  .background-header .main-nav .nav li.dropdown .modern-dropdown li a:hover,
+  .header-area .main-nav .nav li.dropdown .dropdown-menu li a:hover,
+  .background-header .main-nav .nav li.dropdown .dropdown-menu li a:hover {
+    background: rgba(0, 51, 102, 0.1) !important;
+    color: #002244 !important;
+    border-left-color: #003366 !important;
+    transform: none !important;
+  }
+
+  /* Desktop dropdown hover icon colors */
+  .header-area .main-nav .nav li.dropdown .modern-dropdown li a:hover i,
+  .background-header .main-nav .nav li.dropdown .modern-dropdown li a:hover i,
+  .header-area .main-nav .nav li.dropdown .dropdown-menu li a:hover i,
+  .background-header .main-nav .nav li.dropdown .dropdown-menu li a:hover i {
+    color: #002244 !important;
+    transform: none !important;
+  }
+
+  /* Desktop dropdown "View All" button styling */
+  .header-area .main-nav .nav li.dropdown .modern-dropdown li:last-child,
+  .background-header .main-nav .nav li.dropdown .modern-dropdown li:last-child,
+  .header-area .main-nav .nav li.dropdown .dropdown-menu li:last-child,
+  .background-header .main-nav .nav li.dropdown .dropdown-menu li:last-child {
+    margin-top: 0.5rem !important;
+    padding: 0 0.5rem !important;
+  }
+
+  .header-area .main-nav .nav li.dropdown .modern-dropdown li:last-child a,
+  .background-header .main-nav .nav li.dropdown .modern-dropdown li:last-child a,
+  .header-area .main-nav .nav li.dropdown .dropdown-menu li:last-child a,
+  .background-header .main-nav .nav li.dropdown .dropdown-menu li:last-child a {
+    background: linear-gradient(135deg, #003366, #004488) !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+    text-align: center !important;
+    justify-content: center !important;
+    padding: 0.75rem 1rem !important;
+    box-shadow: 0 2px 8px rgba(0, 51, 102, 0.3) !important;
+    border-left: none !important;
+  }
+
+  .header-area .main-nav .nav li.dropdown .modern-dropdown li:last-child a i,
+  .background-header .main-nav .nav li.dropdown .modern-dropdown li:last-child a i,
+  .header-area .main-nav .nav li.dropdown .dropdown-menu li:last-child a i,
+  .background-header .main-nav .nav li.dropdown .dropdown-menu li:last-child a i {
+    color: white !important;
+  }
+
+  .header-area .main-nav .nav li.dropdown .modern-dropdown li:last-child a:hover,
+  .background-header .main-nav .nav li.dropdown .modern-dropdown li:last-child a:hover,
+  .header-area .main-nav .nav li.dropdown .dropdown-menu li:last-child a:hover,
+  .background-header .main-nav .nav li.dropdown .dropdown-menu li:last-child a:hover {
+    background: linear-gradient(135deg, #004488, #0055aa) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 12px rgba(0, 51, 102, 0.4) !important;
+    border-left-color: transparent !important;
+  }
+
+  .header-area .main-nav .nav li.dropdown .modern-dropdown li:last-child a:hover i,
+  .background-header .main-nav .nav li.dropdown .modern-dropdown li:last-child a:hover i,
+  .header-area .main-nav .nav li.dropdown .dropdown-menu li:last-child a:hover i,
+  .background-header .main-nav .nav li.dropdown .dropdown-menu li:last-child a:hover i {
+    color: white !important;
   }
 }
 

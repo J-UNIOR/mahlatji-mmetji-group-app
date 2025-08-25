@@ -15,8 +15,12 @@
                   <h2 class="display-3">{{ slide.title }}<br><span class="highlight">{{ slide.subtitle }}</span></h2>
                   <p class="lead enhanced-lead">{{ slide.description }}</p>
                   <div class="banner-actions enhanced-actions">
-                    <a href="/contact" class="primary-cta-btn">Start Your Project</a>
-                    <a href="/services" class="secondary-cta-btn">Explore Services</a>
+                    <app-tooltip content="Get in touch with our team to start your project" position="top">
+                      <a href="/contact" class="primary-cta-btn">Start Your Project</a>
+                    </app-tooltip>
+                    <app-tooltip content="Browse our comprehensive service offerings" position="top">
+                      <a href="/services" class="secondary-cta-btn">Explore Services</a>
+                    </app-tooltip>
                   </div>
                 </div>
               </div>
@@ -31,7 +35,18 @@
 <!-- About Us Section -->
 <section class="about-simple section" style="background: #fff; padding: 0rem 0 3rem 0;">
   <div class="container">
-    <div class="row align-items-center">
+    <!-- Loading state -->
+    <div *ngIf="isLoading()" class="row align-items-center">
+      <div class="col-lg-6 mb-4 mb-lg-0">
+        <app-skeleton-loader height="200px" width="100%"></app-skeleton-loader>
+      </div>
+      <div class="col-lg-6">
+        <app-skeleton-loader height="200px" width="100%"></app-skeleton-loader>
+      </div>
+    </div>
+    
+    <!-- Content when loaded -->
+    <div *ngIf="!isLoading()" class="row align-items-center">
       <div class="col-lg-6 mb-4 mb-lg-0">
         <div class="about-content-simple">
           <div class="section-badge-simple">
@@ -48,31 +63,43 @@
           </p>
           
           <div class="stats-inline">
-            <div class="stat-inline">
-              <div class="stat-number">15+</div>
-              <div class="stat-label">Years of Excellence</div>
-            </div>
-            <div class="stat-inline">
-              <div class="stat-number">500+</div>
-              <div class="stat-label">Projects Delivered</div>
-            </div>
-            <div class="stat-inline">
-              <div class="stat-number">150+</div>
-              <div class="stat-label">Satisfied Clients</div>
-            </div>
-            <div class="stat-inline">
-              <div class="stat-number">3</div>
-              <div class="stat-label">Business Divisions</div>
-            </div>
+            <app-tooltip content="Established in 2009, serving South African businesses with distinction" position="top">
+              <div class="stat-inline">
+                <div class="stat-number">15+</div>
+                <div class="stat-label">Years of Excellence</div>
+              </div>
+            </app-tooltip>
+            <app-tooltip content="Successfully completed construction, security, and consulting projects" position="top">
+              <div class="stat-inline">
+                <div class="stat-number">500+</div>
+                <div class="stat-label">Projects Delivered</div>
+              </div>
+            </app-tooltip>
+            <app-tooltip content="Trusted by businesses across multiple industries" position="top">
+              <div class="stat-inline">
+                <div class="stat-number">150+</div>
+                <div class="stat-label">Satisfied Clients</div>
+              </div>
+            </app-tooltip>
+            <app-tooltip content="Construction & Electrical, Cleaning & Security, Accounting & Corporate" position="top">
+              <div class="stat-inline">
+                <div class="stat-number">3</div>
+                <div class="stat-label">Business Divisions</div>
+              </div>
+            </app-tooltip>
           </div>
 
           <div class="about-actions-simple">
-            <a href="/about" class="btn-simple-primary">
-              <span>Our Story</span>
-            </a>
-            <a href="/contact" class="btn-simple-outline">
-              <span>Get in Touch</span>
-            </a>
+            <app-tooltip content="Learn about our journey and values" position="top">
+              <a href="/about" class="btn-simple-primary">
+                <span>Our Story</span>
+              </a>
+            </app-tooltip>
+            <app-tooltip content="Contact us for a consultation" position="top">
+              <a href="/contact" class="btn-simple-outline">
+                <span>Get in Touch</span>
+              </a>
+            </app-tooltip>
           </div>
         </div>
       </div>

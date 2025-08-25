@@ -1,7 +1,7 @@
 <div class="sub-header" aria-label="Contact and Social Information">
   <div class="container">
-    <div class="d-flex justify-content-between align-items-center flex-wrap py-2">
-      <address class="info mb-0 d-flex align-items-center" aria-label="Contact Information">
+    <div class="d-flex justify-content-between align-items-center flex-nowrap py-2">
+      <address class="info mb-0 d-flex align-items-center flex-grow-1" aria-label="Contact Information">
         <div class="contact-cards d-flex gap-3">
           <div class="contact-card">
             <i class="fa fa-envelope" aria-hidden="true"></i>
@@ -17,7 +17,7 @@
           </div>
         </div>
       </address>
-      <nav class="social-links" aria-label="Social Media Links">
+      <nav class="social-links flex-shrink-0" aria-label="Social Media Links">
         <div class="social-card">
           <span class="social-label">Follow Us:</span>
           <div class="social-icons">
@@ -37,6 +37,7 @@
     <div class="row">
       <div class="col-12">
         <nav class="main-nav modern-nav" 
+             id="main-nav"
              aria-label="Main Navigation" 
              role="navigation">
           <a routerLink="/home" class="logo modern-logo" aria-label="Mahlatji Mmetji Group">
@@ -49,14 +50,28 @@
               id="main-menu">
               
             <li role="none" class="nav-item">
-              <a routerLink="/home" routerLinkActive="active" role="menuitem" class="nav-link" (click)="closeMenu()">
-                <i class="fa fa-home nav-icon"></i>Home
+              <a routerLink="/home" 
+                 routerLinkActive="active" 
+                 role="menuitem" 
+                 class="nav-link" 
+                 (click)="closeMenu()"
+                 (keydown.enter)="closeMenu()"
+                 (keydown.space)="closeMenu(); $event.preventDefault()"
+                 tabindex="0">
+                <i class="fa fa-home nav-icon" aria-hidden="true"></i>Home
               </a>
             </li>
             
             <li role="none" class="nav-item">
-              <a routerLink="/about" routerLinkActive="active" role="menuitem" class="nav-link" (click)="closeMenu()">
-                <i class="fa fa-users nav-icon"></i>About Us
+              <a routerLink="/about" 
+                 routerLinkActive="active" 
+                 role="menuitem" 
+                 class="nav-link" 
+                 (click)="closeMenu()"
+                 (keydown.enter)="closeMenu()"
+                 (keydown.space)="closeMenu(); $event.preventDefault()"
+                 tabindex="0">
+                <i class="fa fa-users nav-icon" aria-hidden="true"></i>About Us
               </a>
             </li>
             <li role="none" class="nav-item dropdown" 
@@ -65,8 +80,12 @@
                  role="menuitem" 
                  tabindex="0"
                  (click)="toggleDropdown(); $event.preventDefault(); $event.stopPropagation()"
-                 [attr.aria-expanded]="dropdownOpen">
-                <i class="fa fa-building nav-icon"></i>Our Companies <i class="fa fa-chevron-down"></i>
+                 (keydown.enter)="toggleDropdown(); $event.preventDefault()"
+                 (keydown.space)="toggleDropdown(); $event.preventDefault()"
+                 (keydown.escape)="closeDropdown()"
+                 [attr.aria-expanded]="dropdownOpen"
+                 aria-haspopup="true">
+                <i class="fa fa-building nav-icon" aria-hidden="true"></i>Our Companies <i class="fa fa-chevron-down" aria-hidden="true"></i>
               </a>
               <ul class="dropdown-menu modern-dropdown" 
                   [class.show]="dropdownOpen" 

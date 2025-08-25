@@ -123,8 +123,8 @@
   }
 
   .logo-image {
-    height: 80px !important;
-    max-width: 200px !important;
+    height: 65px !important;
+    max-width: 180px !important;
     width: auto !important;
   }
 
@@ -175,7 +175,7 @@
     padding: 1.2rem 1.5rem !important;
     margin: 0 !important;
     background: rgba(255, 255, 255, 0.9) !important;
-    border: 1px solid rgba(243, 85, 37, 0.1) !important;
+    border: 1px solid rgba(0, 51, 102, 0.1) !important;
     border-radius: 8px !important;
     color: #333 !important;
     text-decoration: none !important;
@@ -192,13 +192,14 @@
   }
 
   /* Dropdown Menu - Vertical Layout */
-  .dropdown-menu {
+  .dropdown-menu,
+  .modern-dropdown {
     position: static !important;
-    background: rgba(243, 85, 37, 0.05) !important;
-    border: 1px solid rgba(243, 85, 37, 0.1) !important;
+    background: #f8f9fa !important;
+    border: 1px solid #e9ecef !important;
     border-radius: 8px !important;
     margin: 0.5rem 0 0 0 !important;
-    padding: 0.5rem 0 !important;
+    padding: 0.5rem !important;
     opacity: 1 !important;
     visibility: visible !important;
     transform: none !important;
@@ -206,34 +207,49 @@
     display: flex !important;
     flex-direction: column !important;
     gap: 0.25rem !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+    min-width: 100% !important;
   }
 
-  .dropdown-menu li {
-    margin: 0.25rem 0.5rem !important;
+  .dropdown-menu li,
+  .modern-dropdown li {
+    margin: 0.25rem !important;
     display: block !important;
-    width: calc(100% - 1rem) !important;
+    width: calc(100% - 0.5rem) !important;
+    padding: 0 !important;
   }
 
-  .dropdown-menu a {
-    padding: 0.75rem 1.5rem !important;
+  .dropdown-menu a,
+  .modern-dropdown li a {
+    padding: 1rem 1.25rem !important;
     font-size: 1rem !important;
-    border: none !important;
-    background: rgba(255, 255, 255, 0.8) !important;
+    border: 1px solid transparent !important;
+    background: white !important;
     border-radius: 6px !important;
     color: #333 !important;
     display: flex !important;
     align-items: center !important;
-    gap: 0.5rem !important;
+    gap: 0.75rem !important;
     text-decoration: none !important;
     transition: all 0.3s ease !important;
     box-sizing: border-box !important;
+    font-weight: 500 !important;
+    border-left: 3px solid transparent !important;
+  }
+
+  .dropdown-menu a i,
+  .modern-dropdown li a i {
+    color: #003366 !important;
+    font-size: 1rem !important;
+    width: 18px !important;
+    text-align: center !important;
   }
 
   /* CTA Button Special Styling */
   .cta-nav {
     margin: 1.5rem 0 0 0 !important;
     padding: 1.5rem 0 0 0 !important;
-    border-top: 1px solid rgba(243, 85, 37, 0.2) !important;
+    border-top: 1px solid rgba(0, 51, 102, 0.2) !important;
   }
 
   .cta-button {
@@ -266,8 +282,8 @@
     flex-shrink: 0 !important;
     width: 50px !important;
     height: 50px !important;
-    background: rgba(243, 85, 37, 0.1) !important;
-    border: 2px solid #f35525 !important;
+    background: rgba(0, 51, 102, 0.1) !important;
+    border: 2px solid #003366 !important;
     border-radius: 8px !important;
     cursor: pointer !important;
     transition: all 0.3s ease !important;
@@ -282,7 +298,7 @@
 
   .menu-trigger:hover,
   .modern-menu-toggle:hover {
-    background: rgba(243, 85, 37, 0.2) !important;
+    background: rgba(0, 51, 102, 0.2) !important;
     transform: scale(1.05) !important;
   }
 
@@ -299,7 +315,7 @@
   .hamburger span {
     display: block !important;
     height: 3px !important;
-    background: #f35525 !important;
+    background: #003366 !important;
     border-radius: 2px !important;
     transition: all 0.3s ease !important;
     transform-origin: center !important;
@@ -319,15 +335,42 @@
 
   /* Hover Effects */
   .nav-link:hover {
-    background: #f35525 !important;
+    background: #003366 !important;
     color: white !important;
     transform: translateY(-2px) !important;
-    box-shadow: 0 4px 15px rgba(243, 85, 37, 0.3) !important;
+    box-shadow: 0 4px 15px rgba(0, 51, 102, 0.3) !important;
   }
 
-  .dropdown-menu a:hover {
-    background: rgba(243, 85, 37, 0.1) !important;
-    transform: translateX(5px) !important;
+  .dropdown-menu a:hover,
+  .modern-dropdown li a:hover,
+  .dropdown-menu a:focus,
+  .modern-dropdown li a:focus {
+    background: #003366 !important;
+    color: white !important;
+    transform: none !important;
+    border-left-color: #0055aa !important;
+    box-shadow: 0 2px 8px rgba(0, 51, 102, 0.2) !important;
+  }
+
+  .dropdown-menu a:hover i,
+  .modern-dropdown li a:hover i,
+  .dropdown-menu a:focus i,
+  .modern-dropdown li a:focus i {
+    color: white !important;
+  }
+
+  /* Special styling for "View All" item */
+  .dropdown-menu li:last-child a,
+  .modern-dropdown li:last-child a {
+    background: #e8f4fd !important;
+    border-color: #bee5eb !important;
+    border-left-color: #003366 !important;
+  }
+
+  .dropdown-menu li:last-child a:hover,
+  .modern-dropdown li:last-child a:hover {
+    background: #003366 !important;
+    border-left-color: #0055aa !important;
   }
 
   .cta-button:hover {
@@ -509,4 +552,248 @@
 .sub-header .social-links a:focus {
   outline: 2px solid #003366;
   outline-offset: 2px;
+}
+
+/* ===== OVERRIDE GLOBAL CSS MOBILE NAVIGATION ===== */
+/* These styles override mahlatji-mmetji-group.css mobile navigation */
+@media (max-width: 991px) {
+  /* Force override main navigation container from global CSS */
+  .header-area .main-nav .nav,
+  .background-header .main-nav .nav {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    justify-content: flex-start !important;
+    padding: 100px 2rem 2rem 2rem !important;
+    gap: 0.25rem !important;
+    position: fixed !important;
+    top: 0 !important;
+    left: 0 !important;
+    right: 0 !important;
+    bottom: 0 !important;
+    background: rgba(255, 255, 255, 0.98) !important;
+    backdrop-filter: blur(20px) !important;
+    transform: translateX(100%) !important;
+    opacity: 0 !important;
+    visibility: hidden !important;
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    overflow-y: auto !important;
+    z-index: 1000 !important;
+    width: 100vw !important;
+    height: 100vh !important;
+    margin: 0 !important;
+    border: none !important;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+  }
+
+  /* Show navigation when open */
+  .header-area .main-nav .nav.open,
+  .background-header .main-nav .nav.open {
+    transform: translateX(0) !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+  }
+
+  /* Override main navigation items from global CSS */
+  .header-area .main-nav .nav li,
+  .background-header .main-nav .nav li {
+    width: 100% !important;
+    display: block !important;
+    float: none !important;
+    height: auto !important;
+    line-height: normal !important;
+    margin: 0.25rem 0 !important;
+    padding: 0 !important;
+    border: none !important;
+    background: transparent !important;
+    border-radius: 0 !important;
+    text-align: left !important;
+  }
+
+  /* Override main navigation links from global CSS */
+  .header-area .main-nav .nav li a,
+  .background-header .main-nav .nav li a {
+    width: 100% !important;
+    display: flex !important;
+    align-items: center !important;
+    justify-content: flex-start !important;
+    padding: 1.2rem 1.5rem !important;
+    margin: 0 !important;
+    height: auto !important;
+    line-height: normal !important;
+    float: none !important;
+    box-sizing: border-box !important;
+    gap: 0.75rem !important;
+    font-size: 1.1rem !important;
+    border-radius: 8px !important;
+    border: 1px solid rgba(0, 51, 102, 0.1) !important;
+    background: rgba(255, 255, 255, 0.9) !important;
+    color: #333 !important;
+    text-decoration: none !important;
+    transition: all 0.3s ease !important;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1) !important;
+    text-align: left !important;
+    text-transform: none !important;
+    letter-spacing: normal !important;
+    font-weight: 500 !important;
+  }
+
+  /* Override hover states from global CSS */
+  .header-area .main-nav .nav li a:hover,
+  .background-header .main-nav .nav li a:hover,
+  .header-area .main-nav .nav li a.active,
+  .background-header .main-nav .nav li a.active {
+    background: #003366 !important;
+    border-color: #003366 !important;
+    transform: translateY(-2px) !important;
+    color: white !important;
+    box-shadow: 0 4px 15px rgba(0, 51, 102, 0.3) !important;
+  }
+
+  /* Override dropdown containers from global CSS */
+  .header-area .main-nav .nav li.dropdown .dropdown-menu,
+  .header-area .main-nav .nav li.dropdown .modern-dropdown,
+  .background-header .main-nav .nav li.dropdown .dropdown-menu,
+  .background-header .main-nav .nav li.dropdown .modern-dropdown {
+    position: static !important;
+    background: #f8f9fa !important;
+    border: 1px solid #e9ecef !important;
+    border-radius: 8px !important;
+    margin: 0.5rem 0 0 0 !important;
+    padding: 0.5rem !important;
+    opacity: 1 !important;
+    visibility: visible !important;
+    transform: none !important;
+    width: 100% !important;
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 0.25rem !important;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+    min-width: 100% !important;
+    max-width: 100% !important;
+    left: auto !important;
+    right: auto !important;
+    top: auto !important;
+    z-index: auto !important;
+    float: none !important;
+    text-align: left !important;
+  }
+
+  /* Override dropdown items from global CSS */
+  .header-area .main-nav .nav li.dropdown .dropdown-menu li,
+  .header-area .main-nav .nav li.dropdown .modern-dropdown li,
+  .background-header .main-nav .nav li.dropdown .dropdown-menu li,
+  .background-header .main-nav .nav li.dropdown .modern-dropdown li {
+    margin: 0.25rem !important;
+    display: block !important;
+    width: calc(100% - 0.5rem) !important;
+    padding: 0 !important;
+    background: transparent !important;
+    border: none !important;
+    border-radius: 0 !important;
+    float: none !important;
+    height: auto !important;
+    line-height: normal !important;
+    text-align: left !important;
+  }
+
+  /* Override dropdown links from global CSS */
+  .header-area .main-nav .nav li.dropdown .dropdown-menu li a,
+  .header-area .main-nav .nav li.dropdown .modern-dropdown li a,
+  .background-header .main-nav .nav li.dropdown .dropdown-menu li a,
+  .background-header .main-nav .nav li.dropdown .modern-dropdown li a {
+    padding: 1rem 1.25rem !important;
+    font-size: 1rem !important;
+    border: 1px solid transparent !important;
+    background: white !important;
+    border-radius: 6px !important;
+    color: #333 !important;
+    display: flex !important;
+    align-items: center !important;
+    gap: 0.75rem !important;
+    text-decoration: none !important;
+    transition: all 0.3s ease !important;
+    box-sizing: border-box !important;
+    font-weight: 500 !important;
+    border-left: 3px solid transparent !important;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1) !important;
+    transform: none !important;
+    width: 100% !important;
+    margin: 0 !important;
+    height: auto !important;
+    line-height: normal !important;
+    float: none !important;
+    text-align: left !important;
+    text-transform: none !important;
+    letter-spacing: normal !important;
+  }
+
+  /* Override dropdown hover states from global CSS */
+  .header-area .main-nav .nav li.dropdown .dropdown-menu li a:hover,
+  .header-area .main-nav .nav li.dropdown .modern-dropdown li a:hover,
+  .header-area .main-nav .nav li.dropdown .dropdown-menu li a:focus,
+  .header-area .main-nav .nav li.dropdown .modern-dropdown li a:focus,
+  .background-header .main-nav .nav li.dropdown .dropdown-menu li a:hover,
+  .background-header .main-nav .nav li.dropdown .modern-dropdown li a:hover,
+  .background-header .main-nav .nav li.dropdown .dropdown-menu li a:focus,
+  .background-header .main-nav .nav li.dropdown .modern-dropdown li a:focus {
+    background: #003366 !important;
+    color: white !important;
+    transform: none !important;
+    border-left-color: #0055aa !important;
+    box-shadow: 0 2px 8px rgba(0, 51, 102, 0.2) !important;
+    border-color: transparent !important;
+  }
+
+  /* Override dropdown icons from global CSS */
+  .header-area .main-nav .nav li.dropdown .dropdown-menu li a i,
+  .header-area .main-nav .nav li.dropdown .modern-dropdown li a i,
+  .background-header .main-nav .nav li.dropdown .dropdown-menu li a i,
+  .background-header .main-nav .nav li.dropdown .modern-dropdown li a i {
+    color: #003366 !important;
+    font-size: 1rem !important;
+    width: 18px !important;
+    text-align: center !important;
+    flex-shrink: 0 !important;
+    margin: 0 !important;
+  }
+
+  /* Override dropdown hover icon colors from global CSS */
+  .header-area .main-nav .nav li.dropdown .dropdown-menu li a:hover i,
+  .header-area .main-nav .nav li.dropdown .modern-dropdown li a:hover i,
+  .header-area .main-nav .nav li.dropdown .dropdown-menu li a:focus i,
+  .header-area .main-nav .nav li.dropdown .modern-dropdown li a:focus i,
+  .background-header .main-nav .nav li.dropdown .dropdown-menu li a:hover i,
+  .background-header .main-nav .nav li.dropdown .modern-dropdown li a:hover i,
+  .background-header .main-nav .nav li.dropdown .dropdown-menu li a:focus i,
+  .background-header .main-nav .nav li.dropdown .modern-dropdown li a:focus i {
+    color: white !important;
+  }
+}
+
+/* ===== MOBILE LOGO SIZE OVERRIDE ===== */
+/* Override global CSS logo size for mobile with highest specificity */
+@media (max-width: 767px) {
+  .header-area .main-nav .logo .logo-image,
+  .header-area .main-nav .modern-logo .logo-image,
+  .background-header .main-nav .logo .logo-image,
+  .background-header .main-nav .modern-logo .logo-image,
+  .logo-image {
+    height: 65px !important;
+    max-width: 180px !important;
+    width: auto !important;
+  }
+}
+
+@media (max-width: 991px) and (min-width: 768px) {
+  .header-area .main-nav .logo .logo-image,
+  .header-area .main-nav .modern-logo .logo-image,
+  .background-header .main-nav .logo .logo-image,
+  .background-header .main-nav .modern-logo .logo-image,
+  .logo-image {
+    height: 65px !important;
+    max-width: 180px !important;
+    width: auto !important;
+  }
 }

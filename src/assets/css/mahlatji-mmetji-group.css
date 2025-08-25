@@ -820,18 +820,22 @@ Banner Style
 
 .main-banner .item-1 {
   background-image: url(../images/banner-01.png);
+  background-image: url(../images/banner-01.webp);
 }
 
 .main-banner .item-2 {
   background-image: url(../images/banner-02.png);
+  background-image: url(../images/banner-02.webp);
 }
 
 .main-banner .item-3 {
   background-image: url(../images/banner-03.png);
+  background-image: url(../images/banner-03.webp);
 }
 
 .main-banner .item-4 {
   background-image: url(../images/banner-04.png);
+  background-image: url(../images/banner-04.webp);
 }
 
 .main-banner .item span.category {
@@ -1037,6 +1041,7 @@ Video Style
 
 .video {
   background-image: url(../images/video-bg.jpg);
+  background-image: url(../images/video-bg.webp);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
@@ -1301,6 +1306,7 @@ Contact Style
 
 .contact {
   background-image: url(../images/contact-bg.jpg);
+  background-image: url(../images/contact-bg.webp);
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
@@ -1454,6 +1460,7 @@ Page Header Style
 
 .page-heading {
   background-image: url(../images/page-heading-bg.jpg);
+  background-image: url(../images/page-heading-bg.webp);
   background-position: center bottom;
   background-repeat: no-repeat;
   background-size: cover;
@@ -1949,6 +1956,145 @@ body {
   }
 }
 
+/* DESKTOP DROPDOWN BLUE THEME OVERRIDE */
+@media (min-width: 992px) {
+  /* Override desktop dropdown container */
+  .header-area .main-nav .nav li.dropdown .dropdown-menu,
+  .header-area .main-nav .nav li.dropdown .modern-dropdown,
+  .background-header .main-nav .nav li.dropdown .dropdown-menu,
+  .background-header .main-nav .nav li.dropdown .modern-dropdown {
+    background: rgba(255, 255, 255, 0.98) !important;
+    backdrop-filter: blur(15px) !important;
+    border: 1px solid rgba(0, 51, 102, 0.1) !important;
+    border-radius: 12px !important;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.15) !important;
+    padding: 0.5rem !important;
+    min-width: 250px !important;
+  }
+
+  /* Override desktop dropdown items */
+  .header-area .main-nav .nav li.dropdown .dropdown-menu li,
+  .header-area .main-nav .nav li.dropdown .modern-dropdown li,
+  .background-header .main-nav .nav li.dropdown .dropdown-menu li,
+  .background-header .main-nav .nav li.dropdown .modern-dropdown li {
+    margin: 0 !important;
+    padding: 0 0.5rem !important;
+    width: 100% !important;
+    display: block !important;
+    float: none !important;
+    height: auto !important;
+    line-height: normal !important;
+    border: none !important;
+    background: transparent !important;
+  }
+
+  /* Override desktop dropdown links */
+  .header-area .main-nav .nav li.dropdown .dropdown-menu li a,
+  .header-area .main-nav .nav li.dropdown .modern-dropdown li a,
+  .background-header .main-nav .nav li.dropdown .dropdown-menu li a,
+  .background-header .main-nav .nav li.dropdown .modern-dropdown li a {
+    display: flex !important;
+    align-items: center !important;
+    padding: 0.875rem 1rem !important;
+    border-radius: 8px !important;
+    transition: all 0.3s ease !important;
+    color: #1e1e1e !important;
+    text-decoration: none !important;
+    font-size: 0.9rem !important;
+    font-weight: 500 !important;
+    gap: 0.75rem !important;
+    border-left: 3px solid transparent !important;
+    background: transparent !important;
+    width: 100% !important;
+    box-sizing: border-box !important;
+    height: auto !important;
+    line-height: normal !important;
+    float: none !important;
+    text-align: left !important;
+  }
+
+  /* Override desktop dropdown icons */
+  .header-area .main-nav .nav li.dropdown .dropdown-menu li a i,
+  .header-area .main-nav .nav li.dropdown .modern-dropdown li a i,
+  .background-header .main-nav .nav li.dropdown .dropdown-menu li a i,
+  .background-header .main-nav .nav li.dropdown .modern-dropdown li a i {
+    color: #003366 !important;
+    font-size: 1rem !important;
+    width: 18px !important;
+    text-align: center !important;
+    flex-shrink: 0 !important;
+  }
+
+  /* Override desktop dropdown hover states */
+  .header-area .main-nav .nav li.dropdown .dropdown-menu li a:hover,
+  .header-area .main-nav .nav li.dropdown .modern-dropdown li a:hover,
+  .background-header .main-nav .nav li.dropdown .dropdown-menu li a:hover,
+  .background-header .main-nav .nav li.dropdown .modern-dropdown li a:hover {
+    background: rgba(0, 51, 102, 0.1) !important;
+    color: #002244 !important;
+    border-left-color: #003366 !important;
+    transform: none !important;
+  }
+
+  /* Override desktop dropdown hover icon colors */
+  .header-area .main-nav .nav li.dropdown .dropdown-menu li a:hover i,
+  .header-area .main-nav .nav li.dropdown .modern-dropdown li a:hover i,
+  .background-header .main-nav .nav li.dropdown .dropdown-menu li a:hover i,
+  .background-header .main-nav .nav li.dropdown .modern-dropdown li a:hover i {
+    color: #002244 !important;
+    transform: none !important;
+  }
+
+  /* Override desktop dropdown "View All" button styling */
+  .header-area .main-nav .nav li.dropdown .dropdown-menu li:last-child,
+  .header-area .main-nav .nav li.dropdown .modern-dropdown li:last-child,
+  .background-header .main-nav .nav li.dropdown .dropdown-menu li:last-child,
+  .background-header .main-nav .nav li.dropdown .modern-dropdown li:last-child {
+    margin-top: 0.5rem !important;
+    padding: 0 0.5rem !important;
+  }
+
+  .header-area .main-nav .nav li.dropdown .dropdown-menu li:last-child a,
+  .header-area .main-nav .nav li.dropdown .modern-dropdown li:last-child a,
+  .background-header .main-nav .nav li.dropdown .dropdown-menu li:last-child a,
+  .background-header .main-nav .nav li.dropdown .modern-dropdown li:last-child a {
+    background: linear-gradient(135deg, #003366, #004488) !important;
+    color: white !important;
+    border: none !important;
+    border-radius: 8px !important;
+    font-weight: 600 !important;
+    text-align: center !important;
+    justify-content: center !important;
+    padding: 0.75rem 1rem !important;
+    box-shadow: 0 2px 8px rgba(0, 51, 102, 0.3) !important;
+    border-left: none !important;
+  }
+
+  .header-area .main-nav .nav li.dropdown .dropdown-menu li:last-child a i,
+  .header-area .main-nav .nav li.dropdown .modern-dropdown li:last-child a i,
+  .background-header .main-nav .nav li.dropdown .dropdown-menu li:last-child a i,
+  .background-header .main-nav .nav li.dropdown .modern-dropdown li:last-child a i {
+    color: white !important;
+  }
+
+  .header-area .main-nav .nav li.dropdown .dropdown-menu li:last-child a:hover,
+  .header-area .main-nav .nav li.dropdown .modern-dropdown li:last-child a:hover,
+  .background-header .main-nav .nav li.dropdown .dropdown-menu li:last-child a:hover,
+  .background-header .main-nav .nav li.dropdown .modern-dropdown li:last-child a:hover {
+    background: linear-gradient(135deg, #004488, #0055aa) !important;
+    transform: translateY(-1px) !important;
+    box-shadow: 0 4px 12px rgba(0, 51, 102, 0.4) !important;
+    border-left-color: transparent !important;
+  }
+
+  .header-area .main-nav .nav li.dropdown .dropdown-menu li:last-child a:hover i,
+  .header-area .main-nav .nav li.dropdown .modern-dropdown li:last-child a:hover i,
+  .background-header .main-nav .nav li.dropdown .dropdown-menu li:last-child a:hover i,
+  .background-header .main-nav .nav li.dropdown .modern-dropdown li:last-child a:hover i {
+    color: white !important;
+  }
+}
+
 /* MOBILE NAVIGATION FIX - Ensure mobile menu displays as vertical list */
 @media (max-width: 991px) {
   .header-area .main-nav .nav,
@@ -2007,5 +2153,212 @@ body {
     transform: translateX(5px) !important;
     color: #f35525 !important;
     box-shadow: 0 4px 10px rgba(243, 85, 37, 0.2) !important;
+  }
+}
+
+/* 
+---------------------------------------------
+Dark Theme Support
+--------------------------------------------- 
+*/
+
+/* Dark theme root variables */
+.dark-theme {
+  --bg-primary: #121212;
+  --bg-secondary: #1e1e1e;
+  --bg-tertiary: #2c2c2c;
+  --text-primary: #ffffff;
+  --text-secondary: #e0e0e0;
+  --text-muted: #a0a0a0;
+  --border-color: #444444;
+  --shadow-color: rgba(0, 0, 0, 0.5);
+  --brand-primary: #f35525;
+  --brand-secondary: #ff6b47;
+}
+
+/* Dark theme base styles */
+.dark-theme body {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+/* Dark theme header */
+.dark-theme .sub-header {
+  background: var(--bg-secondary);
+  border-bottom-color: var(--border-color);
+}
+
+.dark-theme .contact-card,
+.dark-theme .social-card {
+  background: rgba(255, 255, 255, 0.1);
+  border-color: var(--border-color);
+  backdrop-filter: blur(10px);
+}
+
+.dark-theme .contact-card:hover,
+.dark-theme .social-card:hover {
+  background: rgba(243, 85, 37, 0.1);
+}
+
+.dark-theme .contact-card a,
+.dark-theme .contact-card span,
+.dark-theme .social-label {
+  color: var(--text-secondary);
+}
+
+.dark-theme .contact-card a:hover {
+  color: var(--brand-secondary);
+}
+
+/* Dark theme header area */
+.dark-theme .header-area {
+  background: rgba(30, 30, 30, 0.95);
+  box-shadow: 0 4px 20px var(--shadow-color);
+}
+
+.dark-theme .background-header {
+  background: rgba(18, 18, 18, 0.98);
+}
+
+/* Dark theme navigation */
+.dark-theme .main-nav .nav li a {
+  color: var(--text-secondary);
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--border-color);
+}
+
+.dark-theme .main-nav .nav li a:hover,
+.dark-theme .main-nav .nav li a.active {
+  background: rgba(243, 85, 37, 0.2);
+  color: var(--text-primary);
+  border-color: var(--brand-primary);
+}
+
+/* Dark theme content sections */
+.dark-theme .page-heading {
+  background: linear-gradient(rgba(18, 18, 18, 0.8), rgba(18, 18, 18, 0.8)), url('../images/page-heading-bg.jpg');
+}
+
+.dark-theme .section {
+  background: var(--bg-primary);
+  color: var(--text-primary);
+}
+
+.dark-theme .section-heading h2,
+.dark-theme .section-heading h4 {
+  color: var(--text-primary);
+}
+
+.dark-theme .section-heading p {
+  color: var(--text-secondary);
+}
+
+/* Dark theme cards and items */
+.dark-theme .item,
+.dark-theme .property-item,
+.dark-theme .deal-item {
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-color);
+  box-shadow: 0 4px 15px var(--shadow-color);
+}
+
+.dark-theme .item:hover,
+.dark-theme .property-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 25px var(--shadow-color);
+}
+
+/* Dark theme forms */
+.dark-theme .contact-form input,
+.dark-theme .contact-form textarea,
+.dark-theme .contact-form select {
+  background: var(--bg-tertiary);
+  border-color: var(--border-color);
+  color: var(--text-primary);
+}
+
+.dark-theme .contact-form input:focus,
+.dark-theme .contact-form textarea:focus,
+.dark-theme .contact-form select:focus {
+  border-color: var(--brand-primary);
+  box-shadow: 0 0 0 0.2rem rgba(243, 85, 37, 0.25);
+}
+
+.dark-theme .contact-form input::placeholder,
+.dark-theme .contact-form textarea::placeholder {
+  color: var(--text-muted);
+}
+
+/* Dark theme buttons */
+.dark-theme .main-button a,
+.dark-theme .border-button a {
+  background: var(--brand-primary);
+  color: var(--text-primary);
+  border-color: var(--brand-primary);
+}
+
+.dark-theme .main-button a:hover,
+.dark-theme .border-button a:hover {
+  background: var(--brand-secondary);
+  border-color: var(--brand-secondary);
+}
+
+/* Dark theme footer */
+.dark-theme .footer {
+  background: var(--bg-tertiary);
+  color: var(--text-secondary);
+}
+
+.dark-theme .footer h4 {
+  color: var(--text-primary);
+}
+
+.dark-theme .footer a {
+  color: var(--text-secondary);
+}
+
+.dark-theme .footer a:hover {
+  color: var(--brand-secondary);
+}
+
+/* Dark theme scrollbar */
+.dark-theme ::-webkit-scrollbar {
+  width: 8px;
+}
+
+.dark-theme ::-webkit-scrollbar-track {
+  background: var(--bg-secondary);
+}
+
+.dark-theme ::-webkit-scrollbar-thumb {
+  background: var(--border-color);
+  border-radius: 4px;
+}
+
+.dark-theme ::-webkit-scrollbar-thumb:hover {
+  background: var(--brand-primary);
+}
+
+/* Dark theme animations and transitions */
+.dark-theme * {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+/* High contrast mode adjustments */
+@media (prefers-contrast: high) {
+  .dark-theme {
+    --text-primary: #ffffff;
+    --text-secondary: #ffffff;
+    --border-color: #ffffff;
+    --bg-primary: #000000;
+    --bg-secondary: #1a1a1a;
+  }
+}
+
+/* Reduced motion support */
+@media (prefers-reduced-motion: reduce) {
+  .dark-theme * {
+    transition: none !important;
+    animation: none !important;
   }
 }

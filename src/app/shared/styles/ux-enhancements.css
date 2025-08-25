@@ -1,0 +1,547 @@
+/* ===== UX ENHANCEMENT STYLES ===== */
+
+/* Toast Notifications */
+.toast-container {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  z-index: 10000;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  pointer-events: none;
+}
+
+.toast {
+  background: #333;
+  color: white;
+  padding: 0.75rem 1rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+  transform: translateX(100%);
+  opacity: 0;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  pointer-events: auto;
+  font-size: 0.875rem;
+  font-weight: 500;
+  max-width: 300px;
+  word-wrap: break-word;
+}
+
+.toast.toast-show {
+  transform: translateX(0);
+  opacity: 1;
+}
+
+.toast.toast-hide {
+  transform: translateX(100%);
+  opacity: 0;
+}
+
+.toast-success {
+  background: linear-gradient(135deg, #4caf50, #66bb6a);
+}
+
+.toast-error {
+  background: linear-gradient(135deg, #f44336, #ef5350);
+}
+
+.toast-warning {
+  background: linear-gradient(135deg, #ff9800, #ffb74d);
+}
+
+.toast-info {
+  background: linear-gradient(135deg, #2196f3, #42a5f5);
+}
+
+/* Font Size Controls */
+:root {
+  --base-font-size: 16px;
+}
+
+.font-size-small {
+  --base-font-size: 14px;
+}
+
+.font-size-medium {
+  --base-font-size: 16px;
+}
+
+.font-size-large {
+  --base-font-size: 18px;
+}
+
+body {
+  font-size: var(--base-font-size);
+}
+
+/* Theme Support */
+:root {
+  --text-color: #333;
+  --bg-color: #fff;
+  --accent-color: #f35525;
+  --border-color: #e0e0e0;
+  --shadow-color: rgba(0, 0, 0, 0.1);
+}
+
+.dark-theme {
+  --text-color: #fff;
+  --bg-color: #1a1a1a;
+  --accent-color: #66bb6a;
+  --border-color: #333;
+  --shadow-color: rgba(255, 255, 255, 0.1);
+}
+
+.dark-theme body {
+  background-color: var(--bg-color);
+  color: var(--text-color);
+}
+
+.dark-theme .header-area {
+  background: rgba(26, 26, 26, 0.95);
+  border-bottom: 1px solid var(--border-color);
+}
+
+.dark-theme .sub-header {
+  background: rgba(30, 30, 30, 0.95);
+}
+
+/* High Contrast Mode */
+.high-contrast {
+  --text-color: #000;
+  --bg-color: #fff;
+  --accent-color: #0066cc;
+  --border-color: #000;
+  --shadow-color: rgba(0, 0, 0, 0.5);
+}
+
+.high-contrast * {
+  border-color: var(--border-color) !important;
+}
+
+.high-contrast a {
+  color: var(--accent-color) !important;
+  text-decoration: underline !important;
+}
+
+.high-contrast button {
+  background: var(--accent-color) !important;
+  color: #fff !important;
+  border: 2px solid #000 !important;
+}
+
+/* Reduced Motion */
+.reduced-motion,
+.reduced-motion * {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+  scroll-behavior: auto !important;
+}
+
+/* Animations Disabled */
+.animations-disabled,
+.animations-disabled * {
+  animation: none !important;
+  transition: none !important;
+}
+
+/* Enhanced Keyboard Navigation */
+.enhanced-keyboard-nav :focus {
+  outline: 3px solid #f35525 !important;
+  outline-offset: 2px !important;
+  border-radius: 4px;
+}
+
+.enhanced-keyboard-nav .dark-theme :focus {
+  outline-color: #66bb6a !important;
+}
+
+.enhanced-keyboard-nav .high-contrast :focus {
+  outline-color: #0066cc !important;
+  outline-width: 4px !important;
+}
+
+/* Enhanced Focus Indicators */
+.enhanced-focus-indicators :focus {
+  box-shadow: 0 0 0 3px rgba(243, 85, 37, 0.3) !important;
+  outline: 2px solid #f35525 !important;
+  outline-offset: 1px !important;
+}
+
+.enhanced-focus-indicators .dark-theme :focus {
+  box-shadow: 0 0 0 3px rgba(102, 187, 106, 0.3) !important;
+  outline-color: #66bb6a !important;
+}
+
+.enhanced-focus-indicators .high-contrast :focus {
+  box-shadow: 0 0 0 4px rgba(0, 102, 204, 0.5) !important;
+  outline-color: #0066cc !important;
+  outline-width: 3px !important;
+}
+
+/* Skip Links */
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: #000;
+  color: #fff;
+  padding: 8px;
+  text-decoration: none;
+  border-radius: 4px;
+  z-index: 10000;
+  transition: top 0.3s ease;
+}
+
+.skip-link:focus {
+  top: 6px;
+}
+
+/* Smooth Scrolling (respects reduced motion) */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+
+/* Mobile UX Enhancements */
+@media (max-width: 768px) {
+  .toast-container {
+    top: 10px;
+    right: 10px;
+    left: 10px;
+    align-items: stretch;
+  }
+
+  .toast {
+    max-width: none;
+    margin: 0;
+  }
+
+  /* Larger touch targets */
+  button,
+  .nav-link,
+  .btn {
+    min-height: 44px;
+    min-width: 44px;
+  }
+
+  /* Enhanced mobile focus */
+  .enhanced-keyboard-nav :focus,
+  .enhanced-focus-indicators :focus {
+    outline-width: 4px !important;
+    outline-offset: 3px !important;
+  }
+}
+
+/* Touch Device Enhancements */
+@media (hover: none) and (pointer: coarse) {
+  /* Larger touch targets */
+  .nav-link,
+  .btn,
+  button,
+  .form-control {
+    min-height: 48px;
+    padding: 0.75rem 1rem;
+  }
+
+  /* Improved scrolling */
+  * {
+    -webkit-overflow-scrolling: touch;
+  }
+}
+
+/* Loading States */
+.loading-skeleton {
+  background: linear-gradient(90deg, #f0f0f0 25%, #e0e0e0 50%, #f0f0f0 75%);
+  background-size: 200% 100%;
+  animation: skeleton-loading 1.5s infinite;
+}
+
+@keyframes skeleton-loading {
+  0% {
+    background-position: 200% 0;
+  }
+  100% {
+    background-position: -200% 0;
+  }
+}
+
+.dark-theme .loading-skeleton {
+  background: linear-gradient(90deg, #333 25%, #444 50%, #333 75%);
+  background-size: 200% 100%;
+}
+
+/* Focus Within Enhancement */
+.form-group:focus-within label {
+  color: var(--accent-color);
+  font-weight: 600;
+}
+
+.form-group:focus-within {
+  transform: scale(1.02);
+  transition: transform 0.2s ease;
+}
+
+.reduced-motion .form-group:focus-within {
+  transform: none;
+}
+
+/* Interactive States */
+.interactive-element {
+  transition: all 0.2s ease;
+  cursor: pointer;
+}
+
+.interactive-element:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+.interactive-element:active {
+  transform: translateY(0);
+}
+
+.reduced-motion .interactive-element,
+.reduced-motion .interactive-element:hover,
+.reduced-motion .interactive-element:active {
+  transform: none;
+  transition: none;
+}
+
+/* Error States */
+.error-state {
+  border: 2px solid #f44336;
+  background: rgba(244, 67, 54, 0.1);
+}
+
+.error-message {
+  color: #f44336;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.error-message::before {
+  content: '⚠';
+  font-weight: bold;
+}
+
+/* Success States */
+.success-state {
+  border: 2px solid #4caf50;
+  background: rgba(76, 175, 80, 0.1);
+}
+
+.success-message {
+  color: #4caf50;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.success-message::before {
+  content: '✓';
+  font-weight: bold;
+}
+
+/* Breadcrumb Enhancement */
+.breadcrumb-enhanced {
+  background: linear-gradient(135deg, rgba(243, 85, 37, 0.1), rgba(255, 107, 71, 0.1));
+  border: 1px solid rgba(243, 85, 37, 0.2);
+  backdrop-filter: blur(10px);
+}
+
+.dark-theme .breadcrumb-enhanced {
+  background: linear-gradient(135deg, rgba(102, 187, 106, 0.1), rgba(129, 199, 132, 0.1));
+  border-color: rgba(102, 187, 106, 0.2);
+}
+
+/* Tooltips Global Styles */
+.tooltip-global {
+  position: relative;
+}
+
+.tooltip-global[data-tooltip]::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.9);
+  color: white;
+  padding: 0.5rem;
+  border-radius: 4px;
+  font-size: 0.875rem;
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+  z-index: 1000;
+}
+
+.tooltip-global:hover::after,
+.tooltip-global:focus::after {
+  opacity: 1;
+}
+
+/* Progressive Enhancement */
+.no-js .requires-js {
+  display: none;
+}
+
+.js .no-js-only {
+  display: none;
+}
+
+/* Print Styles */
+@media print {
+  .accessibility-panel,
+  .scroll-to-top-btn,
+  .toast-container,
+  .tooltip-popup {
+    display: none !important;
+  }
+
+  * {
+    background: white !important;
+    color: black !important;
+    box-shadow: none !important;
+  }
+
+  a[href]:after {
+    content: " (" attr(href) ")";
+  }
+}
+
+/* Prefers Reduced Data */
+@media (prefers-reduced-data: reduce) {
+  .loading-skeleton {
+    animation: none;
+    background: #f0f0f0;
+  }
+
+  /* Disable non-essential animations */
+  .toast,
+  .tooltip-popup,
+  .interactive-element {
+    animation: none;
+    transition: none;
+  }
+}
+
+/* Container Queries Support */
+@supports (container-type: inline-size) {
+  .responsive-container {
+    container-type: inline-size;
+  }
+
+  @container (max-width: 600px) {
+    .responsive-element {
+      font-size: 0.875rem;
+      padding: 0.5rem;
+    }
+  }
+}
+
+/* Modern CSS Features with Fallbacks */
+.modern-card {
+  background: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  
+  /* Fallback for older browsers */
+  background: #fff;
+  border: 1px solid #e0e0e0;
+}
+
+@supports (backdrop-filter: blur(10px)) {
+  .modern-card {
+    background: rgba(255, 255, 255, 0.8);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+  }
+}
+
+/* Scroll Snap Enhancement */
+.scroll-snap-container {
+  scroll-snap-type: y mandatory;
+  overflow-y: scroll;
+}
+
+.scroll-snap-item {
+  scroll-snap-align: start;
+}
+
+/* Custom Scrollbar */
+.custom-scrollbar::-webkit-scrollbar {
+  width: 8px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(243, 85, 37, 0.6);
+  border-radius: 4px;
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(243, 85, 37, 0.8);
+}
+
+.dark-theme .custom-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(102, 187, 106, 0.6);
+}
+
+.dark-theme .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(102, 187, 106, 0.8);
+}
+
+/* Utility Classes */
+.visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.focus-trap {
+  outline: none;
+}
+
+.no-scroll {
+  overflow: hidden;
+}
+
+.smooth-transition {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.reduced-motion .smooth-transition {
+  transition: none;
+}

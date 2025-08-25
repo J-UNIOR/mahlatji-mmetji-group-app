@@ -6,6 +6,76 @@
 @import url('assets/css/animate.css');
 @import url('https://fonts.googleapis.com/css2?family=Cairo+Play:wght@200..800&family=Inter:wght@300;400;500;600;700&display=swap');
 
+/* Import UX enhancements */
+@import url('./app/shared/styles/ux-enhancements.css');
+
+/* Import accessibility enhancements */
+@import url('assets/css/accessibility.css');
+
+/* Performance Optimizations */
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-display: swap; /* Improve font loading */
+}
+
+/* Lazy loading styles */
+.lazy-loading {
+  opacity: 0.6;
+  filter: blur(2px);
+  transition: all 0.3s ease;
+}
+
+.lazy-loaded {
+  opacity: 1;
+  filter: none;
+}
+
+.lazy-error {
+  opacity: 0.5;
+  background-color: #f8f9fa;
+}
+
+/* Image optimization */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Reduce layout shift */
+.skeleton-container {
+  min-height: 200px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Optimize animations for performance */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* GPU acceleration for smooth animations */
+.hero-banner,
+.carousel-item,
+.animated-element {
+  transform: translateZ(0);
+  will-change: transform;
+}
+
 /* Modern Business Theme Variables */
 :root {
   --primary-color: #003366;

@@ -1,0 +1,21 @@
+{
+  "scripts": {
+    "build:analyze": "ng build --stats-json && npx webpack-bundle-analyzer dist/mahlatji-mmetji-group/stats.json",
+    "build:prod": "ng build --configuration production",
+    "build:dev": "ng build --configuration development",
+    "serve:prod": "ng serve --configuration production",
+    "preload-critical": "node scripts/preload-critical-resources.js"
+  },
+  "budgets": [
+    {
+      "type": "initial",
+      "maximumWarning": "1mb",
+      "maximumError": "2mb"
+    },
+    {
+      "type": "anyComponentStyle",
+      "maximumWarning": "20kb",
+      "maximumError": "40kb"
+    }
+  ]
+}
