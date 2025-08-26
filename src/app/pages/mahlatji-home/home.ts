@@ -161,7 +161,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     {
       id: '1',
       title: 'Mahlatji Mmetji Group',
-      subtitle: 'Professional Business Solutions',
+      subtitle: 'Business Solutions',
       description: 'Comprehensive cleaning, security, construction, electrical, and accounting services across South Africa',
       backgroundImage: 'assets/images/banner-01.webp',
       ctaText: 'Our Services',

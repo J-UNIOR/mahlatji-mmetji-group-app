@@ -820,22 +820,18 @@ Banner Style
 
 .main-banner .item-1 {
   background-image: url(../images/banner-01.png);
-  background-image: url(../images/banner-01.webp);
 }
 
 .main-banner .item-2 {
   background-image: url(../images/banner-02.png);
-  background-image: url(../images/banner-02.webp);
 }
 
 .main-banner .item-3 {
   background-image: url(../images/banner-03.png);
-  background-image: url(../images/banner-03.webp);
 }
 
 .main-banner .item-4 {
   background-image: url(../images/banner-04.png);
-  background-image: url(../images/banner-04.webp);
 }
 
 .main-banner .item span.category {
@@ -1040,8 +1036,7 @@ Video Style
 */
 
 .video {
-  background-image: url(../images/video-bg.jpg);
-  background-image: url(../images/video-bg.webp);
+  /* No video-bg image, but there is video-bg.mp4. Remove these lines or replace with a fallback image if needed. */
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
@@ -1305,8 +1300,7 @@ Contact Style
 */
 
 .contact {
-  background-image: url(../images/contact-bg.jpg);
-  background-image: url(../images/contact-bg.webp);
+  /* No contact-bg image found. Remove these lines or replace with a fallback image if needed. */
   background-repeat: no-repeat;
   background-size: cover;
   background-position: center center;
@@ -1459,8 +1453,7 @@ Page Header Style
 */
 
 .page-heading {
-  background-image: url(../images/page-heading-bg.jpg);
-  background-image: url(../images/page-heading-bg.webp);
+  background-image: url(../images/page-heading-bg.png);
   background-position: center bottom;
   background-repeat: no-repeat;
   background-size: cover;
@@ -2236,7 +2229,7 @@ Dark Theme Support
 
 /* Dark theme content sections */
 .dark-theme .page-heading {
-  background: linear-gradient(rgba(18, 18, 18, 0.8), rgba(18, 18, 18, 0.8)), url('../images/page-heading-bg.jpg');
+  background: linear-gradient(rgba(18, 18, 18, 0.8), rgba(18, 18, 18, 0.8)), url('../images/page-heading-bg.png');
 }
 
 .dark-theme .section {
