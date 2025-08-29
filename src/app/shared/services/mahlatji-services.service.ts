@@ -1,13 +1,10 @@
 import { Injectable, signal } from '@angular/core';
-import { Observable, of, delay, map } from 'rxjs';
+import { Observable, of, delay } from 'rxjs';
 import { 
   BusinessService, 
   ServiceCategory, 
   Employee, 
-  ServiceAvailability, 
-  ServicePricing, 
   PricingModel,
-  Testimonial,
   ProjectGalleryItem 
 } from '../models/mahlatji-business.interface';
 
@@ -19,7 +16,7 @@ export class MahlatjiServicesService {
   private employees = signal<Employee[]>(this.getMockEmployees());
   private projects = signal<ProjectGalleryItem[]>(this.getMockProjects());
 
-  constructor() {}
+  // Removed empty constructor
 
   getAllServices(): Observable<BusinessService[]> {
     return of(this.services()).pipe(delay(500));

@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, Inject, PLATFORM_ID } from '@angular/core';
+import { Component, OnInit, OnDestroy, PLATFORM_ID, inject } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { PerformanceService } from '../../services/performance.service';
 
@@ -8,7 +8,7 @@ import { PerformanceService } from '../../services/performance.service';
   imports: [CommonModule],
   template: `
     <div *ngIf="showMetrics && isVisible" class="performance-monitor" [class.minimized]="isMinimized">
-      <div class="monitor-header" (click)="toggleMinimized()">
+      <div class="monitor-header" (click)="toggleMinimized()" (keydown.enter)="toggleMinimized()" (keydown.space)="toggleMinimized()" tabindex="0" role="button">
         <h6>Performance Monitor</h6>
         <span class="toggle-btn">{{ isMinimized ? '▲' : '▼' }}</span>
       </div>
@@ -177,13 +177,17 @@ export class PerformanceMonitorComponent implements OnInit, OnDestroy {
   showMetrics = false;
   isVisible = false;
   isMinimized = false;
-  displayMetrics: any[] = [];
-  private metricsInterval: any;
+  displayMetrics: {
+    label: string;
+    value: number;
+    unit: string;
+    threshold: { good: number; warning: number };
+  }[] = [];
+  private metricsInterval: ReturnType<typeof setInterval> | undefined;
 
-  constructor(
-    private performanceService: PerformanceService,
-    @Inject(PLATFORM_ID) private platformId: Object
-  ) {}
+
+  performanceService = inject(PerformanceService);
+  platformId = inject(PLATFORM_ID);
 
   ngOnInit() {
     if (isPlatformBrowser(this.platformId)) {
@@ -214,25 +218,25 @@ export class PerformanceMonitorComponent implements OnInit, OnDestroy {
       this.displayMetrics = [
         {
           label: 'Load Time',
-          value: Math.round(metrics.loadTime),
+          value: Math.round(Number(metrics['loadTime'])),
           unit: 'ms',
           threshold: { good: 1000, warning: 2000 }
         },
         {
           label: 'DOM Ready',
-          value: Math.round(metrics.domContentLoaded),
+          value: Math.round(Number(metrics['domContentLoaded'])),
           unit: 'ms',
           threshold: { good: 800, warning: 1500 }
         },
         {
           label: 'First Paint',
-          value: Math.round(metrics.firstPaint),
+          value: Math.round(Number(metrics['firstPaint'])),
           unit: 'ms',
           threshold: { good: 1000, warning: 2000 }
         },
         {
           label: 'First Content',
-          value: Math.round(metrics.firstContentfulPaint),
+          value: Math.round(Number(metrics['firstContentfulPaint'])),
           unit: 'ms',
           threshold: { good: 1500, warning: 3000 }
         }
@@ -240,7 +244,7 @@ export class PerformanceMonitorComponent implements OnInit, OnDestroy {
     }
   }
 
-  getMetricClass(value: number, threshold: any): string {
+  getMetricClass(value: number, threshold: { good: number; warning: number }): string {
     if (value <= threshold.good) return 'good';
     if (value <= threshold.warning) return 'warning';
     return 'poor';

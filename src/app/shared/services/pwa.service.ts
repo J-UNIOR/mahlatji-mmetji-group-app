@@ -1,7 +1,11 @@
-import { Injectable } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { SwUpdate, VersionEvent } from '@angular/service-worker';
 import { BehaviorSubject, fromEvent, merge } from 'rxjs';
-import { map, takeUntil } from 'rxjs/operators';
+import { map } from 'rxjs/operators';
+// Helper type guard for property access
+function hasProp<T extends object, K extends PropertyKey>(obj: T, prop: K): obj is T & Record<K, unknown> {
+  return Object.prototype.hasOwnProperty.call(obj, prop);
+}
 
 export interface PWAPromptEvent {
   readonly platforms: string[];
@@ -34,7 +38,8 @@ export class PWAService {
   readonly installed$ = this.isInstalled$.asObservable();
   readonly updateAvailable$ = this.updateAvailableSubject$.asObservable();
 
-  constructor(private swUpdate: SwUpdate) {
+  private swUpdate = inject(SwUpdate);
+  constructor() {
     this.initializePWA();
     this.monitorNetworkStatus();
     this.monitorServiceWorkerUpdates();
@@ -42,9 +47,20 @@ export class PWAService {
 
   private initializePWA(): void {
     // Listen for install prompt
-    window.addEventListener('beforeinstallprompt', (event: any) => {
-      event.preventDefault();
-      this.promptEvent = event;
+  window.addEventListener('beforeinstallprompt', (event: unknown) => {
+      if (
+        event &&
+        typeof event === 'object' &&
+  hasProp(event, 'preventDefault') && typeof event['preventDefault'] === 'function' &&
+  hasProp(event, 'platforms') && Array.isArray(event['platforms']) &&
+  hasProp(event, 'userChoice') && typeof event['userChoice'] === 'object' &&
+  hasProp(event, 'prompt') && typeof event['prompt'] === 'function'
+      ) {
+        if (hasProp(event, 'preventDefault') && typeof event['preventDefault'] === 'function') {
+          event['preventDefault']();
+        }
+        this.promptEvent = event as PWAPromptEvent;
+      }
       this.isInstallable$.next(true);
       console.log('💡 PWA install prompt available');
     });
@@ -97,7 +113,7 @@ export class PWAService {
     });
 
     // Check for unrecoverable state
-    this.swUpdate.unrecoverable.subscribe((event) => {
+  this.swUpdate.unrecoverable.subscribe((event: { reason: string; type: string }) => {
       console.error('💥 Service Worker in unrecoverable state:', event.reason);
       this.promptUserToReload();
     });
@@ -184,7 +200,7 @@ export class PWAService {
   }
 
   // PWA capabilities detection
-  hasPWAFeatures(): { [key: string]: boolean } {
+  hasPWAFeatures(): Record<string, boolean> {
     return {
       serviceWorker: 'serviceWorker' in navigator,
       pushNotifications: 'PushManager' in window,

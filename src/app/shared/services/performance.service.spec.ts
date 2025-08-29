@@ -4,7 +4,7 @@ import { PerformanceService } from './performance.service';
 
 describe('PerformanceService', () => {
   let service: PerformanceService;
-  let mockPerformance: any;
+  let mockPerformance: { mark: jasmine.Spy, getEntriesByType: jasmine.Spy };
 
   beforeEach(() => {
     // Mock Performance API
@@ -34,16 +34,16 @@ describe('PerformanceService', () => {
 
   describe('preloadImages', () => {
     it('should preload images successfully', async () => {
-      const mockImages: any[] = [];
+  const mockImages: HTMLImageElement[] = [];
       
       spyOn(window, 'Image').and.callFake(() => {
         const mockImage = {
-          onload: null as any,
-          onerror: null as any,
+          onload: null,
+          onerror: null,
           src: ''
-        };
+        } as HTMLImageElement;
         mockImages.push(mockImage);
-        return mockImage as any;
+        return mockImage;
       });
 
       const promise = service.preloadImages(['test1.jpg', 'test2.jpg']);
@@ -51,7 +51,7 @@ describe('PerformanceService', () => {
       // Simulate successful image loads
       setTimeout(() => {
         mockImages.forEach(img => {
-          if (img.onload) img.onload();
+          if (img.onload) img.onload(new Event('load'));
         });
       }, 0);
 
@@ -59,22 +59,22 @@ describe('PerformanceService', () => {
     });
 
     it('should handle image load failures', async () => {
-      let mockImage: any;
+  let mockImage: HTMLImageElement;
       
       spyOn(window, 'Image').and.callFake(() => {
         mockImage = {
-          onload: null as any,
-          onerror: null as any,
+          onload: null,
+          onerror: null,
           src: ''
-        };
-        return mockImage as any;
+        } as HTMLImageElement;
+        return mockImage;
       });
 
       const promise = service.preloadImages(['invalid.jpg']);
       
       // Simulate image load failure
       setTimeout(() => {
-        if (mockImage.onerror) mockImage.onerror();
+  if (mockImage.onerror) mockImage.onerror(new Event('error'));
       }, 0);
 
       await expectAsync(promise).toBeRejected();
@@ -84,7 +84,7 @@ describe('PerformanceService', () => {
   describe('getOptimizedImageUrl', () => {
     it('should return original URL for now', () => {
       const originalUrl = 'test.jpg';
-      const optimizedUrl = service.getOptimizedImageUrl(originalUrl, 300, 80);
+  const optimizedUrl = service.getOptimizedImageUrl(originalUrl, 300);
       
       expect(optimizedUrl).toBe(originalUrl);
     });
@@ -115,23 +115,23 @@ describe('PerformanceService', () => {
 
   describe('supportsWebP', () => {
     it('should check WebP support', async () => {
-      let mockImage: any;
+  let mockImage: HTMLImageElement;
       
       spyOn(window, 'Image').and.callFake(() => {
         mockImage = {
-          onload: null as any,
-          onerror: null as any,
+          onload: null,
+          onerror: null,
           src: '',
           height: 2
-        };
-        return mockImage as any;
+        } as HTMLImageElement;
+        return mockImage;
       });
 
       const promise = service.supportsWebP();
       
       // Simulate image load
       setTimeout(() => {
-        if (mockImage.onload) mockImage.onload();
+  if (mockImage.onload) mockImage.onload(new Event('load'));
       }, 0);
 
       const supportsWebP = await promise;
@@ -139,23 +139,23 @@ describe('PerformanceService', () => {
     });
 
     it('should return false when WebP is not supported', async () => {
-      let mockImage: any;
+  let mockImage: HTMLImageElement;
       
       spyOn(window, 'Image').and.callFake(() => {
         mockImage = {
-          onload: null as any,
-          onerror: null as any,
+          onload: null,
+          onerror: null,
           src: '',
           height: 0
-        };
-        return mockImage as any;
+        } as HTMLImageElement;
+        return mockImage;
       });
 
       const promise = service.supportsWebP();
       
       // Simulate image load
       setTimeout(() => {
-        if (mockImage.onload) mockImage.onload();
+  if (mockImage.onload) mockImage.onload(new Event('load'));
       }, 0);
 
       const supportsWebP = await promise;
@@ -201,7 +201,7 @@ describe('PerformanceService', () => {
     });
 
     it('should return null when not in browser', () => {
-      const serverService = new PerformanceService('server');
+  const serverService = new PerformanceService();
       const metrics = serverService.getPerformanceMetrics();
       
       expect(metrics).toBeNull();
@@ -247,7 +247,7 @@ describe('PerformanceService', () => {
 
   describe('platform independence', () => {
     it('should handle server-side rendering', () => {
-      const serverService = new PerformanceService('server');
+  const serverService = new PerformanceService();
       
       expect(serverService.preloadImages(['test.jpg'])).toEqual(Promise.resolve([]));
       expect(serverService.supportsWebP()).toEqual(Promise.resolve(false));

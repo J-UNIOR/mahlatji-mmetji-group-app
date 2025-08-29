@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, computed, signal, OnInit } from '@angular/core';
+import { Component, Input, Output, EventEmitter, computed, signal, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UXEnhancementService } from '../../services/ux-enhancement.service';
 
@@ -129,15 +129,15 @@ import { UXEnhancementService } from '../../services/ux-enhancement.service';
   `]
 })
 export class ScrollToTopComponent implements OnInit {
-  @Input() threshold: number = 300;
-  @Input() ariaLabel: string = 'Scroll to top of page';
+  @Input() threshold = 300;
+  @Input() ariaLabel = 'Scroll to top of page';
   @Output() scrolled = new EventEmitter<void>();
 
   private scrollPosition = signal(0);
   
   readonly showButton = computed(() => this.scrollPosition() > this.threshold);
 
-  constructor(public uxService: UXEnhancementService) {}
+  public uxService = inject(UXEnhancementService);
 
   ngOnInit(): void {
     // Use effect to watch scroll position changes

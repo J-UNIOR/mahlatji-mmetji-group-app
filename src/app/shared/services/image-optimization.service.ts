@@ -50,7 +50,7 @@ export class ImageOptimizationService {
   /**
    * Generates WebP image with fallback
    */
-  getWebPImage(imagePath: string, alt: string): ImageFormat {
+  getWebPImage(imagePath: string): ImageFormat {
     const extension = this.getImageExtension(imagePath);
     const basePathWithoutExt = imagePath.replace(/\.[^/.]+$/, '');
     
@@ -64,7 +64,7 @@ export class ImageOptimizationService {
   /**
    * Creates optimized banner image configuration
    */
-  getBannerImage(bannerNumber: number, alt: string): ResponsiveImage {
+  getBannerImage(bannerNumber: number): ResponsiveImage {
     const basePath = `assets/images/banner-0${bannerNumber}`;
     
     return {
@@ -80,7 +80,7 @@ export class ImageOptimizationService {
         `${basePath}-1920w.jpg 1920w`
       ].join(', '),
       sizes: '(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw',
-      alt: alt,
+      alt: 'Banner image',
       width: 1920,
       height: 1080
     };
@@ -89,7 +89,8 @@ export class ImageOptimizationService {
   /**
    * Creates placeholder data URL for smooth loading
    */
-  getPlaceholder(width: number = 1920, height: number = 1080): string {
+  getPlaceholder(): string {
+  // ...existing code...
     // Create a simple gradient placeholder
     const canvas = document.createElement('canvas');
     canvas.width = 10;

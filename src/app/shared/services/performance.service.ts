@@ -1,4 +1,4 @@
-import { Injectable, Inject, PLATFORM_ID } from '@angular/core';
+import { Injectable, PLATFORM_ID, inject } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 
 @Injectable({
@@ -6,7 +6,7 @@ import { isPlatformBrowser } from '@angular/common';
 })
 export class PerformanceService {
   
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {}
+  platformId = inject(PLATFORM_ID);
 
   /**
    * Preload critical images
@@ -33,8 +33,8 @@ export class PerformanceService {
    */
   getOptimizedImageUrl(
     originalUrl: string, 
-    width?: number, 
-    quality: number = 80
+  // width?: number, 
+  // quality removed as unused
   ): string {
     // For now, return original URL. In production, you'd use a CDN with image optimization
     return originalUrl;
@@ -80,9 +80,9 @@ export class PerformanceService {
   /**
    * Get performance metrics
    */
-  getPerformanceMetrics(): any {
+  getPerformanceMetrics(): Record<string, unknown> {
     if (!isPlatformBrowser(this.platformId) || !('performance' in window)) {
-      return null;
+  return {};
     }
 
     const navigation = performance.getEntriesByType('navigation')[0] as PerformanceNavigationTiming;
@@ -110,7 +110,7 @@ export class PerformanceService {
   /**
    * Debounce function for performance optimization
    */
-  debounce<T extends (...args: any[]) => any>(
+  debounce<T extends (...args: unknown[]) => unknown>(
     func: T,
     wait: number
   ): (...args: Parameters<T>) => void {
@@ -125,7 +125,7 @@ export class PerformanceService {
   /**
    * Throttle function for performance optimization
    */
-  throttle<T extends (...args: any[]) => any>(
+  throttle<T extends (...args: unknown[]) => unknown>(
     func: T,
     limit: number
   ): (...args: Parameters<T>) => void {

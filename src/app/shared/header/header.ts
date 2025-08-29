@@ -11,9 +11,17 @@ import { RouterModule } from '@angular/router';
   encapsulation: ViewEncapsulation.None
 })
 export class HeaderComponent {
+  onDropdownKeydown(event: KeyboardEvent) {
+    if (event.key === 'Enter' || event.key === ' ') {
+      this.toggleDropdown();
+      event.preventDefault();
+    } else if (event.key === 'Escape') {
+      this.closeDropdown();
+    }
+  }
   menuOpen = false;
   dropdownOpen = false;
-  private dropdownTimeout: any;
+  private dropdownTimeout: ReturnType<typeof setTimeout> | null = null;
   email = 'info@mahlatjimmetji.co.za';
   socialLinks = [
     {

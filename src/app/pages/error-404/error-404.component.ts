@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
 import { UXEnhancementService } from '../../shared/services/ux-enhancement.service';
@@ -499,10 +499,9 @@ import { SearchComponent } from '../../shared/components/search/search.component
   `]
 })
 export class Error404Component implements OnInit {
-  constructor(
-    private router: Router,
-    private uxService: UXEnhancementService
-  ) {}
+  private router = inject(Router);
+  private uxService = inject(UXEnhancementService);
+
 
   ngOnInit(): void {
     // Track 404 errors for analytics

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
 interface Testimonial {
@@ -177,7 +177,7 @@ interface Testimonial {
     }
   `]
 })
-export class TestimonialsComponent implements OnInit {
+export class TestimonialsComponent {
   testimonials: Testimonial[] = [
     {
       id: 1,
@@ -211,9 +211,9 @@ export class TestimonialsComponent implements OnInit {
     }
   ];
 
-  constructor() {}
+  // Removed empty constructor
 
-  ngOnInit(): void {}
+  // Removed empty ngOnInit
 
   getStars(rating: number): number[] {
     return Array(rating).fill(0);

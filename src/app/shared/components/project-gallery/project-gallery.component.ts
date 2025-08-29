@@ -329,10 +329,10 @@ export class ProjectGalleryComponent implements OnInit {
   ];
 
   categories: string[] = ['All', 'Commercial', 'Residential', 'Industrial'];
-  selectedCategory: string = 'All';
+  selectedCategory = 'All';
   filteredProjects: Project[] = [];
 
-  constructor() {}
+  // Removed empty constructor
 
   ngOnInit(): void {
     this.filteredProjects = this.projects;

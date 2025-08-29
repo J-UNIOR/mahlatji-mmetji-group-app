@@ -1,4 +1,4 @@
-import { Injectable, Inject } from '@angular/core';
+import { Injectable, inject } from '@angular/core';
 import { Meta, Title } from '@angular/platform-browser';
 import { DOCUMENT } from '@angular/common';
 
@@ -19,7 +19,7 @@ export interface SEOData {
 export interface StructuredData {
   '@context': string;
   '@type': string;
-  [key: string]: any;
+  [key: string]: unknown;
 }
 
 @Injectable({
@@ -38,11 +38,9 @@ export class SEOService {
     locale: 'en_ZA'
   };
 
-  constructor(
-    private meta: Meta,
-    private title: Title,
-    @Inject(DOCUMENT) private document: Document
-  ) {}
+  private meta = inject(Meta);
+  private title = inject(Title);
+  private document = inject(DOCUMENT);
 
   /**
    * Update page SEO data
@@ -132,7 +130,7 @@ export class SEOService {
   /**
    * Generate breadcrumb structured data
    */
-  addBreadcrumbData(breadcrumbs: Array<{name: string, url: string}>): void {
+  addBreadcrumbData(breadcrumbs: {name: string, url: string}[]): void {
     const breadcrumbData: StructuredData = {
       '@context': 'https://schema.org',
       '@type': 'BreadcrumbList',
@@ -307,7 +305,7 @@ export class SEOService {
   /**
    * Generate and inject structured data (JSON-LD)
    */
-  generateStructuredData(type: 'Organization' | 'LocalBusiness' | 'Article' | 'Website', data: any): void {
+  generateStructuredData(type: 'Organization' | 'LocalBusiness' | 'Article' | 'Website', data: Record<string, unknown>): void {
     const structuredData = this.createStructuredData(type, data);
     
     // Remove existing structured data
@@ -326,7 +324,7 @@ export class SEOService {
   /**
    * Create structured data object based on type
    */
-  private createStructuredData(type: string, data: any): StructuredData {
+  private createStructuredData(type: string, data: Record<string, unknown>): StructuredData {
     const baseData: StructuredData = {
       '@context': 'https://schema.org',
       '@type': type
@@ -345,14 +343,14 @@ export class SEOService {
       case 'Article':
         return {
           ...baseData,
-          headline: data.title,
-          description: data.description,
-          image: data.image,
+          headline: data['title'],
+          description: data['description'],
+          image: data['image'],
           author: {
             '@type': 'Organization',
             name: 'Mahlatji Mmetji Group'
           },
-          datePublished: data.publishDate
+          datePublished: data['publishDate']
         };
 
       default:

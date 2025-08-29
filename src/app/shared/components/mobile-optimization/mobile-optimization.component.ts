@@ -91,7 +91,12 @@ export class MobileOptimizationComponent implements OnInit, OnDestroy {
   notificationPermission: NotificationPermission = 'default';
 
   // Performance State
-  performanceMetrics: any = null;
+  performanceMetrics: {
+    loadTime?: number;
+    firstPaint?: number;
+    largestContentfulPaint?: number;
+    [key: string]: unknown;
+  } | null = null;
 
   // Mobile Hints
   mobileHints = [
@@ -131,11 +136,10 @@ export class MobileOptimizationComponent implements OnInit, OnDestroy {
   private setupGestureTracking(): void {
     // Subscribe to swipe gestures - TouchGestureService provides swipe$ observable
     this.subscriptions.add(
-      this.touchGestureService.swipe$.subscribe((gesture: any) => {
+      this.touchGestureService.swipe$.subscribe((gesture: import('../../services/touch-gesture.service').SwipeEvent) => {
         this.currentGesture = 'Swipe';
         this.gestureDirection = gesture.direction;
         this.showTouchStatus = true;
-        
         // Hide status after 2 seconds
         setTimeout(() => {
           this.showTouchStatus = false;
@@ -153,7 +157,7 @@ export class MobileOptimizationComponent implements OnInit, OnDestroy {
   private setupAppShell(): void {
     // Subscribe to loading state
     this.subscriptions.add(
-      this.appShellService.getLoadingState().subscribe((loadingState: any) => {
+      this.appShellService.getLoadingState().subscribe((loadingState: import('../../services/app-shell.service').LoadingState) => {
         this.isLoading = loadingState.isLoading;
       })
     );
@@ -171,7 +175,7 @@ export class MobileOptimizationComponent implements OnInit, OnDestroy {
 
     // Subscribe to permission state changes
     this.subscriptions.add(
-      this.pushNotificationService.getPermissionState().subscribe((state: any) => {
+      this.pushNotificationService.getPermissionState().subscribe((state: import('../../services/push-notification.service').NotificationPermissionState) => {
         this.notificationPermission = state.permission;
       })
     );

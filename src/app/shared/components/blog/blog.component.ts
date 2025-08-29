@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 
@@ -176,7 +176,7 @@ interface BlogPost {
     }
   `]
 })
-export class BlogComponent implements OnInit {
+export class BlogComponent {
   blogPosts: BlogPost[] = [
     {
       id: 1,
@@ -213,7 +213,5 @@ export class BlogComponent implements OnInit {
     }
   ];
 
-  constructor() {}
-
-  ngOnInit(): void {}
+  // ...existing code...
 }

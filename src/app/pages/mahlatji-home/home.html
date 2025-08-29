@@ -1,9 +1,19 @@
 
 <!-- Hero section starts here -->
 <section class="main-banner" aria-label="Mahlatji Mmetji Group Services">
-  <owl-carousel-o [options]="bannerOptions">
+  <swiper-container
+    class="main-swiper"
+    loop="false"
+    navigation="true"
+    pagination="false"
+    autoplay='{"delay":5000,"disableOnInteraction":false}'
+    speed="700"
+    slides-per-view="1"
+    space-between="0"
+    allow-touch-move="true"
+  >
     <ng-container *ngFor="let slide of bannerSlides">
-      <ng-template carouselSlide>
+      <swiper-slide>
         <div class="item" [ngClass]="slide.class">
           <div class="header-text">
             <div class="container">
@@ -27,9 +37,9 @@
             </div>
           </div>
         </div>
-      </ng-template>
+      </swiper-slide>
     </ng-container>
-  </owl-carousel-o>
+  </swiper-container>
 </section>
 
 <!-- About Us Section -->
@@ -253,8 +263,8 @@
           
           <div class="testimonial-author">
             <div class="author-info">
-              <h6>Herold Motsiane</h6>
-              <span>CEO, Rudev Management Consultants</span>
+              <h6>Thebogo Mamosebo</h6>
+              <span>Small Business Owner</span>
             </div>
           </div>
         </div>
@@ -286,8 +296,8 @@
           
           <div class="testimonial-author">
             <div class="author-info">
-              <h6>Thebogo Mamosebo</h6>
-              <span>Small Business Owner</span>
+              <h6>Herold Motsiane</h6>
+              <span>CEO, Rudev Management Consultants</span>
             </div>
           </div>
         </div>

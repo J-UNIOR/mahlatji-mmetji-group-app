@@ -1,4 +1,4 @@
-import { Injectable, PLATFORM_ID, Inject } from '@angular/core';
+import { Injectable, PLATFORM_ID, inject } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { BehaviorSubject, Observable, fromEvent } from 'rxjs';
 import { SwUpdate } from '@angular/service-worker';
@@ -10,12 +10,12 @@ export interface NotificationConfig {
   badge?: string;
   image?: string;
   tag?: string;
-  data?: any;
-  actions?: Array<{
+  data?: unknown;
+  actions?: {
     action: string;
     title: string;
     icon?: string;
-  }>;
+  }[];
   requireInteraction?: boolean;
   silent?: boolean;
   timestamp?: number;
@@ -48,10 +48,9 @@ export class PushNotificationService {
   private subscription: PushSubscription | null = null;
   private publicVapidKey = 'BKaOKqJPZKClvjzH5OEfLRxJ2qRJ9L3kYgC8r2YRa2wQd5kO8F4Cc3K4KFHB2JGm3oR8u6QQ2TfG7DsRw9J5N8A'; // Replace with your VAPID key
 
-  constructor(
-    @Inject(PLATFORM_ID) private platformId: Object,
-    private swUpdate: SwUpdate
-  ) {
+  platformId = inject(PLATFORM_ID);
+  private swUpdate = inject(SwUpdate);
+  constructor() {
     if (isPlatformBrowser(this.platformId)) {
       this.initializeNotificationService();
     }
@@ -193,7 +192,7 @@ export class PushNotificationService {
 
       // Add actions if supported
       if (config.actions && 'actions' in options) {
-        (options as any).actions = config.actions;
+  (options as Record<string, unknown>)['actions'] = config.actions;
       }
 
       await registration.showNotification(config.title, options);
@@ -308,7 +307,7 @@ export class PushNotificationService {
     });
 
     // Listen for push events from service worker
-    fromEvent(navigator.serviceWorker, 'message').subscribe((event: any) => {
+  fromEvent<MessageEvent>(navigator.serviceWorker, 'message').subscribe((event: MessageEvent) => {
       if (event.data?.type === 'PUSH_RECEIVED') {
         console.log('Push notification received:', event.data.payload);
       }
@@ -318,8 +317,8 @@ export class PushNotificationService {
   /**
    * Handle notification click events
    */
-  private handleNotificationClick(data: any): void {
-    const { action, notificationData } = data;
+  private handleNotificationClick(data: unknown): void {
+  const { action } = data as { action: string };
 
     switch (action) {
       case 'view':

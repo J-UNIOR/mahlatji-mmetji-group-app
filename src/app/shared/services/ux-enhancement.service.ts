@@ -201,7 +201,7 @@ export class UXEnhancementService {
   }
 
   // Scroll utilities
-  scrollToElement(elementId: string, offset: number = 80): void {
+  scrollToElement(elementId: string, offset = 80): void {
     const element = document.getElementById(elementId);
     if (element) {
       const elementPosition = element.offsetTop - offset;
@@ -343,7 +343,7 @@ export class UXEnhancementService {
   }
 
   // Toast notifications
-  showToast(message: string, type: 'success' | 'error' | 'info' | 'warning' = 'info', duration: number = 3000): void {
+  showToast(message: string, type: 'success' | 'error' | 'info' | 'warning' = 'info', duration = 3000): void {
     const toast = document.createElement('div');
     toast.className = `toast toast-${type}`;
     toast.textContent = message;

@@ -191,23 +191,25 @@
             </div>
 
             <div class="form-group">
-              <label>Preferred Contact Method</label>
-              <div class="radio-group">
-                <label class="radio-option">
-                  <input 
-                    type="radio" 
-                    name="preferredContact" 
-                    value="email"
-                    [(ngModel)]="contactForm.preferredContact">
+              <div class="radio-group" role="radiogroup" aria-labelledby="preferredContactLabel">
+                <label id="preferredContactLabel" for="preferredContactEmail">Preferred Contact Method</label>
+                <input 
+                  type="radio" 
+                  id="preferredContactEmail"
+                  name="preferredContact" 
+                  value="email"
+                  [(ngModel)]="contactForm.preferredContact">
+                <label class="radio-option" for="preferredContactEmail">
                   <span class="radio-custom"></span>
                   Email
                 </label>
-                <label class="radio-option">
-                  <input 
-                    type="radio" 
-                    name="preferredContact" 
-                    value="phone"
-                    [(ngModel)]="contactForm.preferredContact">
+                <input 
+                  type="radio" 
+                  id="preferredContactPhone"
+                  name="preferredContact" 
+                  value="phone"
+                  [(ngModel)]="contactForm.preferredContact">
+                <label class="radio-option" for="preferredContactPhone">
                   <span class="radio-custom"></span>
                   Phone
                 </label>

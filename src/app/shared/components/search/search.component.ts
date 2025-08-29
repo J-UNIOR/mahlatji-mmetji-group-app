@@ -1,4 +1,4 @@
-import { Component, Input, signal, computed } from '@angular/core';
+import { Component, Input, signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
@@ -43,7 +43,8 @@ export interface SearchFilters {
             [attr.aria-label]="'Search ' + placeholder"
             [attr.aria-expanded]="isExpanded()"
             aria-autocomplete="list"
-            role="combobox">
+            role="combobox"
+            aria-controls="search-listbox">
           
           <button 
             *ngIf="searchQuery" 
@@ -76,9 +77,11 @@ export interface SearchFilters {
             class="suggestion-item"
             [class.highlighted]="selectedSuggestionIndex() === i"
             (click)="selectSuggestion(suggestion)"
+            (keyup.enter)="selectSuggestion(suggestion)"
             (mouseenter)="setSelectedSuggestion(i)"
             role="option"
-            [attr.aria-selected]="selectedSuggestionIndex() === i">
+            [attr.aria-selected]="selectedSuggestionIndex() === i"
+            tabindex="0">
             <i [class]="getSuggestionIcon(suggestion.type)" aria-hidden="true"></i>
             <span class="suggestion-text">{{ suggestion.title }}</span>
             <span class="suggestion-type">{{ suggestion.type }}</span>
@@ -159,7 +162,11 @@ export interface SearchFilters {
           <div 
             *ngFor="let result of results(); trackBy: trackByResult"
             class="result-item"
-            (click)="selectResult(result)">
+            (click)="selectResult(result)"
+            (keydown.enter)="selectResult(result)"
+            (keydown.space)="selectResult(result)"
+            tabindex="0"
+            role="button">
             
             <div class="result-icon">
               <i [class]="getResultIcon(result.type)" aria-hidden="true"></i>
@@ -653,10 +660,10 @@ export interface SearchFilters {
   `]
 })
 export class SearchComponent {
-  @Input() placeholder: string = 'Search...';
-  @Input() showFilters: boolean = true;
-  @Input() overlay: boolean = true;
-  @Input() maxResults: number = 10;
+  @Input() placeholder = 'Search...';
+  @Input() showFilters = true;
+  @Input() overlay = true;
+  @Input() maxResults = 10;
 
   searchQuery = '';
   private searchData: SearchResult[] = [];
@@ -674,7 +681,9 @@ export class SearchComponent {
     sortBy: 'relevance'
   };
 
-  constructor(private uxService: UXEnhancementService) {
+  uxService = inject(UXEnhancementService);
+
+  constructor() {
     this.initializeSearchData();
   }
 
@@ -792,13 +801,14 @@ export class SearchComponent {
         }
         break;
         
-      case 'Enter':
+      case 'Enter': {
         event.preventDefault();
         const selectedIndex = this.selectedSuggestionIndex();
         if (selectedIndex >= 0 && currentSuggestions[selectedIndex]) {
           this.selectSuggestion(currentSuggestions[selectedIndex]);
         }
         break;
+      }
         
       case 'Escape':
         this.closeSearch();
@@ -919,7 +929,7 @@ export class SearchComponent {
   }
 
   getSuggestionIcon(type: string): string {
-    const iconMap: { [key: string]: string } = {
+    const iconMap: Record<string, string> = {
       'service': 'fa fa-cogs',
       'project': 'fa fa-briefcase',
       'page': 'fa fa-file-alt',

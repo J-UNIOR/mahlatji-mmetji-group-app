@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy } from '@angular/core';
+import { Component, OnInit, OnDestroy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { PWAService } from '../../services/pwa.service';
 import { Subject, takeUntil } from 'rxjs';
@@ -312,7 +312,7 @@ export class PWAInstallComponent implements OnInit, OnDestroy {
   isOnline = true;
   isInstalled = false;
 
-  constructor(private pwaService: PWAService) {}
+  private pwaService = inject(PWAService);
 
   ngOnInit(): void {
     // Monitor PWA status

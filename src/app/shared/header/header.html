@@ -76,39 +76,40 @@
             </li>
             <li role="none" class="nav-item dropdown" 
                 [class.show]="dropdownOpen">
-              <a href="#" class="nav-link dropdown-toggle" 
-                 role="menuitem" 
-                 tabindex="0"
+              <button type="button" class="nav-link dropdown-toggle" 
                  (click)="toggleDropdown(); $event.preventDefault(); $event.stopPropagation()"
+                 (keydown)="onDropdownKeydown($event)"
                  (keydown.enter)="toggleDropdown(); $event.preventDefault()"
-                 (keydown.space)="toggleDropdown(); $event.preventDefault()"
-                 (keydown.escape)="closeDropdown()"
+                 (keyup.enter)="toggleDropdown(); $event.preventDefault()"
+                 (keypress.enter)="toggleDropdown(); $event.preventDefault()"
+                 tabindex="0"
                  [attr.aria-expanded]="dropdownOpen"
-                 aria-haspopup="true">
+                 aria-haspopup="true"
+                 role="button">
                 <i class="fa fa-building nav-icon" aria-hidden="true"></i>Our Companies <i class="fa fa-chevron-down" aria-hidden="true"></i>
-              </a>
+              </button>
               <ul class="dropdown-menu modern-dropdown" 
                   [class.show]="dropdownOpen" 
                   role="menu" 
                   [attr.aria-hidden]="!dropdownOpen"
                   (click)="$event.stopPropagation()">
                 <li>
-                  <a routerLink="/cleaning-security" role="menuitem" tabindex="0" (click)="closeMenu()">
+                  <a routerLink="/cleaning-security" role="menuitem" tabindex="0" (click)="closeMenu()" (keyup.enter)="closeMenu()">
                     <i class="fa fa-shield-alt"></i>Cleaning & Security
                   </a>
                 </li>
                 <li>
-                  <a routerLink="/construction-electrical" role="menuitem" tabindex="0" (click)="closeMenu()">
+                  <a routerLink="/construction-electrical" role="menuitem" tabindex="0" (click)="closeMenu()" (keyup.enter)="closeMenu()">
                     <i class="fa fa-hard-hat"></i>Construction & Electrical
                   </a>
                 </li>
                 <li>
-                  <a routerLink="/accounting" role="menuitem" tabindex="0" (click)="closeMenu()">
+                  <a routerLink="/accounting" role="menuitem" tabindex="0" (click)="closeMenu()" (keyup.enter)="closeMenu()">
                     <i class="fa fa-calculator"></i>Accounting & Corporate
                   </a>
                 </li>
                 <li>
-                  <a routerLink="/services" role="menuitem" tabindex="0" (click)="closeMenu()">
+                  <a routerLink="/services" role="menuitem" tabindex="0" (click)="closeMenu()" (keyup.enter)="closeMenu()">
                     <i class="fa fa-list view-all-icon"></i>View All Companies
                   </a>
                 </li>

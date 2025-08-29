@@ -1,3 +1,4 @@
+import { inject } from '@angular/core';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { DarkModeService, ThemeMode } from '../../services/dark-mode.service';
@@ -341,15 +342,18 @@ export class DarkModeToggleComponent implements OnInit, OnDestroy {
     { value: 'auto' as ThemeMode, label: 'Auto', icon: 'fa-adjust' }
   ];
 
-  constructor(private darkModeService: DarkModeService) {}
+  private darkModeService = inject(DarkModeService);
+
+  // Removed empty constructor
 
   ngOnInit(): void {
     // Subscribe to theme changes
     combineLatest([
       this.darkModeService.isDarkMode$,
       this.darkModeService.currentThemeMode$
-    ]).pipe(takeUntil(this.destroy$))
-      .subscribe(([isDarkMode, themeMode]) => {
+    ] as [import('rxjs').Observable<boolean>, import('rxjs').Observable<ThemeMode>])
+      .pipe(takeUntil(this.destroy$))
+      .subscribe(([isDarkMode, themeMode]: [boolean, ThemeMode]) => {
         this.isDarkMode = isDarkMode;
         this.currentTheme = themeMode;
         this.updateSystemPreference();

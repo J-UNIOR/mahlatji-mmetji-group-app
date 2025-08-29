@@ -114,10 +114,8 @@ describe('DarkModeToggleComponent', () => {
   });
 
   it('should unsubscribe on destroy', () => {
-    spyOn(component as any, 'destroy$');
-    component.ngOnDestroy();
-    // Test that destroy$ subject is used for cleanup
-    expect(component).toBeTruthy(); // Basic test for now
+    // Call ngOnDestroy and ensure no errors (Subject cleanup)
+    expect(() => component.ngOnDestroy()).not.toThrow();
   });
 
   it('should have keyboard support', () => {

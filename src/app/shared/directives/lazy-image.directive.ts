@@ -1,20 +1,19 @@
-import { Directive, ElementRef, Input, OnInit, Renderer2 } from '@angular/core';
+import { Directive, ElementRef, Input, OnInit, Renderer2, OnDestroy, inject } from '@angular/core';
 
 @Directive({
   selector: '[appLazyImage]',
   standalone: true
 })
-export class LazyImageDirective implements OnInit {
+export class LazyImageDirective implements OnInit, OnDestroy {
   @Input() appLazyImage!: string;
   @Input() placeholder?: string;
   @Input() alt?: string;
 
   private observer?: IntersectionObserver;
 
-  constructor(
-    private el: ElementRef<HTMLImageElement>,
-    private renderer: Renderer2
-  ) {}
+  el = inject(ElementRef<HTMLImageElement>);
+  renderer = inject(Renderer2);
+
 
   ngOnInit(): void {
     this.setupLazyLoading();

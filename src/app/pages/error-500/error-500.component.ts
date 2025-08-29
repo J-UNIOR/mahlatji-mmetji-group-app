@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { RouterModule, Router } from '@angular/router';
 import { UXEnhancementService } from '../../shared/services/ux-enhancement.service';
@@ -630,10 +630,9 @@ export class Error500Component implements OnInit {
     storage: true
   };
 
-  constructor(
-    private router: Router,
-    private uxService: UXEnhancementService
-  ) {}
+  private router = inject(Router);
+  private uxService = inject(UXEnhancementService);
+
 
   ngOnInit(): void {
     // Track 500 errors for analytics

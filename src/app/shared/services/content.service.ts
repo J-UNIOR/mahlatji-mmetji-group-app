@@ -1,13 +1,12 @@
 import { Injectable } from '@angular/core';
-import { Observable, of, BehaviorSubject } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { delay, map } from 'rxjs/operators';
 import { 
-  Testimonial, 
+  Testimonial,
   TestimonialFilter,
   ProjectGalleryItem,
   ProjectCategory,
-  ProjectFilter,
-  ProjectImage 
+  ProjectFilter
 } from '../models/content.interface';
 
 @Injectable({
@@ -283,7 +282,7 @@ export class ContentService {
    */
   getTestimonials(filter?: TestimonialFilter): Observable<Testimonial[]> {
     return this.testimonialsSubject.asObservable().pipe(
-      map(testimonials => {
+  map((testimonials: Testimonial[]) => {
         let filtered = [...testimonials];
 
         if (filter) {
@@ -322,9 +321,9 @@ export class ContentService {
   /**
    * Get featured testimonials
    */
-  getFeaturedTestimonials(limit: number = 3): Observable<Testimonial[]> {
+  getFeaturedTestimonials(limit = 3): Observable<Testimonial[]> {
     return this.getTestimonials({ featured: true }).pipe(
-      map(testimonials => testimonials.slice(0, limit))
+  map((testimonials: Testimonial[]) => testimonials.slice(0, limit))
     );
   }
 
@@ -333,34 +332,34 @@ export class ContentService {
    */
   getProjects(filter?: ProjectFilter): Observable<ProjectGalleryItem[]> {
     return this.projectsSubject.asObservable().pipe(
-      map(projects => {
+  map((projects: ProjectGalleryItem[]) => {
         let filtered = [...projects];
 
         if (filter) {
           if (filter.categories?.length) {
-            filtered = filtered.filter(p => 
+            filtered = filtered.filter((p: ProjectGalleryItem) => 
               filter.categories?.includes(p.category.slug)
             );
           }
 
           if (filter.location) {
-            filtered = filtered.filter(p => 
+            filtered = filtered.filter((p: ProjectGalleryItem) => 
               p.location.toLowerCase().includes(filter.location!.toLowerCase())
             );
           }
 
           if (filter.featured !== undefined) {
-            filtered = filtered.filter(p => p.featured === filter.featured);
+            filtered = filtered.filter((p: ProjectGalleryItem) => p.featured === filter.featured);
           }
 
           if (filter.tags?.length) {
-            filtered = filtered.filter(p => 
-              p.tags.some(tag => filter.tags?.includes(tag))
+            filtered = filtered.filter((p: ProjectGalleryItem) => 
+              p.tags.some((tag: string) => filter.tags?.includes(tag))
             );
           }
 
           if (filter.dateRange) {
-            filtered = filtered.filter(p =>
+            filtered = filtered.filter((p: ProjectGalleryItem) =>
               p.completionDate >= filter.dateRange!.start &&
               p.completionDate <= filter.dateRange!.end
             );
@@ -368,7 +367,7 @@ export class ContentService {
 
           if (filter.search) {
             const searchTerm = filter.search.toLowerCase();
-            filtered = filtered.filter(p =>
+            filtered = filtered.filter((p: ProjectGalleryItem) =>
               p.title.toLowerCase().includes(searchTerm) ||
               p.description.toLowerCase().includes(searchTerm) ||
               p.location.toLowerCase().includes(searchTerm)
@@ -376,7 +375,7 @@ export class ContentService {
           }
         }
 
-        return filtered.sort((a, b) => b.completionDate.getTime() - a.completionDate.getTime());
+  return filtered.sort((a: ProjectGalleryItem, b: ProjectGalleryItem) => b.completionDate.getTime() - a.completionDate.getTime());
       }),
       delay(200)
     );
@@ -385,9 +384,9 @@ export class ContentService {
   /**
    * Get featured projects
    */
-  getFeaturedProjects(limit: number = 6): Observable<ProjectGalleryItem[]> {
+  getFeaturedProjects(limit = 6): Observable<ProjectGalleryItem[]> {
     return this.getProjects({ featured: true }).pipe(
-      map(projects => projects.slice(0, limit))
+  map((projects: ProjectGalleryItem[]) => projects.slice(0, limit))
     );
   }
 
@@ -403,7 +402,7 @@ export class ContentService {
    */
   getProjectById(id: string): Observable<ProjectGalleryItem | null> {
     return this.projectsSubject.asObservable().pipe(
-      map(projects => projects.find(p => p.id === id) || null),
+  map((projects: ProjectGalleryItem[]) => projects.find((p: ProjectGalleryItem) => p.id === id) || null),
       delay(200)
     );
   }
@@ -411,14 +410,14 @@ export class ContentService {
   /**
    * Get related projects based on category and tags
    */
-  getRelatedProjects(project: ProjectGalleryItem, limit: number = 3): Observable<ProjectGalleryItem[]> {
+  getRelatedProjects(project: ProjectGalleryItem, limit = 3): Observable<ProjectGalleryItem[]> {
     return this.projectsSubject.asObservable().pipe(
-      map(projects => {
+  map((projects: ProjectGalleryItem[]) => {
         return projects
-          .filter(p => p.id !== project.id)
-          .filter(p => 
+          .filter((p: ProjectGalleryItem) => p.id !== project.id)
+          .filter((p: ProjectGalleryItem) =>
             p.category.id === project.category.id ||
-            p.tags.some(tag => project.tags.includes(tag))
+            p.tags.some((tag: string) => project.tags.includes(tag))
           )
           .slice(0, limit);
       }),
@@ -447,9 +446,9 @@ export class ContentService {
    */
   getAverageRating(): Observable<number> {
     return this.testimonialsSubject.asObservable().pipe(
-      map(testimonials => {
+  map((testimonials: Testimonial[]) => {
         if (testimonials.length === 0) return 0;
-        const sum = testimonials.reduce((acc, t) => acc + t.rating, 0);
+  const sum = testimonials.reduce((acc: number, t: Testimonial) => acc + t.rating, 0);
         return Math.round((sum / testimonials.length) * 10) / 10;
       })
     );

@@ -530,12 +530,12 @@ function verifyMobileOptimization() {
 
 // Export for use in development
 if (typeof window !== 'undefined') {
-  (window as any).verifyMobileOptimization = verifyMobileOptimization;
-  (window as any).verifyTouchGestures = verifyTouchGestures;
-  (window as any).verifyAppShell = verifyAppShell;
-  (window as any).verifyPushNotifications = verifyPushNotifications;
-  (window as any).verifyPerformanceMetrics = verifyPerformanceMetrics;
-  (window as any).verifyMobileDetection = verifyMobileDetection;
+  (window as unknown as { verifyMobileOptimization?: typeof verifyMobileOptimization }).verifyMobileOptimization = verifyMobileOptimization;
+  (window as unknown as { verifyTouchGestures?: typeof verifyTouchGestures }).verifyTouchGestures = verifyTouchGestures;
+  (window as unknown as { verifyAppShell?: typeof verifyAppShell }).verifyAppShell = verifyAppShell;
+  (window as unknown as { verifyPushNotifications?: typeof verifyPushNotifications }).verifyPushNotifications = verifyPushNotifications;
+  (window as unknown as { verifyPerformanceMetrics?: typeof verifyPerformanceMetrics }).verifyPerformanceMetrics = verifyPerformanceMetrics;
+  (window as unknown as { verifyMobileDetection?: typeof verifyMobileDetection }).verifyMobileDetection = verifyMobileDetection;
 }
 
 // Auto-run verification in development mode

@@ -1,4 +1,4 @@
-import { Injectable, PLATFORM_ID, Inject } from '@angular/core';
+import { Injectable, PLATFORM_ID, inject } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
 import { BehaviorSubject, Observable } from 'rxjs';
 
@@ -48,7 +48,8 @@ export class AppShellService {
     shellTemplate: 'app-shell'
   };
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+  platformId = inject(PLATFORM_ID);
+  constructor() {
     if (isPlatformBrowser(this.platformId)) {
       this.initializeAppShell();
     }
@@ -102,7 +103,7 @@ export class AppShellService {
     stage: LoadingState['stage'], 
     progress: number, 
     message: string, 
-    isLoading: boolean = true
+    isLoading = true
   ): void {
     this.loadingState$.next({
       isLoading,

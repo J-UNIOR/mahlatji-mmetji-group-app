@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of, BehaviorSubject } from 'rxjs';
+import { Observable, BehaviorSubject } from 'rxjs';
 import { delay, map } from 'rxjs/operators';
 import { 
   BlogPost, 
@@ -181,7 +181,7 @@ export class BlogService {
   /**
    * Get all blog posts with optional filtering and pagination
    */
-  getPosts(filter?: BlogFilter, page: number = 1, limit: number = 10): Observable<BlogResponse> {
+  getPosts(filter?: BlogFilter, page = 1, limit = 10): Observable<BlogResponse> {
     return this.postsSubject.asObservable().pipe(
       map(posts => {
         let filteredPosts = [...posts];
@@ -266,7 +266,7 @@ export class BlogService {
   /**
    * Get featured blog posts
    */
-  getFeaturedPosts(limit: number = 3): Observable<BlogPost[]> {
+  getFeaturedPosts(limit = 3): Observable<BlogPost[]> {
     return this.postsSubject.asObservable().pipe(
       map(posts => posts.filter(post => post.featured).slice(0, limit)),
       delay(200)
@@ -276,7 +276,7 @@ export class BlogService {
   /**
    * Get recent blog posts
    */
-  getRecentPosts(limit: number = 5): Observable<BlogPost[]> {
+  getRecentPosts(limit = 5): Observable<BlogPost[]> {
     return this.postsSubject.asObservable().pipe(
       map(posts => {
         return [...posts]
@@ -304,7 +304,7 @@ export class BlogService {
   /**
    * Get related posts based on tags and categories
    */
-  getRelatedPosts(post: BlogPost, limit: number = 3): Observable<BlogPost[]> {
+  getRelatedPosts(post: BlogPost, limit = 3): Observable<BlogPost[]> {
     return this.postsSubject.asObservable().pipe(
       map(posts => {
         return posts

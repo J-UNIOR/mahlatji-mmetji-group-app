@@ -1,4 +1,4 @@
-import { Component, Input, signal, computed, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, signal, computed, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UXEnhancementService } from '../../services/ux-enhancement.service';
 
@@ -598,9 +598,9 @@ export interface AccessibilityFeature {
     }
   `]
 })
-export class AccessibilityPanelComponent implements OnInit, OnDestroy {
+export class AccessibilityPanelComponent implements OnInit {
   @Input() position: 'left' | 'right' = 'right';
-  @Input() autoShow: boolean = false;
+  @Input() autoShow = false;
 
   private panelOpen = signal(false);
   private userPrefs = signal({
@@ -623,7 +623,8 @@ export class AccessibilityPanelComponent implements OnInit, OnDestroy {
   readonly keyboardNavigation = computed(() => this.userPrefs().keyboardNavigation);
   readonly focusIndicators = computed(() => this.userPrefs().focusIndicators);
 
-  constructor(private uxService: UXEnhancementService) {}
+  private uxService = inject(UXEnhancementService);
+
 
   ngOnInit(): void {
     this.loadUserPreferences();
@@ -641,9 +642,7 @@ export class AccessibilityPanelComponent implements OnInit, OnDestroy {
     this.setupKeyboardShortcuts();
   }
 
-  ngOnDestroy(): void {
-    // Cleanup if needed
-  }
+  // ...existing code...
 
   private setupKeyboardShortcuts(): void {
     document.addEventListener('keydown', (e) => {

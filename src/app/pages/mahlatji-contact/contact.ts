@@ -1,4 +1,4 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule, NgForm } from '@angular/forms';
 import { ContactService } from '../../shared/services/contact.service';
@@ -43,7 +43,9 @@ export class ContactComponent {
     }
   };
 
-  constructor(private contactService: ContactService) {}
+  private contactService = inject(ContactService);
+
+  // Removed empty constructor
 
   onSubmit(form: NgForm): void {
     if (form.invalid || this.isSubmitting()) {
@@ -56,16 +58,20 @@ export class ContactComponent {
     this.submitSuccess.set(false);
 
     this.contactService.submitContactForm(this.contactForm).subscribe({
-      next: (response) => {
+      next: (response: { success: boolean }) => {
         if (response.success) {
           this.submitSuccess.set(true);
           this.resetForm(form);
         }
         this.isSubmitting.set(false);
       },
-      error: (error) => {
+      error: (error: unknown) => {
         console.error('Contact form submission error:', error);
-        this.submitError.set(error.message || 'Failed to send message. Please try again.');
+        let message = 'Failed to send message. Please try again.';
+        if (typeof error === 'object' && error !== null && 'message' in error && typeof (error as { message?: string }).message === 'string') {
+          message = (error as { message?: string }).message!;
+        }
+        this.submitError.set(message);
         this.isSubmitting.set(false);
       }
     });

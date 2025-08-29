@@ -1,9 +1,9 @@
 import { TestBed } from '@angular/core/testing';
-import { DarkModeService, ThemeMode } from './dark-mode.service';
+import { DarkModeService } from './dark-mode.service';
 
 describe('DarkModeService', () => {
   let service: DarkModeService;
-  let mockLocalStorage: { [key: string]: string };
+  let mockLocalStorage: Record<string, string>;
 
   beforeEach(() => {
     // Mock localStorage

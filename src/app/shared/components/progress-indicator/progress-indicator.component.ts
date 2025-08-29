@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, signal, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, Output, EventEmitter, signal, OnInit, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UXEnhancementService } from '../../services/ux-enhancement.service';
 
@@ -450,14 +450,15 @@ export interface ProgressStep {
     }
   `]
 })
-export class ProgressIndicatorComponent implements OnInit, OnDestroy {
+export class ProgressIndicatorComponent implements OnInit {
+  // ...existing code...
   @Input() type: 'linear' | 'circular' | 'steps' = 'linear';
-  @Input() progress: number = 0;
-  @Input() indeterminate: boolean = false;
-  @Input() showLabel: boolean = true;
-  @Input() size: number = 120;
+  @Input() progress = 0;
+  @Input() indeterminate = false;
+  @Input() showLabel = true;
+  @Input() size = 120;
   @Input() steps: ProgressStep[] = [];
-  @Input() ariaLabel: string = 'Progress indicator';
+  @Input() ariaLabel = 'Progress indicator';
 
   @Output() stepClicked = new EventEmitter<{ step: ProgressStep; index: number }>();
   @Output() progressChanged = new EventEmitter<number>();
@@ -467,15 +468,13 @@ export class ProgressIndicatorComponent implements OnInit, OnDestroy {
   
   circumference = 2 * Math.PI * 54; // radius = 54
 
-  constructor(private uxService: UXEnhancementService) {}
+  private uxService = inject(UXEnhancementService);
 
   ngOnInit(): void {
     this.updateProgress(this.progress);
   }
 
-  ngOnDestroy(): void {
-    // Cleanup if needed
-  }
+
 
   readonly strokeDashoffset = () => {
     const progress = this.currentProgress();
@@ -536,7 +535,7 @@ export class ProgressIndicatorComponent implements OnInit, OnDestroy {
     this.updateProgress(value);
   }
 
-  incrementProgress(amount: number = 1): void {
+  incrementProgress(amount = 1): void {
     this.updateProgress(this.currentProgress() + amount);
   }
 

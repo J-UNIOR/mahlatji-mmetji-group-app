@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, signal, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, Output, EventEmitter, signal, OnInit, OnDestroy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { UXEnhancementService } from '../../services/ux-enhancement.service';
 
@@ -365,15 +365,15 @@ export interface TooltipConfig {
   `]
 })
 export class TooltipComponent implements OnInit, OnDestroy {
-  @Input() content: string = '';
+  @Input() content = '';
   @Input() position: 'top' | 'bottom' | 'left' | 'right' | 'auto' = 'top';
   @Input() theme: 'light' | 'dark' | 'auto' = 'auto';
-  @Input() showDelay: number = 500;
-  @Input() hideDelay: number = 100;
-  @Input() arrow: boolean = true;
-  @Input() interactive: boolean = false;
-  @Input() maxWidth: string = '300px';
-  @Input() disabled: boolean = false;
+  @Input() showDelay = 500;
+  @Input() hideDelay = 100;
+  @Input() arrow = true;
+  @Input() interactive = false;
+  @Input() maxWidth = '300px';
+  @Input() disabled = false;
 
   @Output() shown = new EventEmitter<void>();
   @Output() hidden = new EventEmitter<void>();
@@ -400,7 +400,8 @@ export class TooltipComponent implements OnInit, OnDestroy {
     return this.config.content.includes('<') && this.config.content.includes('>');
   };
 
-  constructor(private uxService: UXEnhancementService) {}
+  uxService = inject(UXEnhancementService);
+
 
   ngOnInit(): void {
     this.updateConfig();

@@ -1,6 +1,5 @@
-import { Component, OnInit, AfterViewInit, OnDestroy, signal } from '@angular/core';
+import { Component, OnInit, AfterViewInit, OnDestroy, signal, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { CarouselModule, OwlOptions } from 'ngx-owl-carousel-o';
 import { MahlatjiServicesService } from '../../shared/services/mahlatji-services.service';
 import { PerformanceService } from '../../shared/services/performance.service';
 import { UXEnhancementService } from '../../shared/services/ux-enhancement.service';
@@ -9,18 +8,20 @@ import { RouterModule } from '@angular/router';
 import { SkeletonLoaderComponent } from '../../shared/components/skeleton-loader/skeleton-loader.component';
 import { TooltipComponent } from '../../shared/components/tooltip/tooltip.component';
 
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
+
 @Component({
   selector: 'app-home',
   standalone: true,
   imports: [
     CommonModule, 
-    CarouselModule, 
     RouterModule, 
     SkeletonLoaderComponent,
     TooltipComponent
   ],
   templateUrl: './home.html',
-  styleUrl: './home.css'
+  styleUrl: './home.css',
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   menuOpen = false;
@@ -28,11 +29,11 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   isLoading = signal(true);
   error = signal<string | null>(null);
 
-  constructor(
-    private businessServicesService: MahlatjiServicesService,
-    private performanceService: PerformanceService,
-    private uxService: UXEnhancementService
-  ) {}
+  private businessServicesService = inject(MahlatjiServicesService);
+  private performanceService = inject(PerformanceService);
+  private uxService = inject(UXEnhancementService);
+
+  // Removed empty constructor
 
   ngOnInit(): void {
     this.performanceService.measurePerformance('home-component-init');
@@ -59,18 +60,11 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
 
   private async preloadCriticalImages(): Promise<void> {
     const criticalImages = [
-      // Preload WebP versions with fallbacks
-      'assets/images/banner-01.webp',
-      'assets/images/banner-02.webp', 
-      'assets/images/banner-03.webp',
-      'assets/images/banner-04.webp',
-      'assets/images/featured.webp',
-      // Fallback images
-      'assets/images/banner-01.jpg',
-      'assets/images/banner-02.jpg',
-      'assets/images/banner-03.jpg',
-      'assets/images/banner-04.jpg',
-      'assets/images/featured.jpg'
+      // Use available PNG images for banners
+      'assets/images/banner-01.png',
+      'assets/images/banner-02.png',
+      'assets/images/banner-03.png',
+      'assets/images/banner-04.png'
     ];
 
     try {
@@ -86,15 +80,13 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     console.log('Found stat elements:', statNumbers.length);
     
     statNumbers.forEach((element, index) => {
-      const target = parseInt((element as HTMLElement).getAttribute('data-target') || '0');
-      console.log(`Element ${index}: target=${target}`);
-      
+      const targetValue = parseInt((element as HTMLElement).getAttribute('data-target') || '0');
+      console.log(`Element ${index}: target=${targetValue}`);
       // Set initial value to 0 for animation
       element.textContent = '0';
-      
       // Animate to target value after delay
       setTimeout(() => {
-        this.animateCounterToTarget(element as HTMLElement, target);
+        this.animateCounterToTarget(element as HTMLElement, targetValue);
       }, 500 + (index * 200)); // Staggered animation
     });
   }
@@ -124,7 +116,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     requestAnimationFrame(animate);
   }
 
-  private animateCounter(element: HTMLElement, target: number): void {
+  private animateCounter(element: HTMLElement): void {
     // Add pulse effect for manual triggers
     element.classList.add('counting');
     element.style.transform = 'scale(1.1)';
@@ -145,11 +137,11 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
   private loadFeaturedServices(): void {
     this.isLoading.set(true);
     this.businessServicesService.getFeaturedServices().subscribe({
-      next: (services) => {
+      next: (services: BusinessService[]) => {
         this.featuredServices.set(services);
         this.isLoading.set(false);
       },
-      error: (error) => {
+      error: (error: unknown) => {
         console.error('Error loading featured services:', error);
         this.error.set('Failed to load services. Please try again later.');
         this.isLoading.set(false);
@@ -163,7 +155,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       title: 'Mahlatji Mmetji Group',
       subtitle: 'Business Solutions',
       description: 'Comprehensive cleaning, security, construction, electrical, and accounting services across South Africa',
-      backgroundImage: 'assets/images/banner-01.webp',
+  backgroundImage: 'assets/images/banner-01.png',
       ctaText: 'Our Services',
       ctaLink: '/services',
       serviceCategory: ServiceCategory.CLEANING_SECURITY,
@@ -179,7 +171,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       title: 'Cleaning & Security',
       subtitle: 'Safety & Cleanliness First',
       description: 'Professional cleaning services and comprehensive security solutions for residential and commercial properties',
-      backgroundImage: 'assets/images/banner-02.webp',
+  backgroundImage: 'assets/images/banner-02.png',
       ctaText: 'Learn More',
       ctaLink: '/services',
       serviceCategory: ServiceCategory.CLEANING_SECURITY,
@@ -195,7 +187,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       title: 'Construction & Electrical',
       subtitle: 'Building Excellence',
       description: 'Quality construction projects and professional electrical installations with certified expertise',
-      backgroundImage: 'assets/images/banner-03.webp',
+  backgroundImage: 'assets/images/banner-03.png',
       ctaText: 'View Projects',
       ctaLink: '/services',
       serviceCategory: ServiceCategory.CONSTRUCTION_ELECTRICAL,
@@ -211,7 +203,7 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
       title: 'Accounting Services',
       subtitle: 'Financial Excellence',
       description: 'Complete accounting solutions including bookkeeping, tax preparation, and financial consulting',
-      backgroundImage: 'assets/images/banner-04.webp',
+  backgroundImage: 'assets/images/banner-04.png',
       ctaText: 'Get Quote',
       ctaLink: '/services',
       serviceCategory: ServiceCategory.ACCOUNTING,
@@ -224,60 +216,22 @@ export class HomeComponent implements OnInit, AfterViewInit, OnDestroy {
     }
   ];
 
-  bannerOptions: OwlOptions = {
+  bannerOptions = {
     loop: true,
-    mouseDrag: true,
-    touchDrag: true,
-    pullDrag: false,
-    dots: false,
-    navSpeed: 700,
-    navText: [
-      '<i class="fa fa-chevron-left"></i>',
-      '<i class="fa fa-chevron-right"></i>'
-    ],
-    responsive: {
-      0: {
-        items: 1
-      },
-      400: {
-        items: 1
-      },
-      740: {
-        items: 1
-      },
-      940: {
-        items: 1
-      }
-    },
-    nav: true,
-    autoplay: true,
-    autoplayTimeout: 5000,
-    autoplayHoverPause: true
+    navigation: true,
+    pagination: { clickable: false },
+    autoplay: { delay: 5000, disableOnInteraction: false },
+    speed: 700,
+    slidesPerView: 1,
+    spaceBetween: 0,
+    allowTouchMove: true,
+    breakpoints: {
+      0: { slidesPerView: 1 },
+      400: { slidesPerView: 1 },
+      740: { slidesPerView: 1 },
+      940: { slidesPerView: 1 }
+    }
   };
 
-  propertiesOptions: OwlOptions = {
-    loop: false,
-    mouseDrag: true,
-    touchDrag: true,
-    pullDrag: false,
-    dots: true,
-    navSpeed: 700,
-    navText: [
-      '<i class="fa fa-chevron-left"></i>',
-      '<i class="fa fa-chevron-right"></i>'
-    ],
-    responsive: {
-      0: {
-        items: 1
-      },
-      600: {
-        items: 2
-      },
-      1000: {
-        items: 3
-      }
-    },
-    nav: true,
-    autoplay: false
-  };
+  // propertiesOptions: Swiper config can be added here if needed for other carousels
 }

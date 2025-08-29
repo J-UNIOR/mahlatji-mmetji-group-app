@@ -3,7 +3,7 @@
  * Tests the integration of TouchGestureService, AppShellService, and PushNotificationService
  */
 
-import { Component, OnInit, OnDestroy, inject, PLATFORM_ID } from '@angular/core';
+import { Component, OnInit, inject, PLATFORM_ID } from '@angular/core';
 import { CommonModule, isPlatformBrowser } from '@angular/common';
 import { TouchGestureService } from '../../services/touch-gesture.service';
 import { AppShellService } from '../../services/app-shell.service';
@@ -18,11 +18,9 @@ import { MobileOptimizationComponent } from '../mobile-optimization/mobile-optim
     <div class="mobile-test-container">
       <!-- Mobile Optimization Component -->
       <app-mobile-optimization></app-mobile-optimization>
-      
       <!-- Test Controls -->
       <div class="test-controls" *ngIf="isBrowser">
         <h2>🧪 Mobile Optimization Test Suite</h2>
-        
         <!-- Service Status -->
         <div class="service-status">
           <div class="status-item">
@@ -38,35 +36,15 @@ import { MobileOptimizationComponent } from '../mobile-optimization/mobile-optim
             <span [class]="pushNotificationStatus.class">{{ pushNotificationStatus.text }}</span>
           </div>
         </div>
-
         <!-- Test Buttons -->
         <div class="test-buttons">
-          <button 
-            class="test-btn primary"
-            (click)="testTouchGestures()">
-            Test Touch Gestures
-          </button>
-          
-          <button 
-            class="test-btn secondary"
-            (click)="testAppShell()">
-            Test App Shell
-          </button>
-          
-          <button 
-            class="test-btn warning"
-            (click)="testPushNotifications()">
-            Test Notifications
-          </button>
-          
-          <button 
-            class="test-btn success"
-            (click)="runFullTest()"
-            [disabled]="isRunningTest">
+          <button class="test-btn primary" (click)="testTouchGestures()">Test Touch Gestures</button>
+          <button class="test-btn secondary" (click)="testAppShell()">Test App Shell</button>
+          <button class="test-btn warning" (click)="testPushNotifications()">Test Notifications</button>
+          <button class="test-btn success" (click)="runFullTest()" [disabled]="isRunningTest">
             {{ isRunningTest ? 'Running...' : 'Run Full Test' }}
           </button>
         </div>
-
         <!-- Test Results -->
         <div class="test-results" *ngIf="testResults.length > 0">
           <h3>📊 Test Results</h3>
@@ -76,45 +54,43 @@ import { MobileOptimizationComponent } from '../mobile-optimization/mobile-optim
             <span class="result-time">{{ result.time }}ms</span>
           </div>
         </div>
-
         <!-- Performance Metrics -->
         <div class="performance-section" *ngIf="performanceData">
           <h3>⚡ Performance Metrics</h3>
           <div class="metric-grid">
             <div class="metric-card">
               <span class="metric-label">Load Time</span>
-              <span class="metric-value">{{ performanceData.timeToInteractive }}ms</span>
+              <span class="metric-value">{{ performanceData['timeToInteractive'] }}ms</span>
             </div>
             <div class="metric-card">
               <span class="metric-label">First Paint</span>
-              <span class="metric-value">{{ performanceData.firstContentfulPaint }}ms</span>
+              <span class="metric-value">{{ performanceData['firstContentfulPaint'] }}ms</span>
             </div>
             <div class="metric-card">
               <span class="metric-label">Shell Load</span>
-              <span class="metric-value">{{ performanceData.shellLoadTime }}ms</span>
+              <span class="metric-value">{{ performanceData['shellLoadTime'] }}ms</span>
             </div>
           </div>
         </div>
-
         <!-- Device Information -->
         <div class="device-info" *ngIf="deviceInfo">
           <h3>📱 Device Information</h3>
           <div class="info-grid">
             <div class="info-item">
               <span class="info-label">Device Type:</span>
-              <span class="info-value">{{ deviceInfo.type }}</span>
+              <span class="info-value">{{ deviceInfo['type'] }}</span>
             </div>
             <div class="info-item">
               <span class="info-label">Touch Support:</span>
-              <span class="info-value">{{ deviceInfo.touchSupport }}</span>
+              <span class="info-value">{{ deviceInfo['touchSupport'] }}</span>
             </div>
             <div class="info-item">
               <span class="info-label">Screen Size:</span>
-              <span class="info-value">{{ deviceInfo.screenSize }}</span>
+              <span class="info-value">{{ deviceInfo['screenSize'] }}</span>
             </div>
             <div class="info-item">
               <span class="info-label">Pixel Ratio:</span>
-              <span class="info-value">{{ deviceInfo.pixelRatio }}</span>
+              <span class="info-value">{{ deviceInfo['pixelRatio'] }}</span>
             </div>
           </div>
         </div>
@@ -143,7 +119,7 @@ import { MobileOptimizationComponent } from '../mobile-optimization/mobile-optim
       margin: 0 0 24px 0;
       font-size: 24px;
       font-weight: 600;
-    }
+     import { Component, OnInit, inject, PLATFORM_ID } from '@angular/core';
 
     h3 {
       color: #555;
@@ -341,7 +317,12 @@ import { MobileOptimizationComponent } from '../mobile-optimization/mobile-optim
     }
   `]
 })
-export class MobileOptimizationTestComponent implements OnInit, OnDestroy {
+export class MobileOptimizationTestComponent implements OnInit {
+  // ...existing code...
+  // Required by OnDestroy interface. Add cleanup logic if needed in the future.
+
+
+
   private platformId = inject(PLATFORM_ID);
   private touchGestureService = inject(TouchGestureService);
   private appShellService = inject(AppShellService);
@@ -354,15 +335,15 @@ export class MobileOptimizationTestComponent implements OnInit, OnDestroy {
   appShellStatus = { text: 'Checking...', class: 'status-loading' };
   pushNotificationStatus = { text: 'Checking...', class: 'status-loading' };
 
-  testResults: Array<{
+  testResults: {
     icon: string;
     text: string;
     status: string;
     time: number;
-  }> = [];
+  }[] = [];
 
-  performanceData: any = null;
-  deviceInfo: any = null;
+  performanceData: Record<string, unknown> | null = null;
+  deviceInfo: Record<string, unknown> | null = null;
 
   ngOnInit(): void {
     this.isBrowser = isPlatformBrowser(this.platformId);
@@ -374,9 +355,7 @@ export class MobileOptimizationTestComponent implements OnInit, OnDestroy {
     }
   }
 
-  ngOnDestroy(): void {
-    // Clean up any subscriptions
-  }
+
 
   private checkServiceStatus(): void {
     // Check TouchGestureService
@@ -475,7 +454,7 @@ export class MobileOptimizationTestComponent implements OnInit, OnDestroy {
       
       this.addTestResult({
         icon: '✅',
-        text: `App shell loading state: ${(loadingState as any).stage}`,
+  text: `App shell loading state: ${(loadingState as { stage: string }).stage}`,
         status: 'success',
         time: Math.round(endTime - startTime)
       });

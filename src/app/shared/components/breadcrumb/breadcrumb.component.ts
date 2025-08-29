@@ -1,6 +1,7 @@
 import { Component, Input, signal, computed, OnInit, OnDestroy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, NavigationEnd } from '@angular/router';
+import { inject } from '@angular/core';
 import { UXEnhancementService } from '../../services/ux-enhancement.service';
 import { filter } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
@@ -249,9 +250,9 @@ export interface BreadcrumbItem {
   `]
 })
 export class BreadcrumbComponent implements OnInit, OnDestroy {
-  @Input() ariaLabel: string = 'Breadcrumb navigation';
-  @Input() showHome: boolean = true;
-  @Input() homeLabel: string = 'Home';
+  @Input() ariaLabel = 'Breadcrumb navigation';
+  @Input() showHome = true;
+  @Input() homeLabel = 'Home';
 
   private breadcrumbItems = signal<BreadcrumbItem[]>([]);
   private currentRoute = signal<string>('');
@@ -271,10 +272,10 @@ export class BreadcrumbComponent implements OnInit, OnDestroy {
     return items;
   });
 
-  constructor(
-    private uxService: UXEnhancementService,
-    private router: Router
-  ) {}
+  private uxService = inject(UXEnhancementService);
+  private router = inject(Router);
+
+  // Removed empty constructor
 
   ngOnInit(): void {
     this.currentRoute.set(this.router.url);
@@ -324,7 +325,7 @@ export class BreadcrumbComponent implements OnInit, OnDestroy {
 
   private formatSegmentLabel(segment: string): string {
     // Convert URL segments to readable labels
-    const labelMap: { [key: string]: string } = {
+    const labelMap: Record<string, string> = {
       'home': 'Home',
       'about': 'About Us',
       'services': 'Our Companies',
@@ -343,7 +344,7 @@ export class BreadcrumbComponent implements OnInit, OnDestroy {
     return str.replace(/\b\w/g, letter => letter.toUpperCase());
   }
 
-  trackByIndex(index: number, item: BreadcrumbItem): number {
+  trackByIndex(index: number): number {
     return index;
   }
 

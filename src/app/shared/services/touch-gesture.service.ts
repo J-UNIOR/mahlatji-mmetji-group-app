@@ -1,7 +1,7 @@
-import { Injectable, PLATFORM_ID, Inject } from '@angular/core';
+import { Injectable, PLATFORM_ID, OnDestroy, inject } from '@angular/core';
 import { isPlatformBrowser } from '@angular/common';
-import { Subject, fromEvent, Observable } from 'rxjs';
-import { filter, map, pairwise, share, takeUntil } from 'rxjs/operators';
+import { Subject, fromEvent } from 'rxjs';
+import { filter, takeUntil } from 'rxjs/operators';
 
 export interface SwipeEvent {
   direction: 'left' | 'right' | 'up' | 'down';
@@ -24,7 +24,7 @@ export interface TouchGestureConfig {
 @Injectable({
   providedIn: 'root'
 })
-export class TouchGestureService {
+export class TouchGestureService implements OnDestroy {
   private destroy$ = new Subject<void>();
   private swipeSubject = new Subject<SwipeEvent>();
   
@@ -37,7 +37,8 @@ export class TouchGestureService {
     velocity: 0.5
   };
 
-  constructor(@Inject(PLATFORM_ID) private platformId: Object) {
+  platformId = inject(PLATFORM_ID);
+  constructor() {
     if (isPlatformBrowser(this.platformId)) {
       this.initializeGlobalSwipeListener();
     }
@@ -152,13 +153,13 @@ export class TouchGestureService {
       onSwipeUp?: () => void;
       onSwipeDown?: () => void;
     },
-    config?: Partial<TouchGestureConfig>
+  // config?: Partial<TouchGestureConfig>
   ): () => void {
     if (!isPlatformBrowser(this.platformId)) {
-      return () => {};
+      return () => undefined;
     }
 
-    const mergedConfig = { ...this.defaultConfig, ...config };
+  // const mergedConfig = { ...this.defaultConfig, ...config };
     const subscription = this.swipe$
       .pipe(
         filter(swipe => swipe.target === element || element.contains(swipe.target)),
@@ -233,7 +234,7 @@ export class TouchGestureService {
   createPullToRefresh(
     element: HTMLElement,
     onRefresh: () => void,
-    threshold: number = 80
+    threshold = 80
   ): () => void {
     let startY = 0;
     let isAtTop = false;

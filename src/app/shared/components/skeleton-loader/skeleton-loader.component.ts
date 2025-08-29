@@ -86,7 +86,7 @@ import { CommonModule } from '@angular/common';
   `]
 })
 export class SkeletonLoaderComponent {
-  @Input() wrapperClass: string = '';
-  @Input() skeletonClass: string = '';
-  @Input() skeletonStyle: { [key: string]: string } = {};
+  @Input() wrapperClass = '';
+  @Input() skeletonClass = '';
+  @Input() skeletonStyle: Record<string, string> = {};
 }

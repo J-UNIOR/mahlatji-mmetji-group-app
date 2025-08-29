@@ -26,7 +26,7 @@ export class ProjectsComponent {
     },
     {
       id: 2,
-      title: 'Mangoato Trading Enterprise (Pty) Ltd',
+      title: 'Rudev Management Consultants (Pty) Ltd',
       category: 'Accounting Services',
       description: 'Provision of accounting services contract over 3 years.',
       image: '/assets/images/5.png',
@@ -34,7 +34,7 @@ export class ProjectsComponent {
       status: 'Ongoing',
       duration: '36 months',
       features: ['Accounting Services', 'Financial Reporting', 'Tax Compliance'],
-      client: 'Mangoato Trading Enterprise (Pty) Ltd',
+      client: 'Rudev Management Consultants',
       contactPerson: 'Aaron Mangoato',
       contactNumber: '013 658 60296'
     },

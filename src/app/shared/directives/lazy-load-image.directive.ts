@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Input, OnInit, OnDestroy, Renderer2 } from '@angular/core';
+import { Directive, ElementRef, Input, OnInit, OnDestroy, Renderer2, inject } from '@angular/core';
 
 @Directive({
   selector: '[appLazyLoad]',
@@ -6,15 +6,14 @@ import { Directive, ElementRef, Input, OnInit, OnDestroy, Renderer2 } from '@ang
 })
 export class LazyLoadImageDirective implements OnInit, OnDestroy {
   @Input('appLazyLoad') targetSrc!: string;
-  @Input() placeholder: string = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2VlZSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LXNpemU9IjE4IiBmaWxsPSIjYWFhIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+TG9hZGluZy4uLjwvdGV4dD48L3N2Zz4=';
+  @Input() placeholder = 'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjIwMCIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj48cmVjdCB3aWR0aD0iNDAwIiBoZWlnaHQ9IjIwMCIgZmlsbD0iI2VlZSIvPjx0ZXh0IHg9IjUwJSIgeT0iNTAlIiBmb250LXNpemU9IjE4IiBmaWxsPSIjYWFhIiB0ZXh0LWFuY2hvcj0ibWlkZGxlIiBkeT0iLjNlbSI+TG9hZGluZy4uLjwvdGV4dD48L3N2Zz4=';
   
   private observer!: IntersectionObserver;
   private isLoaded = false;
 
-  constructor(
-    private el: ElementRef<HTMLImageElement>,
-    private renderer: Renderer2
-  ) {}
+  el = inject(ElementRef<HTMLImageElement>);
+  renderer = inject(Renderer2);
+
 
   ngOnInit() {
     // Set placeholder initially

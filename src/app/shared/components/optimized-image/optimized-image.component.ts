@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnDestroy } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy, inject } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { LazyLoadImageDirective } from '../../directives/lazy-load-image.directive';
 import { PerformanceService } from '../../services/performance.service';
@@ -133,26 +133,27 @@ import { PerformanceService } from '../../services/performance.service';
     }
   `]
 })
+
 export class OptimizedImageComponent implements OnInit, OnDestroy {
   @Input() src!: string;
-  @Input() alt: string = '';
+  @Input() alt = '';
   @Input() width?: string;
   @Input() height?: string;
-  @Input() containerClass: string = '';
-  @Input() imageClass: string = '';
-  @Input() quality: number = 80;
-  @Input() enableWebP: boolean = true;
+  @Input() containerClass = '';
+  @Input() imageClass = '';
+  @Input() quality = 80;
+  @Input() enableWebP = true;
   @Input() sizes?: string;
   @Input() srcset?: string;
 
-  imageSrc: string = '';
-  webpSrc: string = '';
-  webpSrcset: string = '';
-  isLoading: boolean = true;
-  hasError: boolean = false;
-  private supportsWebP: boolean = false;
+  imageSrc = '';
+  webpSrc = '';
+  webpSrcset = '';
+  isLoading = true;
+  hasError = false;
+  private supportsWebP = false;
 
-  constructor(private performanceService: PerformanceService) {}
+  private performanceService = inject(PerformanceService);
 
   async ngOnInit() {
     this.performanceService.measurePerformance('image-component-init');
@@ -178,7 +179,7 @@ export class OptimizedImageComponent implements OnInit, OnDestroy {
     }
     
     // Apply additional optimizations
-    this.imageSrc = this.performanceService.getOptimizedImageUrl(optimizedSrc, undefined, this.quality);
+  this.imageSrc = this.performanceService.getOptimizedImageUrl(optimizedSrc);
   }
 
   private setupWebPSources() {
@@ -207,7 +208,7 @@ export class OptimizedImageComponent implements OnInit, OnDestroy {
     this.performanceService.measurePerformance('image-loaded');
   }
 
-  onImageError(event: any) {
+  onImageError(event: Event) {
     this.isLoading = false;
     this.hasError = true;
     console.warn('Image failed to load:', this.imageSrc, event);
